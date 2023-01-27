@@ -2,11 +2,16 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /*
-  X-Frame-Options = DENY
-  X-XSS-Protection = 1; mode=block
-  X-Content-Type-Options = nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self' www.google-analytics.com; script-src www.google-analytics.com 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; report-uri https://theroks.report-uri.com/r/d/csp/reportOnly"
+  Permissions-Policy: geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 https://astro-theroks-blog.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://beta.theroks.com/*
   X-Robots-Tag: noindex
