@@ -84,7 +84,7 @@ export default defineConfig({
               {
                 type: 'element',
                 tagName: 'img',
-                properties: { src: '/assets/link.svg' },
+                properties: { src: '/assets/link.svg', width: '16px', height: '16px' },
                 children: [],
               },
             ],
@@ -101,6 +101,8 @@ export default defineConfig({
             properties: {
               src: '/assets/external-link.svg',
               alt: 'External link icon',
+              width: '16px',
+              height: '16px'
             },
             children: [],
           },
