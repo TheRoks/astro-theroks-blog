@@ -33,7 +33,17 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    sitemap(),
+    sitemap({
+      serialize(item) {
+        if (/blog/.test(item.url) || /about/.test(item.url)) {
+          return undefined;
+        }
+        item.changefreq = 'weekly';
+        item.priority = 0.7;
+
+        return item;
+      },
+    }),
     image({
       serviceEntryPoint: '@astrojs/image/sharp',
     }),
