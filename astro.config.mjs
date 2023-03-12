@@ -5,6 +5,7 @@ import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import robotsTxt from 'astro-robots-txt';
 import image from '@astrojs/image';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
@@ -33,6 +34,7 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
+    robotsTxt(),
     sitemap({
       serialize(item) {
         if (/blog/.test(item.url) || /about/.test(item.url)) {
