@@ -7,7 +7,6 @@ publishDate: 2014-01-12
 updated: 2014-01-12
 ---
 
-
 Minifying your clientside code is a best practice. Minification performs a variety of different code optimizations to scripts or css, such as removing unnecessary white space and comments and shortening variable names to one character. This last thing can be problem with Angular if you do it right.
 
 ## Bundling and minifying with MVC
@@ -34,10 +33,11 @@ bundles.Add(new ScriptBundle("~/js/app").Include(
 Now I create a very simple Angular controller that will work.
 
 ```js
-angular.module('app.controllers', [])
-    .controller('HomeCtrl', [function ($scope, $location, $window) {
-        //your code
-    }]);
+angular.module("app.controllers", []).controller("HomeCtrl", [
+  function ($scope, $location, $window) {
+    //your code
+  },
+]);
 ```
 
 When running this will lead to multiple files to been loaded in the network tab.
@@ -51,10 +51,14 @@ Looking to my we see it isn’t working anymore. What did I do? The minification
 So did Angular fix this? Yes, they did. Is it a nice solution? No, in my opinion not. But it’s working. We need to inject explicit the names of the variables we will be using. So $scope will we injected as `$scope`. So how is this working? It all depends on order. The variable name in the function is not important anymore, you can name it as you want. Still I think you should use other names. Let it be clear you are using which variable you are using. See the code below how to fix it and let you code be able to minify.
 
 ```js
-angular.module('app.controllers', [])
-    .controller('HomeCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-       // your code
-    }])
+angular.module("app.controllers", []).controller("HomeCtrl", [
+  "$scope",
+  "$location",
+  "$window",
+  function ($scope, $location, $window) {
+    // your code
+  },
+]);
 ```
 
 ## Conclusion

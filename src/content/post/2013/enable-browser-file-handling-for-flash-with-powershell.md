@@ -7,15 +7,14 @@ publishDate: 2013-02-28
 updated: 2013-02-28
 ---
 
-
 Introduced into SharePoint 2010 as a security feature and the same applies to SharePoint 2013. When a user requests a file within SharePoint, the web server (IIS) will respond including the “X-Download-Options: noopen” HTTP Response Header if Browser File Handling is set to Strict and the file (MIME) type accessed is not on the Web Applications trusted file (MIME) type list. This header works in conjunction with Internet Explorer (version 8 or higher) to prevent potential security risks when accessing files online and will stop files from being directly opened.
 
 ## The Options
 
 There are two options for Browser File Handling – “Strict” and “Permissive”.
 
-* “Strict” specifies the MIME types which are not listed in a Web Application’s AllowedInlineDownloadedMimeTypes property (more on this in a bit) are forced to be downloaded.
-* “Permissive” specifies that the HTML and other content types which might contain script are allowed to be displayed directly in the browser. In other words, no matter what the type of content, if it lives within SharePoint, the file will open in your browser.
+- “Strict” specifies the MIME types which are not listed in a Web Application’s AllowedInlineDownloadedMimeTypes property (more on this in a bit) are forced to be downloaded.
+- “Permissive” specifies that the HTML and other content types which might contain script are allowed to be displayed directly in the browser. In other words, no matter what the type of content, if it lives within SharePoint, the file will open in your browser.
 
 ## How to set Browser File Handling
 

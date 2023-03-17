@@ -7,7 +7,6 @@ publishDate: 2011-02-12
 updated: 2011-02-12
 ---
 
-
 The XmlSerializer can cause serious problems in multithreaded environments. See this piece of code.
 
 ```csharp

@@ -13,17 +13,18 @@ We have a website with a lot of PDF documents. In content hyperlinks are made to
 
 To specify the .gif file that you want to use for the icon that represents Adobe PDF documents that are stored in SharePoint document libraries, follow these steps:
 
-* Copy the .gif file that you want to use for the icon to the following folder on the server:
-Drive:Program FilesCommon FilesMicrosoft SharedWeb Server Extensions14TEMPLATEIMAGES
+- Copy the .gif file that you want to use for the icon to the following folder on the server:
+  Drive:Program FilesCommon FilesMicrosoft SharedWeb Server Extensions14TEMPLATEIMAGES
 
-* Edit the Docicon.xml file to include the .pdf file name extension. To do so:
-  * Start Notepad, and then open the Docicon.xml file. The Docicon.xml file is located in one of the following folders on the server:
+- Edit the Docicon.xml file to include the .pdf file name extension. To do so:
+
+  - Start Notepad, and then open the Docicon.xml file. The Docicon.xml file is located in one of the following folders on the server:
     Drive:Program FilesCommon FilesMicrosoft SharedWeb Server Extensions14TEMPLATEXML
 
-  * In the `<ByExtension>` section of the Docicon.xml file, add an entry for the .pdf file name extension. To do so, add the following line, where NameofIconFile is the name of the .gif file: `<Mapping Key=”pdf” Value=”NameofIconFile.gif”/>` For example, if the name of the .gif file is MyPicture.gif, add the following line: `<Mapping Key=”pdf” Value=”MyPicture.gif”/>`
-  * On the File menu, click Save, and then exit Notepad.
-After this there’s a IIS restart necessary to see this change working.
+  - In the `<ByExtension>` section of the Docicon.xml file, add an entry for the .pdf file name extension. To do so, add the following line, where NameofIconFile is the name of the .gif file: `<Mapping Key=”pdf” Value=”NameofIconFile.gif”/>` For example, if the name of the .gif file is MyPicture.gif, add the following line: `<Mapping Key=”pdf” Value=”MyPicture.gif”/>`
+  - On the File menu, click Save, and then exit Notepad.
+    After this there’s a IIS restart necessary to see this change working.
 
-__Changes to DocIcon.xml should be made with extreme caution because they are global to a Windows SharePoint Services deployment and affect all site definitions on the front-end Web server. Changes that you make to this file may be overwritten when you install updates or service packs to Windows SharePoint Services, or when you upgrade an installation to the next product version.__
+**Changes to DocIcon.xml should be made with extreme caution because they are global to a Windows SharePoint Services deployment and affect all site definitions on the front-end Web server. Changes that you make to this file may be overwritten when you install updates or service packs to Windows SharePoint Services, or when you upgrade an installation to the next product version.**
 
-For full documentation on DocIcon.xml see [MSDN](http://msdn.microsoft.com/en-us/library/ms463701(v=office.12).aspx)
+For full documentation on DocIcon.xml see [MSDN](<http://msdn.microsoft.com/en-us/library/ms463701(v=office.12).aspx>)

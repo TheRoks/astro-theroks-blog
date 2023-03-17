@@ -7,7 +7,6 @@ publishDate: 2011-06-15
 updated: 2011-06-15
 ---
 
-
 Working on SharePoint you see and use a lot of GUIDs. Creating them can be done by using guidgen.exe. When you just need a few it works just fine. But I need a lot and I like my keyboard. So I wanted a shortcut key to generate GUID. This is how I did do it.
 
 ## Create a macro in Visual Studio

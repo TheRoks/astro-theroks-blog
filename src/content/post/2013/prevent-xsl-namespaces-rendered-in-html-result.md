@@ -53,7 +53,7 @@ The value is a white-space-separated list of namespace prefixes. The namespace b
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  xmlns:msxsl="urn:schemas-microsoft-com:xslt"
  xmlns:ddwrt="http://schemas.microsoft.com/WebParts/v2/DataView/runtime">
- ```
+```
 
 After that the HTML will be clean and look like this
 

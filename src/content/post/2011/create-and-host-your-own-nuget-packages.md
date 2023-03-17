@@ -7,21 +7,20 @@ publishDate: 2011-01-21
 updated: 2011-01-21
 ---
 
-
 NuGet is a package manager that simplifies the process of discovering, installing and using third-parties .NET libraries. It is free to download, open source and you are able to create your own package and submit them. In this post I’ll show how to create your own package and host them yourself.
 
 ## Requirements
 
-* Visual Studio 2010
-* Powershell 2.0
+- Visual Studio 2010
+- Powershell 2.0
 
 ## How to create a package
 
 First of all create a solution with the code you want to distribute.A package consists of three types of files: tools, assemblies, and content. The type (or function) of a file is determined by where in the package folder structure it is located. This in turn determines what NuGet does with the file during package installation. (File types are not specified in the.nuspec file.)
 
-* Tools – The tools folder of a package is for programs that you want to be accessible from the command line. After the folder is copied to the target project, it is added to the $env:Path (PATH) environment variable.
-* Assemblies (.dll files) in the lib folder become assembly references when the package is installed.
-* Content – All other files are copied to the application root when the package is installed.
+- Tools – The tools folder of a package is for programs that you want to be accessible from the command line. After the folder is copied to the target project, it is added to the $env:Path (PATH) environment variable.
+- Assemblies (.dll files) in the lib folder become assembly references when the package is installed.
+- Content – All other files are copied to the application root when the package is installed.
 
 ## Supporting Multiple .NET Framework Versions and Profiles
 
@@ -104,7 +103,7 @@ nuget.exe command-line utility and pass it the name of the.nuspec
 file. The following example shows a nuget.exe command that creates a NuGet
 package:
 
-```nuget pack NuGetDemoPackage.nuspec –b c:\nugetdemopackage  -o c:\nugetdemopackage-nuget```
+`nuget pack NuGetDemoPackage.nuspec –b c:\nugetdemopackage  -o c:\nugetdemopackage-nuget`
 
 The pack command is followed by the name of the .nuspec file, an optional parameter
 for the base folder that contains the files to include in the package, and an optional
@@ -114,7 +113,7 @@ folder, and the console displays the following message:
 
 Successfully created package
 
-```c:\nugetdemopackage-nugetnugetdemopackage.1.0.0.nupkg```
+`c:\nugetdemopackage-nugetnugetdemopackage.1.0.0.nupkg`
 
 ![Package Manager](/assets/images/create-and-host-your-own-nuget-packages/image_thumb.png)
 

@@ -13,8 +13,8 @@ This post will show you how to provision Site Columns that uses Managed Metadata
 
 To provision the Site Columns and Content Types without these hardcoded Guids and IDs you basically have two options:
 
-* Create an event receiver (or similar) that creates the Site Columns and Content Types programmatically
-* A combination of declarative and the programmatic approach above
+- Create an event receiver (or similar) that creates the Site Columns and Content Types programmatically
+- A combination of declarative and the programmatic approach above
 
 First you need to create a new SharePoint 2010 project in Visual Studio 2010, create a new Empty SharePoint project. Then add a new Content Type SharePoint Project Item (SPI) to the project and inherit it from the Item content type. Then add a new XML file to the SPI and name it Fields.xml. This elements manifest will contain the Site Column definition, but in order to make it into a manifest file you need to select the file and press F4 to edit the properties of the file. Change the Deployment Type from NoDeployment to ElementManifest. Your solution should look like the image to the right. Also make sure to set the feature to be scoped to Site (Site Collection) level – we’re talking about deploying Site Columns and Content Types here.
 

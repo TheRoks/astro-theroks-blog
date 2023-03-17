@@ -17,13 +17,13 @@ Running e2e tests with protractor requires some configuration and learning about
 
 Assuming that you’ve already got a website running. You only need the tools to run the tests to be installed. To run them we need:
 
-* [NodeJS](http://nodejs.org): with nodeJS we will get all the necessary files to run the tests.
+- [NodeJS](http://nodejs.org): with nodeJS we will get all the necessary files to run the tests.
 
-* [WebdriverJS](https://code.google.com/p/selenium/wiki/WebDriverJs): A javascript test runner. To run the webdriver, Java Development Kit is also need to be installed.
+- [WebdriverJS](https://code.google.com/p/selenium/wiki/WebDriverJs): A javascript test runner. To run the webdriver, Java Development Kit is also need to be installed.
 
-* [Protractor](https://github.com/angular/protractor): An end to end test framework for AngularJS applications built on top of WebDriverJS. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
+- [Protractor](https://github.com/angular/protractor): An end to end test framework for AngularJS applications built on top of WebDriverJS. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
 
-* [Jasmine](http://jasmine.github.io/2.0/introduction.html): A behavior-driven development framework for testing JavaScript code
+- [Jasmine](http://jasmine.github.io/2.0/introduction.html): A behavior-driven development framework for testing JavaScript code
 
 ## Installing
 
@@ -37,21 +37,21 @@ You can get NodeJS from its download page. Run the setup.
 
 After this is done. You open a command line window. Type the command
 
-```npm install -g protractor```
+`npm install -g protractor`
 
 This will install the latest version of protractor and all its dependencies.
 
 When this is complete we are almost done installing the tools. It depend how you want to run your tests. There are now three options. In fact there are four but that one will only run tests in Chrome. Who want’s that? Nobody!
 
-* Running the tests on the standalone selenium server.
-* Running the tests against an existing server
-* Running the test in on a remote location, for protractor it would be SauceLabs.
+- Running the tests on the standalone selenium server.
+- Running the tests against an existing server
+- Running the test in on a remote location, for protractor it would be SauceLabs.
 
 In the first two options we will need WebdriverJS. Webdriver will send commands to the browser to run.
 
 To install this we run the command.
 
-```webdriver-manager update```
+`webdriver-manager update`
 
 The selenium standalone server will be installed together with the chromedriver. With the selenium standalone driver it is possible to run tests with Chrome, Firefox and Safari. But not Internet Explorer.
 
@@ -61,7 +61,7 @@ Internet Explorer may not be most loved browser around webdevelopers, on the con
 
 PhantomJS is maybe unknown but is very useful for headless webtesting. Download the phantomjs.exe and put it in the same %PATH% folder as internetserverdriver.exe. An other options is to extend the Protractor config file with this if you don’t want to install PhantomJS globally.
 
-```'phantomjs.binary.path':'./node_modules/phantomjs/bin/phantomjs',```
+`'phantomjs.binary.path':'./node_modules/phantomjs/bin/phantomjs',`
 
 Your are ready to run! Let’s write our first test.
 
@@ -90,41 +90,39 @@ An example config file:
 ```js
 // A reference configuration file.
 exports.config = {
-    seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.40.0.jar',
+  seleniumServerJar: "./node_modules/protractor/selenium/selenium-server-standalone-2.40.0.jar",
 
-    // ----- What tests to run -----
-    specs: [
-        'spec/*_spec.js',
-    ],
+  // ----- What tests to run -----
+  specs: ["spec/*_spec.js"],
 
-    multiCapabilities: [
-        {
-            'browserName': 'chrome'
-        },
-        {
-            'browserName': 'firefox'
-        }
-    ],
+  multiCapabilities: [
+    {
+      browserName: "chrome",
+    },
+    {
+      browserName: "firefox",
+    },
+  ],
 
-    // ----- More information for your tests ----
-    baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '8000'),
+  // ----- More information for your tests ----
+  baseUrl: "http://localhost:" + (process.env.HTTP_PORT || "8000"),
 
-    // ----- The test framework -----
-    framework: 'jasmine',
+  // ----- The test framework -----
+  framework: "jasmine",
 
-    // ----- Options to be passed to minijasminenode -----
-    jasmineNodeOpts: {
-        // onComplete will be called just before the driver quits.
-        onComplete: null,
-        // If true, display spec names.
-        isVerbose: false,
-        // If true, print colors to the terminal.
-        showColors: true,
-        // If true, include stack traces in failures.
-        includeStackTrace: true,
-        // Default time to wait in ms before a test fails.
-        defaultTimeoutInterval: 30000
-    }
+  // ----- Options to be passed to minijasminenode -----
+  jasmineNodeOpts: {
+    // onComplete will be called just before the driver quits.
+    onComplete: null,
+    // If true, display spec names.
+    isVerbose: false,
+    // If true, print colors to the terminal.
+    showColors: true,
+    // If true, include stack traces in failures.
+    includeStackTrace: true,
+    // Default time to wait in ms before a test fails.
+    defaultTimeoutInterval: 30000,
+  },
 };
 ```
 
@@ -148,57 +146,57 @@ protractor is the protractor namespace which wraps the webdriver namespace. This
 
 There are multiple ways of selecting an object on a page. But what are the tradeoffs of each of these locator types? Recall we can locate an object using
 
-* the element’s ID
-* the element’s name attribute
-* an XPath statement
-* by a links text
-* document object model (DOM)
-* by repeater
-* by binding
-* by model
-* etc
+- the element’s ID
+- the element’s name attribute
+- an XPath statement
+- by a links text
+- document object model (DOM)
+- by repeater
+- by binding
+- by model
+- etc
 
 To see the complete list with examples of location strategies, see Protractors findelement spec.
 
 This will result in are a test. For example I took the ‘basic’ example of the AngularJS website where are some input boxes.
 
 ```js
-describe('angularjs homepage', function() {
-    it('should greet the named user', function() {
-        browser.get('http://www.angularjs.org');
+describe("angularjs homepage", function () {
+  it("should greet the named user", function () {
+    browser.get("http://www.angularjs.org");
 
-        element(by.model('yourName')).sendKeys('TheRoks');
+    element(by.model("yourName")).sendKeys("TheRoks");
 
-        var greeting = element(by.binding('yourName'));
+    var greeting = element(by.binding("yourName"));
 
-        expect(greeting.getText()).toEqual('Hello TheRoks!');
+    expect(greeting.getText()).toEqual("Hello TheRoks!");
+  });
+
+  describe("todo list", function () {
+    var todoList;
+
+    beforeEach(function () {
+      browser.get("http://www.angularjs.org");
+
+      todoList = element.all(by.repeater("todo in todos"));
     });
 
-    describe('todo list', function() {
-        var todoList;
-
-        beforeEach(function() {
-            browser.get('http://www.angularjs.org');
-
-            todoList = element.all(by.repeater('todo in todos'));
-        });
-
-        it('should list todos', function() {
-            expect(todoList.count()).toEqual(2);
-            expect(todoList.get(1).getText()).toEqual('build an angular app');
-        });
-
-        it('should add a todo', function() {
-            var addTodo = element(by.model('todoText'));
-            var addButton = element(by.css('[value="add"]'));
-
-            addTodo.sendKeys('write a protractor test');
-            addButton.click();
-
-            expect(todoList.count()).toEqual(3);
-            expect(todoList.get(2).getText()).toEqual('write a protractor test');
-        });
+    it("should list todos", function () {
+      expect(todoList.count()).toEqual(2);
+      expect(todoList.get(1).getText()).toEqual("build an angular app");
     });
+
+    it("should add a todo", function () {
+      var addTodo = element(by.model("todoText"));
+      var addButton = element(by.css('[value="add"]'));
+
+      addTodo.sendKeys("write a protractor test");
+      addButton.click();
+
+      expect(todoList.count()).toEqual(3);
+      expect(todoList.get(2).getText()).toEqual("write a protractor test");
+    });
+  });
 });
 ```
 
@@ -208,7 +206,7 @@ Now you installed the tools, written the tests, let’s run them! Open your comm
 
 Now to run the tests type the following command.
 
-```protractor protractor.conf.js```
+`protractor protractor.conf.js`
 
 ## Page Object Pattern
 

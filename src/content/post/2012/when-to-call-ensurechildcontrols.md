@@ -7,7 +7,6 @@ publishDate: 2012-02-05
 updated: 2012-02-05
 ---
 
-
 Should I call EnsureChildControls in code?
 
 It depends on different scenarios.

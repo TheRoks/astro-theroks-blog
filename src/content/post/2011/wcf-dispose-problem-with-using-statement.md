@@ -7,7 +7,6 @@ publishDate: 2011-03-11
 updated: 2011-03-11
 ---
 
-
 WCF client cannot be used inside a Using block because they may unexpectedly throw an exception. Even if you catch the exception, it is possible that a connection will be left open.
 
 Why is this IDisposable implementation so different from all the others in the .NET Framework.

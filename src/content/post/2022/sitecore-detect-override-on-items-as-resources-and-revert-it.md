@@ -88,7 +88,7 @@ In this method, we delete the item explicitly from the `HeadProvider`. With thes
 
 ## Powershell Extensions
 
-A nice way to get an overview of all the items that are overridden by the database is to use [Sitecore Powershell Extensions](<https://doc.sitecorepowershell.com/>). Below is a very basic script to retrieve all items in the master or core database that are overridden. This report can be part of reports. Where you can create an [Report Action](<https://doc.sitecorepowershell.com/modules/integration-points/reports/authoring-reports#report-actions>) to delete specific items from the database.
+A nice way to get an overview of all the items that are overridden by the database is to use [Sitecore Powershell Extensions](https://doc.sitecorepowershell.com/). Below is a very basic script to retrieve all items in the master or core database that are overridden. This report can be part of reports. Where you can create an [Report Action](https://doc.sitecorepowershell.com/modules/integration-points/reports/authoring-reports#report-actions) to delete specific items from the database.
 
 ```powershell
 $databases = @{
