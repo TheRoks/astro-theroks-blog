@@ -8,7 +8,6 @@ publishDate: 2017-08-18
 updated: 2017-08-18
 ---
 
-
 You probably have on sites with pages that show how often these are visited. This is done to show visitors that the page has attracted more people to read it and encourages them to read the article as well. This blogpost has been written using Sitecore 8.2. In older versions of Sitecore, different solutions can be used.
 
 ## Sitecore Analytics

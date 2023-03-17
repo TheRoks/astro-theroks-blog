@@ -7,7 +7,6 @@ publishDate: 2013-06-25
 updated: 2013-06-25
 ---
 
-
 Testing your code can be a time consuming business with SharePoint. You’ll to F5 Build. Deploy, And test. This cycle is extremely slow and you don’t want to do this often. Then there’s unit testing. But SharePoint is a complex system. It needs loads of infrastructure to get anywhere. The best to speed up is to get rid of SharePoint when testing your code.
 
 ## TypeMock Isolator to the rescue

@@ -7,7 +7,6 @@ publishDate: 2011-06-11
 updated: 2011-06-11
 ---
 
-
 Developing a custom xslt for the search core results web part can be hard. It’s very helpfull to have xml to test it on. To view the raw xml use this xsl in SharePoint Enterprise Search.
 
 ```xml

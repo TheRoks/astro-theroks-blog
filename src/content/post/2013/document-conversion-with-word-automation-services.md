@@ -15,19 +15,19 @@ A conversion is a process in which Word Automation Services receives a file in a
 
 ### Source files types
 
-* Open XML File Format documents (.docx, .docm, .dotx, .dotm).
-* Word 97-2003 documents (.doc, .dot).
-* Rich Text Format files (.rtf).
-* Single File Web Pages (.mht, .mhtml).
-* Word 2003 XML Documents (.xml).
-* Word XML Document (.xml)
+- Open XML File Format documents (.docx, .docm, .dotx, .dotm).
+- Word 97-2003 documents (.doc, .dot).
+- Rich Text Format files (.rtf).
+- Single File Web Pages (.mht, .mhtml).
+- Word 2003 XML Documents (.xml).
+- Word XML Document (.xml)
 
 ### Destination file types
 
 The supported destination document formats includes all of the supported source document formats, and the following.
 
-* Portable Document Format (.pdf)
-* Open XML Paper Specification (.xps)
+- Portable Document Format (.pdf)
+- Open XML Paper Specification (.xps)
 
 From the Web Front End there is a Object Model available for developers. The object model resides on a SharePoint Server 2010 Web front-end server; it enables developers to create asynchronous file conversion requests and to monitor file conversions in progress. ![Word Automation Service Application Architecture](/assets/images/document-conversion-with-word-automation-services/WordAutomationArchitecture.jpg)The document queue manager resides on a back-end application server; it moves incoming requests into the document queue database and sends requests to the Word Automation Services engine for processing. A timer job controls the frequency of conversions and the number of files that are actively being converted. Both the frequency of conversions and the number of files being converted at a given time are configurable by the SharePoint administrator. For example, an administrator might pace Word Automation Services to convert only a small number of files once an hour to avoid interfering with higher-priority tasks. Document Queue is a “first in, first out”, which is used to start the conversion and that schedule can be set in the conversion job.
 

@@ -29,9 +29,9 @@ Build client-side code, like Angular or Sass, is a quite different story. In thi
 
 On a build agent, you want as least as possible network traffic. Network traffic costs time and time is what we want to save. A few tips on this:
 
-* Use `git fetch depth 1`, as a monorepo can get large, we often still need just the latest version of the code to build.
-* Use `npm ci` instead of `npm install`, [see this link](https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable)
-* Use npm install argument `--no-audit` and `--prefer-offline`, they both save a lot of network traffic. If you want to do an audit on your npm package run a separate task npm audit to show all your vulnerabilities, but not every npm install.
+- Use `git fetch depth 1`, as a monorepo can get large, we often still need just the latest version of the code to build.
+- Use `npm ci` instead of `npm install`, [see this link](https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable)
+- Use npm install argument `--no-audit` and `--prefer-offline`, they both save a lot of network traffic. If you want to do an audit on your npm package run a separate task npm audit to show all your vulnerabilities, but not every npm install.
 
 For more information on how to get the best performance with NPM check [this blog](http://www.tiernok.com/posts/2019/faster-npm-installs-during-ci/)
 
@@ -85,44 +85,44 @@ How can we get the commit ids of folders? A good approach for this is to use the
 
 ```yaml
 parameters:
-  path: ''
-  artifact: ''
-  key: '0'
-  outputPath: ''
-  cacheHit: ''
+  path: ""
+  artifact: ""
+  key: "0"
+  outputPath: ""
+  cacheHit: ""
 
 steps:
-- powershell: |
-   function GetCommitId([string] $path)
-   {
-     $branch = $env:BUILD_SOURCEBRANCH
-     $branch = $branch -replace "refs/heads/", ""
-     $repository = $env:BUILD_REPOSITORY_NAME
-     $currentCommitId = $env:BUILD_SOURCEVERSION
-     [uri] $DevOpsRestCommitUri = $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI + "/" + $env:SYSTEM_TEAMPROJECT + "/_apis/git/repositories/$repository/commits?searchCriteria.itemPath=$path&api-version=5.1&searchCriteria.itemVersion.versionType=commit&searchCriteria.itemVersion.version=$currentCommitId&top=1"
-     Write-Host $DevOpsRestCommitUri
-     $Response = Invoke-RestMethod -Uri $DevOpsRestCommitUri `
-           -Method Get `
-           -ContentType "application/json" `
-           -Headers @{Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"}
-     return $Response.value[0]. commitId
-   }
-   $paths = "${{ parameters.path }}"
-   $option = [System.StringSplitOptions]::RemoveEmptyEntries
-   $paths.Split(";",2, $option) | ForEach {
-    $commitId += GetCommitId -path $_
-   }
-   $commitVar = "${{ parameters.artifact }}_commitId"
-   Write-Host "##vso[task.setvariable variable=$commitVar]$commitId"
-  displayName: GetCommitId
-  env:
-    SYSTEM_ACCESSTOKEN: $(system.accesstoken)
-- task: CacheBeta@1
-  displayName: CacheBeta
-  inputs:
-    key: '${{ parameters.artifact }} | ${{ parameters.key }} | $(Agent.OS) | $(${{ parameters.artifact }}_commitId)'
-    path: '${{ parameters.outputPath }}'
-    cacheHitVar: '${{ parameters.cachehit }}'
+  - powershell: |
+      function GetCommitId([string] $path)
+      {
+        $branch = $env:BUILD_SOURCEBRANCH
+        $branch = $branch -replace "refs/heads/", ""
+        $repository = $env:BUILD_REPOSITORY_NAME
+        $currentCommitId = $env:BUILD_SOURCEVERSION
+        [uri] $DevOpsRestCommitUri = $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI + "/" + $env:SYSTEM_TEAMPROJECT + "/_apis/git/repositories/$repository/commits?searchCriteria.itemPath=$path&api-version=5.1&searchCriteria.itemVersion.versionType=commit&searchCriteria.itemVersion.version=$currentCommitId&top=1"
+        Write-Host $DevOpsRestCommitUri
+        $Response = Invoke-RestMethod -Uri $DevOpsRestCommitUri `
+              -Method Get `
+              -ContentType "application/json" `
+              -Headers @{Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"}
+        return $Response.value[0]. commitId
+      }
+      $paths = "${{ parameters.path }}"
+      $option = [System.StringSplitOptions]::RemoveEmptyEntries
+      $paths.Split(";",2, $option) | ForEach {
+       $commitId += GetCommitId -path $_
+      }
+      $commitVar = "${{ parameters.artifact }}_commitId"
+      Write-Host "##vso[task.setvariable variable=$commitVar]$commitId"
+    displayName: GetCommitId
+    env:
+      SYSTEM_ACCESSTOKEN: $(system.accesstoken)
+  - task: CacheBeta@1
+    displayName: CacheBeta
+    inputs:
+      key: "${{ parameters.artifact }} | ${{ parameters.key }} | $(Agent.OS) | $(${{ parameters.artifact }}_commitId)"
+      path: "${{ parameters.outputPath }}"
+      cacheHitVar: "${{ parameters.cachehit }}"
 ```
 
 The cachehit parameter that will be used as a cacheHitVar, will be used as a condition on all consecutive tasks.

@@ -7,7 +7,6 @@ publishDate: 2011-07-08
 updated: 2011-07-08
 ---
 
-
 When working with generated code, I don’t want this to affect my code coverage, code metrics or code analysis. All these statistics are interesting over code that really matters. To exclude generated code from these statistics you can use a few attributes.
 
 GeneratedCodeAttribute, this will exclude the code for code metrics and code analysis. It had no effect on the code coverage.

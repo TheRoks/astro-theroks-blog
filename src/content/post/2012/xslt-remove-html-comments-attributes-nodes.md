@@ -17,10 +17,10 @@ Content migration will be done with the application called Metalogix. This is a 
 
 To get clean HTML there’s a possibility to apply a XSL stylesheet to ripped parts of HTML. So what kinds of HTML are rubbish.
 
-* Inline styling, this is never a good idea, always use css classes
-* Css classes, new design means in our case new css classes so all css classes in content can be removed.
-* Previous point is somewhat overdone. In some cases the old class can be replaced by a new one. So there is need to replace attribute values.
-* Remove comments. The site we are migrating uses ReadSpeaker. ReadSpeaker uses HTML comments to determine, what is relevant. In our SharePoint site we placed this comments in the PageLayouts.
+- Inline styling, this is never a good idea, always use css classes
+- Css classes, new design means in our case new css classes so all css classes in content can be removed.
+- Previous point is somewhat overdone. In some cases the old class can be replaced by a new one. So there is need to replace attribute values.
+- Remove comments. The site we are migrating uses ReadSpeaker. ReadSpeaker uses HTML comments to determine, what is relevant. In our SharePoint site we placed this comments in the PageLayouts.
 
 ## Solution with XSLT
 

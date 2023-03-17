@@ -26,4 +26,4 @@ using (SPWeb elevatedSite = elevatedsiteColl.OpenWeb(siteID)) { … }
 Guid siteID = SPContext.Current.Web.ID;
 ```
 
-For further reading about best practices disposing SharePoint services object, [read this post on MSDN](https://msdn.microsoft.com/en-us/library/aa973248(v=office.12).aspx)
+For further reading about best practices disposing SharePoint services object, [read this post on MSDN](<https://msdn.microsoft.com/en-us/library/aa973248(v=office.12).aspx>)

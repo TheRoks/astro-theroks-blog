@@ -511,21 +511,21 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
-} from '@angular/core';
-import { documentToHtmlString, Options } from './node-renderers';
-import { ExtendedRichTextField } from './rich-text-field';
+} from "@angular/core";
+import { documentToHtmlString, Options } from "./node-renderers";
+import { ExtendedRichTextField } from "./rich-text-field";
 
 @Directive({
-  selector: '[customRichText]',
+  selector: "[customRichText]",
 })
 export class RichTextDirective implements OnChanges {
   private viewRef: EmbeddedViewRef<unknown>;
 
-  @Input('customRichTextEditable') editable = true;
+  @Input("customRichTextEditable") editable = true;
 
-  @Input('customRichText') field: ExtendedRichTextField;
+  @Input("customRichText") field: ExtendedRichTextField;
 
-  @Input('customRichTextOptions') options: Partial<Options> = {};
+  @Input("customRichTextOptions") options: Partial<Options> = {};
 
   constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<unknown>) {}
 
@@ -564,12 +564,10 @@ Compared with the Sitecore directive there are 3 lines added/changed:
 With this change, we can read the new document property and use it to render the rich text field. Now we will interpret the document and create HTML for it.
 
 ```typescript
-import escape from 'escape-html';
-import {
-  Block, BLOCKS, Document, helpers, Inline, INLINES, Mark, MARKS, Text,
-} from './rich-text-types';
+import escape from "escape-html";
+import { Block, BLOCKS, Document, helpers, Inline, INLINES, Mark, MARKS, Text } from "./rich-text-types";
 
-const attributeValue = (value: string) => `"${value.replace(/"/g, '&quot;')}"`;
+const attributeValue = (value: string) => `"${value.replace(/"/g, "&quot;")}"`;
 
 const defaultNodeRenderers: RenderNode = {
   [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content)}</p>`,
@@ -583,30 +581,32 @@ const defaultNodeRenderers: RenderNode = {
   [BLOCKS.OL_LIST]: (node, next) => `<ol>${next(node.content)}</ol>`,
   [BLOCKS.LIST_ITEM]: (node, next) => `<li>${next(node.content)}</li>`,
   [BLOCKS.QUOTE]: (node, next) => `<blockquote>${next(node.content)}</blockquote>`,
-  [BLOCKS.HR]: () => '<hr/>',
+  [BLOCKS.HR]: () => "<hr/>",
   [BLOCKS.TABLE]: (node, next) => `<table>${next(node.content)}</table>`,
   [BLOCKS.TABLE_ROW]: (node, next) => `<tr>${next(node.content)}</tr>`,
   [BLOCKS.TABLE_HEADER_CELL]: (node, next) => `<th>${next(node.content)}</th>`,
   [BLOCKS.TABLE_CELL]: (node, next) => `<td>${next(node.content)}</td>`,
   [INLINES.HYPERLINK]: (node, next) => {
-    const href = typeof node.data.uri === 'string' ? node.data.uri : '';
+    const href = typeof node.data.uri === "string" ? node.data.uri : "";
     return `<a href=${attributeValue(href)}>${next(node.content)}</a>`;
   },
   [INLINES.IMAGE]: (node) => {
-    const src = typeof node.data.uri === 'string' ? node.data.uri : '';
-    const width = typeof node.data.width === 'string' ? node.data.width : '';
-    const height = typeof node.data.height === 'string' ? node.data.height : '';
-    const alt = typeof node.data.title === 'string' ? node.data.title : '';
-    return `<img src=${attributeValue(src)} width=${attributeValue(width)} height=${attributeValue(height)} alt=${attributeValue(alt)} />`;
+    const src = typeof node.data.uri === "string" ? node.data.uri : "";
+    const width = typeof node.data.width === "string" ? node.data.width : "";
+    const height = typeof node.data.height === "string" ? node.data.height : "";
+    const alt = typeof node.data.title === "string" ? node.data.title : "";
+    return `<img src=${attributeValue(src)} width=${attributeValue(width)} height=${attributeValue(
+      height
+    )} alt=${attributeValue(alt)} />`;
   },
-  ['unsupported']: (node, next) => `${next(node.content)}`,
+  ["unsupported"]: (node, next) => `${next(node.content)}`,
 };
 
 const defaultMarkRenderers: RenderMark = {
-  [MARKS.BOLD]: text => `<strong>${text}</strong>`,
-  [MARKS.ITALIC]: text => `<em>${text}</em>`,
-  [MARKS.UNDERLINE]: text => `<u>${text}</u>`,
-  [MARKS.CODE]: text => `<code>${text}</code>`,
+  [MARKS.BOLD]: (text) => `<strong>${text}</strong>`,
+  [MARKS.ITALIC]: (text) => `<em>${text}</em>`,
+  [MARKS.UNDERLINE]: (text) => `<u>${text}</u>`,
+  [MARKS.CODE]: (text) => `<code>${text}</code>`,
 };
 
 export type CommonNode = Text | Block | Inline;
@@ -641,12 +641,9 @@ export interface Options {
 /**
  * Serialize a Sitecore Rich Text `document` to an html string.
  */
-export function documentToHtmlString(
-  richTextDocument: Document,
-  options: Partial<Options> = {},
-): string {
+export function documentToHtmlString(richTextDocument: Document, options: Partial<Options> = {}): string {
   if (!richTextDocument || !richTextDocument.content) {
-    return '';
+    return "";
   }
 
   return nodeListToHtmlString(richTextDocument.content, {
@@ -662,9 +659,7 @@ export function documentToHtmlString(
 }
 
 function nodeListToHtmlString(nodes: CommonNode[], { renderNode, renderMark }: Options): string {
-  return nodes
-    .map<string>(node => nodeToHtmlString(node, { renderNode, renderMark }))
-    .join('');
+  return nodes.map<string>((node) => nodeToHtmlString(node, { renderNode, renderMark })).join("");
 }
 
 function nodeToHtmlString(node: CommonNode, { renderNode, renderMark }: Options): string {
@@ -681,12 +676,11 @@ function nodeToHtmlString(node: CommonNode, { renderNode, renderMark }: Options)
 
     return nodeValue;
   }
-  const nextNode: Next = nodes => nodeListToHtmlString(nodes, { renderMark, renderNode });
+  const nextNode: Next = (nodes) => nodeListToHtmlString(nodes, { renderMark, renderNode });
   if (!node.nodeType || !renderNode[node.nodeType]) {
-    return '';
+    return "";
   }
   return renderNode[node.nodeType](node, nextNode);
-
 }
 ```
 
@@ -697,15 +691,15 @@ Now we have parsed the document to clean HTML. With the options attribute in the
 Customizing the options with classes
 
 ```typescript
-import { Component } from '@angular/core';
-import { JssComponent } from '@theroks/shared/jss-utils';
-import { Options } from './node-renderers';
-import { RichTextContentFields } from './rich-text-content.types';
-import { BLOCKS } from './rich-text-types';
+import { Component } from "@angular/core";
+import { JssComponent } from "@theroks/shared/jss-utils";
+import { Options } from "./node-renderers";
+import { RichTextContentFields } from "./rich-text-content.types";
+import { BLOCKS } from "./rich-text-types";
 
 @Component({
-  selector: 'custom-rich-text-content',
-  templateUrl: './rich-text-content.component.html',
+  selector: "custom-rich-text-content",
+  templateUrl: "./rich-text-content.component.html",
 })
 export class RichTextContentComponent extends JssComponent<RichTextContentFields> {
   options: Partial<Options> = {

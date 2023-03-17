@@ -31,7 +31,7 @@ A service is quite similar to a factory. There are some small differences howeve
 
 ## Provider
 
-Provider is the most configurable of all three.  All other providers are derived from it. It enables us define how the service will be provided even before the injection system is in place. This is achieved with configure call where we register work during the modules configuration phase.
+Provider is the most configurable of all three. All other providers are derived from it. It enables us define how the service will be provided even before the injection system is in place. This is achieved with configure call where we register work during the modules configuration phase.
 
 **Syntax**: `module.provider( ‘providerName’, function );`
 

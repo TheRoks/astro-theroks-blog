@@ -7,12 +7,11 @@ publishDate: 2011-08-21
 updated: 2011-08-21
 ---
 
-
 I wrote web part that uses Repeater control to create some repeating blocks of output. Each of these blocks has Button control in it. When I ran web part under SharePoint I got the following error: `Invalid postback or callback argument. Event validation is enabled using <pages enableEventValidation="true"/> in configuration or <%@ Page EnableEventValidation="true" %> in a page. For security purposes, this feature verifies that arguments to postback or callback events originate from the server control that originally rendered them.  If the data is valid and expected, use the ClientScriptManager.RegisterForEventValidation method in order to register the postback or callback data for validation.`
 
 ## What is it
 
-ASP.NET 2.0  added a feature called event validation. Event validation checks the incoming POST request to ensure that the event causing the Postback / callback is valid and the event which triggered the Postback /callback is expected by the Runtime. If the runtime finds a Postback / callback by an event which is not registered for validation, it throws an exception. This has been added in ASP.NET 2.0 explicitly to prevent the attack to the application by spoofing a Postback. Event validation can help prevent injection attacks from malicious users who are trying to POST data by an event which does not come up from the controls registered to the page. So we don’t want to disable this check.
+ASP.NET 2.0 added a feature called event validation. Event validation checks the incoming POST request to ensure that the event causing the Postback / callback is valid and the event which triggered the Postback /callback is expected by the Runtime. If the runtime finds a Postback / callback by an event which is not registered for validation, it throws an exception. This has been added in ASP.NET 2.0 explicitly to prevent the attack to the application by spoofing a Postback. Event validation can help prevent injection attacks from malicious users who are trying to POST data by an event which does not come up from the controls registered to the page. So we don’t want to disable this check.
 
 ## The solution
 

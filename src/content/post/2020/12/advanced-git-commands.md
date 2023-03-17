@@ -21,7 +21,7 @@ git merge feature —-squash
 
 ## Git rebase
 
-The major benefit of rebasing is that you get a much cleaner project history. First, it eliminates the unnecessary merge commits required by git merge. Second,  rebasing also results in a perfectly linear project history—you can follow the tip of dev to the beginning of the project without any forks. This makes it easier to navigate your project with commands like git log, git bisect, and gitk.
+The major benefit of rebasing is that you get a much cleaner project history. First, it eliminates the unnecessary merge commits required by git merge. Second, rebasing also results in a perfectly linear project history—you can follow the tip of dev to the beginning of the project without any forks. This makes it easier to navigate your project with commands like git log, git bisect, and gitk.
 
 Never do the rebase on public branches like the master as it can be potentially catastrophic for your collaboration workflow. And, less importantly, rebasing loses the context provided by a merge commit—you can’t see when upstream changes were incorporated into the feature.
 

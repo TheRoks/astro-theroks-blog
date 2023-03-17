@@ -7,7 +7,6 @@ publishDate: 2011-07-28
 updated: 2011-07-28
 ---
 
-
 When creating a new Secure Store Service Application in SharePoint 2010 I had this error:
 
 `Creation of Secure Store Service Application SecureStoreService failed because of the following errors: SQL Server detected a logical consistency-based I/O error: unable to decrypt page due to missing DEK. It occurred during a read of page (1:15848) in database ID 5 at offset 0x00000007bd0000 in file ‘dev­.local_SharePoint­_Conf_Database.mdf’. Additional messages in the SQL Server error log or system event log may provide more detail. This is a severe error condition that threatens database integrity and must be corrected immediately. Complete a full database consistency check (DBCC CHECKDB). This error can be caused by many factors; for more information, see SQL Server Books Online.`
@@ -120,8 +119,8 @@ DBCC execution completed. If DBCC printed error messages, contact your system ad
 
 Reading this very carefully learned me there was something wrong with the TimerJobHistory table. DBCC CHECKDB runs three commands;
 
-* It runs `DBCC CHECKALLOC` on the database.
-* It runs `DBCC CHECKTABLE` on every table and view in the database.
-* It runs `DBCC CHECKCATALOG` on the database.
+- It runs `DBCC CHECKALLOC` on the database.
+- It runs `DBCC CHECKTABLE` on every table and view in the database.
+- It runs `DBCC CHECKCATALOG` on the database.
 
 The DBCC CHECKTABLE statement confirmed that TimerJobHistory was corrupt. So I dropped the table and recreated it. Problem solved? Not really, underlying there is a hardware problem you should fix. See again MSDN.

@@ -19,10 +19,10 @@ SignalR talks about two concepts – persistent connections and hubs. Persistent
 
 When a connection between a web client and a server is made, SignalR will determine a suitable transport type based on your client capabilities. It will gracefully degrade so older browsers might get long-polling instead of the fancy websockets. The transport mode can have a significant impact on the performance of the app.
 
-* **WebSockets** (bidirectional stream) you’ll need IIS8 and the client needs a supported browser ie. (IE10, Chrome 13+, Firefox 7, Safari 5+, Opera 11+)
-* **Server Sent Events** (push notifications from server to browser using DOM events)
-* **Forever Frame** (uses HTTP 1.1 chunked encoding to establish a single long-lived HTTP connection in a hidden iframe)
-* **Long polling** (hit the server hit the server hit the server hit the server hit server and hope something comes back with data)
+- **WebSockets** (bidirectional stream) you’ll need IIS8 and the client needs a supported browser ie. (IE10, Chrome 13+, Firefox 7, Safari 5+, Opera 11+)
+- **Server Sent Events** (push notifications from server to browser using DOM events)
+- **Forever Frame** (uses HTTP 1.1 chunked encoding to establish a single long-lived HTTP connection in a hidden iframe)
+- **Long polling** (hit the server hit the server hit the server hit the server hit server and hope something comes back with data)
 
 ## Creating a Hub
 
@@ -91,21 +91,21 @@ Finally, you should register your client callbacks in JS and wire-up the buttons
 
 ```js
 $(function () {
-    // Proxy created on the fly
-    var chat = $.connection.chat;
+  // Proxy created on the fly
+  var chat = $.connection.chat;
 
-    // Declare a function on the chat hub so the server can invoke it
-    chat.client.addMessage = function (message) {
-        $('#messages').append('<li>' + message + '</li>');
-    };
+  // Declare a function on the chat hub so the server can invoke it
+  chat.client.addMessage = function (message) {
+    $("#messages").append("<li>" + message + "</li>");
+  };
 
-    $("#broadcast").click(function () {
-        // Call the chat method on the server
-        chat.server.send($('#msg').val());
-    });
+  $("#broadcast").click(function () {
+    // Call the chat method on the server
+    chat.server.send($("#msg").val());
+  });
 
-    // Start the connection
-    $.connection.hub.start();
+  // Start the connection
+  $.connection.hub.start();
 });
 ```
 

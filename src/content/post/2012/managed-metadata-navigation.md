@@ -21,8 +21,8 @@ We’ve always been able to use folders to navigate a hierarchy in a SharePoint 
 
 Metadata can be used as two different kinds of navigation:
 
-* Hierachies
-* Key filters
+- Hierachies
+- Key filters
 
 By default, these are shown in the left hand navigation area below the Quick Launch bar.
 
@@ -30,4 +30,4 @@ By default, these are shown in the left hand navigation area below the Quick Lau
 
 ![Managed metadata filter](/assets/images/managed-metadata-navigation/filter.png) Finally, “key filters” allow users to type in filter values for a predefined metadata column. These key filters can also be used for other field types, such as choice fields, date-time, or person fields.
 
-Read more about Managed metadata on [MSDN](http://msdn.microsoft.com/en-us/library/ee559337(v=office.14).aspx).
+Read more about Managed metadata on [MSDN](<http://msdn.microsoft.com/en-us/library/ee559337(v=office.14).aspx>).
