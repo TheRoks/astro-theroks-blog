@@ -118,9 +118,9 @@
     prismjs "^1.28.0"
 
 "@astrojs/rss@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-2.3.0.tgz#22fcd9dbc4017e9ce7b12346a4af9b2549be9400"
-  integrity sha512-80K92r68sGeyvP7Nq4yvIo1yb31M3pDz6U+e5dujknHJIiIsvMvXA1S+1DHPQ7cVcpD4+rY3EiQs2DgRNhgNPA==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-2.3.1.tgz#6562f47214b0fd8e635f703141fd4afc3fed7302"
+  integrity sha512-s9yHKfWDUQvhm5GGfbeb1fEzVL19yVv3uz6TF7nT/4/uW2w4jWgGtqQMkzeEhckvwRVT3xavHP8b+S9TKHMgAg==
   dependencies:
     fast-xml-parser "^4.0.8"
     kleur "^4.1.5"
@@ -3134,9 +3134,9 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
 fast-xml-parser@^4.0.8:
-  version "4.0.13"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.13.tgz#dab3e7ea17d39805af0a9f6d041f4c975c2b9b58"
-  integrity sha512-g+OboAw8ol1FgTHhKLR7ZHcItNudceiY04BBrvqa0JBWoPhi/+e5r4H5AeW+EsQCroJLJwsuOP3dD3c6cc5uOg==
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.1.3.tgz#0254ad0d4d27f07e6b48254b068c0c137488dd97"
+  integrity sha512-LsNDahCiCcJPe8NO7HijcnukHB24tKbfDDA5IILx9dmW3Frb52lhbeX6MPNUSvyGNfav2VTYpJ/OqkRoVLrh2Q==
   dependencies:
     strnum "^1.0.5"
 
