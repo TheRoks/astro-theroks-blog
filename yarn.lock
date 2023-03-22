@@ -79,6 +79,25 @@
     unist-util-visit "^4.1.0"
     vfile "^5.3.2"
 
+"@astrojs/markdown-remark@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@astrojs/markdown-remark/-/markdown-remark-2.1.2.tgz#9825032d30de2fd09dbce4372d240396a6fc6f5f"
+  integrity sha512-rYkmFEv2w7oEk6ZPgxHkhWzwcxSUGc1vJU0cbCu5sHF8iFNnc1cmMsjXWa5DrU5sCEf8VVYE1iFlbbnFzvHQJw==
+  dependencies:
+    "@astrojs/prism" "^2.1.0"
+    github-slugger "^1.4.0"
+    import-meta-resolve "^2.1.0"
+    rehype-raw "^6.1.1"
+    rehype-stringify "^9.0.3"
+    remark-gfm "^3.0.1"
+    remark-parse "^10.0.1"
+    remark-rehype "^10.1.0"
+    remark-smartypants "^2.0.0"
+    shiki "^0.11.1"
+    unified "^10.1.2"
+    unist-util-visit "^4.1.0"
+    vfile "^5.3.2"
+
 "@astrojs/mdx@^0.18.1":
   version "0.18.2"
   resolved "https://registry.yarnpkg.com/@astrojs/mdx/-/mdx-0.18.2.tgz#1d1a2c30736c66169baabc635d7ab557fc446b0e"
@@ -1382,13 +1401,13 @@ astro-robots-txt@^0.4.0:
     zod "^3.20.6"
 
 astro@^2.1.3:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-2.1.4.tgz#5ed3031b8df5dbcae3d0c55b2123a622fbc6dfb1"
-  integrity sha512-NPTrU+9jo0N7rKZuQxcpsWgMEaoVhza0MdBI2RWGOgnMAxZQ+aJxV3DMbWb4Rmz7jTkP7b/P4+XoWNQ+e52aNQ==
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-2.1.5.tgz#1ade3d15fc242fce2639b134748396e250ce0a24"
+  integrity sha512-NFHFkf3DkyV/9FQ9uMxXx9KP9a6nBOMDd9OC9SWgCwTJc2+Cm4oL94BnKmZ2SNR124pSoKimnaBkZncTYmIVwA==
   dependencies:
     "@astrojs/compiler" "^1.2.0"
     "@astrojs/language-server" "^0.28.3"
-    "@astrojs/markdown-remark" "^2.1.1"
+    "@astrojs/markdown-remark" "^2.1.2"
     "@astrojs/telemetry" "^2.1.0"
     "@astrojs/webapi" "^2.1.0"
     "@babel/core" "^7.18.2"
@@ -2481,10 +2500,15 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-electron-to-chromium@^1.4.251, electron-to-chromium@^1.4.284:
+electron-to-chromium@^1.4.251:
   version "1.4.334"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.334.tgz#eacdcb1145534202d569610c5915b63a3fec0eb9"
   integrity sha512-laZ1odk+TRen6q0GeyQx/JEkpD3iSZT7ewopCpKqg9bTjP1l8XRfU3Bg20CFjNPZkp5+NDBl3iqd4o/kPO+Vew==
+
+electron-to-chromium@^1.4.284:
+  version "1.4.335"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.335.tgz#69c08baa608bbb58e290d83320190fa82c835efe"
+  integrity sha512-l/eowQqTnrq3gu+WSrdfkhfNHnPgYqlKAwxz7MTOj6mom19vpEDHNXl6dxDxyTiYuhemydprKr/HCrHfgk+OfQ==
 
 emmet@^2.3.0:
   version "2.3.6"
