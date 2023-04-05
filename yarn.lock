@@ -36,9 +36,9 @@
   integrity sha512-VxSj3gh/UTB/27rkRCT7SvyGjWtuxUO7Jf7QqDduch7j/gr/uA5P/Q5I/4zIIrZjy2yQAKyKLoox2QI2mM/BSA==
 
 "@astrojs/image@^0.16.1":
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/@astrojs/image/-/image-0.16.2.tgz#860183abbab11d6bf427bda82702c00ef9769bb6"
-  integrity sha512-MWIPEgc2vbiNgbl0cmHYbaAZeXDNlFg5BAn0jQ4fQYYs8r44Fwr7p1DDwdZICc02EAKjAh6fLPFndBCkGA4+Qw==
+  version "0.16.4"
+  resolved "https://registry.yarnpkg.com/@astrojs/image/-/image-0.16.4.tgz#d8322e872f89c44b32778962b04a9d7b04e9985f"
+  integrity sha512-oNTzECuUEQxrWZ5YZlQOd6vr/KfdMF5vLi7EarduG6mUfqmbHkbOA3LVM1hpcKA8IFp5iadNWn99teS8ZcIFRg==
   dependencies:
     "@altano/tiny-async-pool" "^1.0.2"
     http-cache-semantics "^4.1.0"
