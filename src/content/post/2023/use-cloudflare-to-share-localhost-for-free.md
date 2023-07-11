@@ -11,9 +11,9 @@ tags:
 
 From time to time you'll want to share your locally running app with some folks before it's ready to ship.
 
-* Free to use
-* HTTPS support
-* Won't expose your IP
+- Free to use
+- HTTPS support
+- Won't expose your IP
 
 ## Prerequisites
 
