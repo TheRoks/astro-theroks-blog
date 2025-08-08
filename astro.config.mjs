@@ -6,7 +6,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
-import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import compress from "astro-compress";
@@ -45,9 +44,6 @@ export default defineConfig({
 
         return item;
       },
-    }),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
     }),
     mdx(),
 

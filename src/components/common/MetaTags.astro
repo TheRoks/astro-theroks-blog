@@ -1,7 +1,7 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
 import { GoogleAnalytics } from "@astrolib/analytics";
-import { getImage } from "@astrojs/image";
+import { getImage } from "astro:assets";
 
 import { SITE } from "~/config.mjs";
 import { MetaSEO } from "~/types";
@@ -18,7 +18,6 @@ const defaultImage = SITE.defaultImage
   ? (
       await getImage({
         src: SITE.defaultImage,
-        alt: "Default image",
         width: 1200,
         height: 628,
       })

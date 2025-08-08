@@ -4,7 +4,7 @@ import { SITE, BLOG } from "~/config.mjs";
 import { fetchPosts } from "~/utils/blog";
 import { getPermalink } from "~/utils/permalinks";
 
-export const get = async () => {
+export async function GET({ site }) {
   if (BLOG.disabled) {
     return new Response(null, {
       status: 404,
@@ -17,7 +17,7 @@ export const get = async () => {
   return rss({
     title: `${SITE.name}’s Blog`,
     description: SITE.description,
-    site: import.meta.env.SITE,
+    site: String(site ?? import.meta.env.SITE),
 
     items: posts.map((post) => ({
       link: getPermalink(post.slug, "post"),
@@ -28,4 +28,4 @@ export const get = async () => {
 
     trailingSlash: SITE.trailingSlash,
   });
-};
+}
