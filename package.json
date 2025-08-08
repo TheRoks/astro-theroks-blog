@@ -44,7 +44,7 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-external-links": "^2.0.1",
     "rehype-slug": "^5.1.0",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.0",
     "subfont": "^6.12.4",
     "svgo": "2.8.0",
     "tailwindcss": "^4.0.0",
