@@ -48,8 +48,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.2
       astro-robots-txt:
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^1.0.0
+        version: 1.0.0
       eslint:
         specifier: ^9.32.0
         version: 9.32.0(jiti@2.5.1)
@@ -1212,8 +1212,8 @@ packages:
   astro-icon@0.8.2:
     resolution: {integrity: sha512-+LgbDM6ku760pwoRwc7UfkVKy9V+QiRfZory4KzdMqVOYKyKSM1rmJ3CXcR7mezTd4pKJnH+guxR4ySpcn8fGg==}
 
-  astro-robots-txt@0.5.0:
-    resolution: {integrity: sha512-MJDcxBDjEKSp7Uvw32cnmkPHlmjQ/pW5JwzMhKEegFRoGaiSh2i1kkh1QEhk1UpGnAsSondWCoIt2xpG8qjSgA==}
+  astro-robots-txt@1.0.0:
+    resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
 
   astro@5.12.8:
     resolution: {integrity: sha512-KkJ7FR+c2SyZYlpakm48XBiuQcRsrVtdjG5LN5an0givI/tLik+ePJ4/g3qrAVhYMjJOxBA2YgFQxANPiWB+Mw==}
@@ -5763,7 +5763,7 @@ snapshots:
       resolve-pkg: 2.0.0
       svgo: 2.8.0
 
-  astro-robots-txt@0.5.0:
+  astro-robots-txt@1.0.0:
     dependencies:
       valid-filename: 4.0.0
       zod: 3.25.28
