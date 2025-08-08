@@ -25,7 +25,7 @@ const { socialLinks = [], footNote = "", theme = "light" } = Astro.props;
 ---
 
 <footer class:list={[{ dark: theme === "dark" }, "relative border-t border-gray-200 dark:border-slate-800"]}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="dark:bg-slate-900 absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 dark:text-slate-300">
     <div class="md:flex md:items-center md:justify-between">
       {
@@ -34,7 +34,7 @@ const { socialLinks = [], footNote = "", theme = "light" } = Astro.props;
             {socialLinks.map(({ ariaLabel, href, text, icon }) => (
               <li>
                 <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-hidden focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
                   aria-label={ariaLabel}
                   href={href}
                   target="_blank"

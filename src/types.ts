@@ -1,4 +1,7 @@
-import { AstroComponentFactory } from "astro/dist/runtime/server";
+import type { CollectionEntry } from "astro:content";
+
+type RenderedPost = Awaited<ReturnType<CollectionEntry<"post">["render"]>>;
+export type PostContentComponent = RenderedPost["Content"];
 
 export interface Post {
   id: string;
@@ -20,7 +23,7 @@ export interface Post {
   tags?: Array<string>;
   author?: string;
 
-  Content: AstroComponentFactory;
+  Content: PostContentComponent;
   content?: string;
 }
 

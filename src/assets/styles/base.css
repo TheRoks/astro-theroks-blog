@@ -1,15 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../../tailwind.config.cjs";
+@import "tailwindcss";
 
 @layer components {
-  .text-page {
-    color: var(--aw-color-text-page);
-  }
-
-  .text-muted {
-    color: var(--aw-color-text-muted);
-  }
+  /* Tailwind color utilities now provide text-page and text-muted */
 
   .bg-light {
     background-color: var(--aw-color-bg-page);
@@ -33,7 +26,7 @@
 }
 
 #header.scroll {
-  @apply shadow-md md:shadow-lg bg-white md:bg-white/90 md:backdrop-blur-sm dark:bg-slate-900 dark:md:bg-slate-900/90;
+  @apply shadow-md md:shadow-lg bg-white md:bg-white/90 md:backdrop-blur-sm dark:bg-slate-900 md:dark:bg-slate-900/90;
 }
 
 .dropdown:hover .dropdown-menu {
