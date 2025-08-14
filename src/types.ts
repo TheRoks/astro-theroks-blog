@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import type { ImageMetadata } from "astro";
 
 type RenderedPost = Awaited<ReturnType<CollectionEntry<"post">["render"]>>;
 export type PostContentComponent = RenderedPost["Content"];
@@ -11,7 +12,7 @@ export interface Post {
   title: string;
   description?: string;
 
-  image?: string;
+  image?: string | ImageMetadata;
 
   canonical?: string | URL;
   permalink?: string;
@@ -30,7 +31,7 @@ export interface Post {
 export interface MetaSEO {
   title?: string;
   description?: string;
-  image?: string;
+  image?: string | ImageMetadata;
 
   canonical?: string | URL;
   noindex?: boolean;

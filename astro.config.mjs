@@ -27,10 +27,6 @@ export default defineConfig({
   trailingSlash: SITE.trailingSlash ? "always" : "never",
 
   output: "static",
-  experimental: {
-    // Enable content collection cache to improve build performance for static sites
-    contentCollectionCache: true,
-  },
 
   integrations: [
     icon({
