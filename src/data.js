@@ -22,7 +22,7 @@ export const footerData = {
   links: [],
   secondaryLinks: [],
   socialLinks: [
-    { ariaLabel: "Twitter", icon: "tabler:brand-twitter", href: "https://twitter.com/theroks" },
+    { ariaLabel: "Twitter", icon: "tabler:brand-x", href: "https://x.com/theroks" },
     {
       ariaLabel: "StackOverflow",
       icon: "tabler:brand-stackoverflow",
