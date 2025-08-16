@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "I wrote web part that uses Repeater control to create some repeating blocks of output. Each of these blocks has Button control in it. When I ran web part under SharePoint I got the following error: Invalid postback or callback argument."
 publishDate: 2011-08-21
 updated: 2011-08-21
+draft: false
 ---
 
 I wrote web part that uses Repeater control to create some repeating blocks of output. Each of these blocks has Button control in it. When I ran web part under SharePoint I got the following error: `Invalid postback or callback argument. Event validation is enabled using <pages enableEventValidation="true"/> in configuration or <%@ Page EnableEventValidation="true" %> in a page. For security purposes, this feature verifies that arguments to postback or callback events originate from the server control that originally rendered them.  If the data is valid and expected, use the ClientScriptManager.RegisterForEventValidation method in order to register the postback or callback data for validation.`

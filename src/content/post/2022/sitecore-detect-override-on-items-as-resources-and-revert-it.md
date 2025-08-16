@@ -8,6 +8,7 @@ tags:
   - Sitecore
   - IAR
   - PSE
+draft: false
 ---
 
 Sitecore introduced in version 10.1 Items as Resource. With this feature, Sitecore items come directly from a resource file instead of the database. However, these items can still be in de database as well. In this case, an item is in a resource file and the database. The database will win and will be seen in the content editor in Sitecore.

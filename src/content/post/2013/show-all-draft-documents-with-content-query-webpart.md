@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "Configure a Content Query WebPart to show all draft documents."
 publishDate: 2013-03-22
 updated: 2013-03-22
+draft: false
 ---
 
 SharePoint has the capability to show all checkout page of web. Manage Content and Structure has several built-in filters like: All Draft Documents and Checked Out to Me. This filter options can be extended by defining a CAML query in the list Content and Structure Reports list. However this has drawbacks. It is not possible to do this over multiple webs or even a site collection.

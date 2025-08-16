@@ -6,6 +6,7 @@ excerpt: "A brief description on how to use the wpp.targets file in a Visual Pro
 image: "~/assets/images/using-wpp-targets-file-together-sitecore/wpptarget-with-sitecore-deployment.png"
 publishDate: 2018-07-13
 updated: 2018-07-13
+draft: false
 ---
 
 When working on Sitecore and deploying modules to a Sitecore site we only want to deploy artifacts that are ours and not from Sitecore. This way we want to keep the deployment packages clean and fast. To manage the contents and behaviors of deployment packages we can use a wpp.targets file.

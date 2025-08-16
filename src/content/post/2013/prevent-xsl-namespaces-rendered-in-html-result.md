@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "How to prevent XSL namespaces from being rendered in HTML result. This can simply be done as shown in this post."
 publishDate: 2013-01-08
 updated: 2013-01-08
+draft: false
 ---
 
 Working on a SharePoint 2010 site we had a requirement to make the site HTML5 valid. To test this we use the W3C validator on internet. After a lot of improvements we got stuck with just these kind of errors.

@@ -78,6 +78,7 @@ export default defineConfig({
 
       logger: 1,
     }),
+    // keep using the existing Vite PostCSS plugin for the repo's Tailwind setup
   ],
 
   markdown: {
@@ -141,5 +142,12 @@ export default defineConfig({
         "~": path.resolve(__dirname, "./src"),
       },
     },
+  },
+
+  // Configure the built-in Astro image service (Sharp) and allowed remote domains
+  image: {
+    // Use default Sharp-based service (Sharp must be installed)
+    // Allow optimizing remote images from the site origin if used
+    domains: [new URL(SITE.origin).hostname],
   },
 });

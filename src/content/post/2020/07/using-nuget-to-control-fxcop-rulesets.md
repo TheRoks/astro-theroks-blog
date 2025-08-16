@@ -5,6 +5,7 @@ tags: ["dotNET", "Visual Studio", "NuGet", "Roslyn"]
 excerpt: How to distribute Code Analysis rulesets together with Roslyn analyzers along projects, and be in control using NuGet packages.
 publishDate: 2020-07-17
 updated: 2020-07-17
+draft: false
 ---
 
 In the last years, many changes were made to the way Microsoft handles Code Quality in Visual Studio. Like all other movements of Microsoft, these changes follow more open-source and everybody else is doing things.

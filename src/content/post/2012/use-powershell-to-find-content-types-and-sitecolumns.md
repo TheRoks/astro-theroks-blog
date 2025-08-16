@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "This post shows how to use Powershell to list all content types and site columns in a sitecollection of a SharePoint site."
 publishDate: 2012-06-12
 updated: 2012-06-12
+draft: false
 ---
 
 Sometimes you want to find all content types and sitecolumns you created in SharePoint. A simple way to acomplish this is the use of PowerShell. Conditional in this script is that all my custom content types and sitecolumns belong to the same group.

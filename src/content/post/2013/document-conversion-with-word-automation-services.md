@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "Word Automation Services Service Application in SharePoint 2010 enables you to convert documents between type. i.e. Conversions from Word 2010 to PDF."
 publishDate: 2013-02-15
 updated: 2013-02-15
+draft: false
 ---
 
 When you need to convert documents, like Word documents to PDF or XPS in SharePoint 2010 we can use the service application: Word Automation services.

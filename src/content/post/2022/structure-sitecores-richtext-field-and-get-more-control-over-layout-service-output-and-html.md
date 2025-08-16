@@ -9,6 +9,7 @@ tags:
   - JSS
   - Headless
   - Layout Service
+draft: false
 ---
 
 The inconvenience with Sitecore's rich text field is that it is a real Swiss army knife. It can be used to create a lot of different HTML structures. But that is not a structured way to build a site. Maintainance can also get hard when a lot of 'code' gets into the content. Besides it can be used to create not allowed HTML structures, content editors can also paste HTML which includes all kinds of HTML you don't want in the HTML output of your public website.
@@ -688,29 +689,35 @@ Now we have parsed the document to clean HTML. With the options attribute in the
 
 ### Using the directive
 
-Customizing the options with classes
+Customizing the options with classes — Astro-friendly example
 
-```typescript
-import { Component } from "@angular/core";
-import { JssComponent } from "@theroks/shared/jss-utils";
-import { Options } from "./node-renderers";
-import { RichTextContentFields } from "./rich-text-content.types";
-import { BLOCKS } from "./rich-text-types";
+```astro
+---
+import { Picture } from "astro:assets";
+import { findImage } from "~/utils/images";
 
-@Component({
-  selector: "custom-rich-text-content",
-  templateUrl: "./rich-text-content.component.html",
-})
-export class RichTextContentComponent extends JssComponent<RichTextContentFields> {
-  options: Partial<Options> = {
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content)}</p>`,
-      [BLOCKS.UL_LIST]: (node, next) => `<ul class="list list--bullet">${next(node.content)}</ul>`,
-      [BLOCKS.LIST_ITEM]: (node, next) => `<li class="list__item">${next(node.content)}</li>`,
-    },
-  };
-}
+// Example: resolve a local image and render it responsively with astro:assets
+const image = await findImage("~/assets/images/structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html/rich-text-editor.png");
+---
+
+{image ? (
+  <Picture
+    src={image}
+    alt="Rich text editor"
+    inferSize
+    class="max-w-full mx-auto"
+    pictureAttributes={{ loading: "lazy", decoding: "async" }}
+  />
+) : (
+  <img src="/assets/images/default.png" alt="default" />
+)}
 ```
+
+Notes:
+
+- Prefer using `Picture` or `Image` from `astro:assets` for any author-supplied or CMS-managed images so the build can emit optimized formats (WebP/AVIF) and responsive srcsets.
+
+- If your rich-text renderer emits image references, keep them as data (src/width/height/alt) and let your templates call `findImage` + `Picture` during SSR rather than outputting raw `<img>` HTML strings.
 
 ## Summary
 

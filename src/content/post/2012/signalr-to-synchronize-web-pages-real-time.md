@@ -5,6 +5,7 @@ tags: ["dotNET"]
 excerpt: "SignalR is a client- and server-side solution with Javascript on client and ASP.NET on the back end to create these kinds of applications."
 publishDate: 2012-11-25
 updated: 2012-11-25
+draft: false
 ---
 
 ## What is SignalR

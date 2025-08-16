@@ -5,6 +5,7 @@ tags: ["dotNET"]
 excerpt: "When to call EnsureChildControls. With reverse enginering EnsureChildControls and CreateChildControls methods of the .NET Framework."
 publishDate: 2012-02-05
 updated: 2012-02-05
+draft: false
 ---
 
 Should I call EnsureChildControls in code?

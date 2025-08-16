@@ -5,6 +5,7 @@ tags: ["Visual Studio"]
 excerpt: "The layer diagram is a diagram that allows you to describe the 'logical' architecture of your application. Visual Studio 2010 has it all."
 publishDate: 2011-03-20
 updated: 2011-03-20
+draft: false
 ---
 
 The layer diagram in the architecture tools for Visual Studio is a new type of diagram that allow you to describe the “logical” architecture of your application. Your code can be organized into different “layers”, allowing a better understanding of what objects perform what tasks. Layer diagrams can also be incorporated into the automated build process, allowing you to ensure that no architectural constraints have been violated.

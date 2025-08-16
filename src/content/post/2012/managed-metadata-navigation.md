@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "Use Powershell to create a Managed Metadata ServiceApplication. In this post is a sample Powershell script shown to create the SSA."
 publishDate: 2012-12-22
 updated: 2012-12-22
+draft: false
 ---
 
 ## What is Managed metadata

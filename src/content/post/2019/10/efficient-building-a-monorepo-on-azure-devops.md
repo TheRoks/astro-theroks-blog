@@ -5,6 +5,7 @@ tags: ["DevOps", "Azure", "Powershell", "git"]
 excerpt: Optimize a build process in a monorepo in Azure DevOps using all new features like Yaml pipelines, Pipeline Artifacts, Cache Beta, and Azure's Rest API.
 publishDate: 2019-10-13
 updated: 2019-10-13
+draft: false
 ---
 
 For a while, I've been working in a monorepo. With a monorepo I mean, we choose to put all the code of an entire website in one repository. This code contains NET code for Sitecore, Angular single-page apps, styling with Sass, and some migrated legacy code from AngularJS. Yes, even the legacy code is in the repository.

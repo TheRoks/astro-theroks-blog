@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "This post will show you how to provision Site Columns that uses Managed Metadata in SharePoint 2010 with a custom activation feature."
 publishDate: 2012-05-06
 updated: 2012-05-06
+draft: false
 ---
 
 This post will show you how to provision Site Columns that uses Managed Metadata in SharePoint 2010. Managed Metadata is one of the new and exciting features of SharePoint Server 2010. It allows you to centrally manage metadata terms and keywords. Creating Managed Metadata columns using the SharePoint web interface is a simple task but the problem is that it does not allow you to move your Site Columns from one farm to another that easily. The reason is that these Site Columns definitions contains references to the unique IDs of the terms in the current Managed Metadata Service Application (MMS).

@@ -8,8 +8,13 @@ const post = defineCollection({
 
     canonical: z.string().url().optional(),
 
-    publishDate: z.date().or(z.string()).optional(),
-    draft: z.boolean().optional(),
+    // Accept ISO date strings or Date objects and coerce to Date
+    publishDate: z
+      .union([z.string(), z.date()])
+      .optional()
+      .transform((val) => (typeof val === "string" ? new Date(val) : val)),
+
+    draft: z.boolean().optional().default(false),
 
     excerpt: z.string().optional(),
     category: z.string().optional(),

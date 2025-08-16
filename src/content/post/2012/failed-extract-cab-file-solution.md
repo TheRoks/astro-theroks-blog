@@ -5,6 +5,7 @@ tags: ["SharePoint"]
 excerpt: "See here how I solved the error during Add Solution: failed to extract the cab file in the solution error. This was by incorrect filenames."
 publishDate: 2012-06-19
 updated: 2012-06-19
+draft: false
 ---
 
 ## The problem: Failed to extract the cab file in the solution

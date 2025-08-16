@@ -5,6 +5,7 @@ tags: ["git", "VSCode"]
 excerpt: Working with git can be quite challenging, this blogpost will learn you some tips and tricks to become a git master.
 publishDate: 2020-12-30
 updated: 2020-12-30
+draft: false
 ---
 
 After working with git for years now. I still learn new things. Git has a lot of options, some are easy to use, some are complicated and very powerful. A short resume on useful git possibilities.

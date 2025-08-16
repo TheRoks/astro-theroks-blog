@@ -5,6 +5,7 @@ tags: ["dotNET"]
 excerpt: "Read here how to properly implement the WCF dispose. Never use the using statement."
 publishDate: 2011-03-11
 updated: 2011-03-11
+draft: false
 ---
 
 WCF client cannot be used inside a Using block because they may unexpectedly throw an exception. Even if you catch the exception, it is possible that a connection will be left open.

@@ -5,6 +5,7 @@ tags: ["dotNET"]
 excerpt: "Solving multithread and memory issues with the XMLSerializer by using a singleton pattern and the XMLSerializerFactory."
 publishDate: 2011-02-12
 updated: 2011-02-12
+draft: false
 ---
 
 The XmlSerializer can cause serious problems in multithreaded environments. See this piece of code.

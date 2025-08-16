@@ -5,6 +5,7 @@ tags: ["AngularJS"]
 excerpt: "AngularJS Filter number fixed length. This filter show how you can create a filter to have leading 0 till a certain length has reached."
 publishDate: 2013-12-11
 updated: 2013-12-11
+draft: false
 ---
 
 Sometimes you want a number of a certain length. If it’s not of that length it needs leading zeros. AngularJS provides the [number filter](https://docs.angularjs.org/api/ng/filter/number). However this lacks the possibility to have leading zeros.

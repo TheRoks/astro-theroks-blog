@@ -5,6 +5,7 @@ tags: ["dotNET", "NuGet"]
 excerpt: "Build automatically NuGet packages with a buildserver. Use there for the right versioning technique. It can save you a lot of troubles."
 publishDate: 2013-10-24
 updated: 2013-10-24
+draft: false
 ---
 
 NuGet, the package manager that is widely used in Visual Studio, has a lot of features that are really nice to use. However some things can be challenging. For example creating a NuGet package. It looks quite simple if you read the documentation on NuGet.org. Creating this in an automated process has some obstacles, like versioning.

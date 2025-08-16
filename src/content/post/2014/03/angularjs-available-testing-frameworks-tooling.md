@@ -6,6 +6,7 @@ excerpt: "AngularJS testing with Jasmine, Mocha, QUnit, Chutzpah, NodeJS, Karma,
 image: "~/assets/images/angularjs-available-testing-frameworks-tooling/javascript-tools-frameworks.png"
 publishDate: 2014-03-29
 updated: 2014-03-29
+draft: false
 ---
 
 Recently I’m discovering a whole new world. The client side world. Last years I was developing a lot of webpart for SharePoint, but looking into the future we see a that many sites depend on a heavy frontend. As this client side is getting bigger and bigger, more code is produced. There’s also a need to test this code on a structured way. There I was looking in the last couple of weeks what’s around to do this.

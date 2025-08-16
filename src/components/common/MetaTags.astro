@@ -14,15 +14,8 @@ export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;
 }
 
-const defaultImage = SITE.defaultImage
-  ? (
-      await getImage({
-        src: SITE.defaultImage,
-        width: 1200,
-        height: 628,
-      })
-    ).src
-  : "";
+// Resolve defaultImage to an absolute URL if provided. Avoid calling getImage on unknown values.
+const defaultImage = SITE.defaultImage ? new URL(SITE.defaultImage, SITE.origin).toString() : "";
 
 const {
   title = SITE.name,
@@ -39,13 +32,18 @@ const {
   dontUseTitleTemplate = false,
 } = Astro.props;
 
-const image =
-  typeof _image === "string"
-    ? new URL(_image, Astro.site)
-    : _image && typeof _image["src"] !== "undefined"
-    ? // @ts-ignore
-      new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
-    : null;
+let imageUrl: string | null = null;
+if (typeof _image === "string" && _image.length > 0) {
+  try {
+    imageUrl = new URL(_image, Astro.site).toString();
+  } catch (e) {
+    imageUrl = null;
+  }
+} else if (_image && typeof _image["src"] !== "undefined") {
+  // _image is likely an imported ImageMetadata object
+  // @ts-ignore
+  imageUrl = new URL(getRelativeUrlByFilePath(_image.src), Astro.site).toString();
+}
 ---
 
 <meta charset="UTF-8" />
@@ -63,10 +61,10 @@ const image =
     title: ogTitle,
     description: description,
     type: ogType,
-    images: image
+    images: imageUrl
       ? [
           {
-            url: image.toString(),
+            url: imageUrl,
             alt: ogTitle,
           },
         ]
@@ -76,7 +74,7 @@ const image =
   twitter={{
     handle: "@theroks",
     // site: '@site',
-    cardType: image ? "summary_large_image" : undefined,
+    cardType: imageUrl ? "summary_large_image" : undefined,
   }}
 />
 
