@@ -53,6 +53,7 @@ export default tseslint.config(
       '**/.*rc.{js,cjs}',
       'astro.config.mjs',
       '.prettierrc.js',
+      'tools/**/*.js',
     ],
     languageOptions: {
       globals: { ...globals.node },
