@@ -72,8 +72,8 @@ importers:
         specifier: ^16.3.0
         version: 16.4.0
       limax:
-        specifier: 4.1.0
-        version: 4.1.0
+        specifier: 4.2.0
+        version: 4.2.0
       mdast-util-to-string:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1341,9 +1341,6 @@ packages:
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
-  bulk-replace@0.0.1:
-    resolution: {integrity: sha512-IxLEnfsCYLjlpf6mG7SWpWgA4A8IAT5dAX3FxXHFn+6FTLf3ums771elQ74sj1BCOVanBf6esu0rEC6zgwfmIg==}
-
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
     engines: {node: '>= 0.4'}
@@ -2342,8 +2339,8 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  hepburn@1.2.1:
-    resolution: {integrity: sha512-v/VUHmiHhNbjDBGxYkwDXzYvfOTIKFquAn0KrPtH1D3Zv539VBPEOGYoWpLnb/FBT9vAx9anQef3noJZ2fPIBw==}
+  hepburn@1.2.2:
+    resolution: {integrity: sha512-DeykBc4XmfAWsnN+Y1Svi9uaQnnz21Q/ARuGWvIBxP1iUFeMIWL41DfVkgTh7tU23LFIbmIBO2Bk17BTPu0kVA==}
     engines: {node: '>=4'}
 
   hosted-git-info@2.8.9:
@@ -2803,8 +2800,8 @@ packages:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
 
-  limax@4.1.0:
-    resolution: {integrity: sha512-vciK5Mx+y+GrJjcVjbEjItzZ6Pbt+LXCb9d3qo3B+HcnTLZYRFyuszD6Hbwk0PDVEmZzS+FA0nT5aBy1HlZgGg==}
+  limax@4.2.0:
+    resolution: {integrity: sha512-K1oRydaorKHgQaLdIgbqQERTg4Tpi9lYhckdCmwdvJWKVnfn0HkezfBo0XasC4sMnqVxL7XovrnesBpYEpn7vg==}
     engines: {node: '>=14'}
 
   lines-and-columns@1.2.4:
@@ -3389,8 +3386,8 @@ packages:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
     engines: {node: '>=12'}
 
-  pinyin-pro@3.26.0:
-    resolution: {integrity: sha512-HcBZZb0pvm0/JkPhZHWA5Hqp2cWHXrrW/WrV+OtaYYM+kf35ffvZppIUuGmyuQ7gDr1JDJKMkbEE+GN0wfMoGg==}
+  pinyin-pro@3.27.0:
+    resolution: {integrity: sha512-Osdgjwe7Rm17N2paDMM47yW+jUIUH3+0RGo8QP39ZTLpTaJVDK0T58hOLaMQJbcMmAebVuK2ePunTEVEx1clNQ==}
 
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
@@ -6228,8 +6225,6 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
-  bulk-replace@0.0.1: {}
-
   call-bind-apply-helpers@1.0.2:
     dependencies:
       es-errors: 1.3.0
@@ -7487,9 +7482,7 @@ snapshots:
 
   he@1.2.0: {}
 
-  hepburn@1.2.1:
-    dependencies:
-      bulk-replace: 0.0.1
+  hepburn@1.2.2: {}
 
   hosted-git-info@2.8.9: {}
 
@@ -7922,11 +7915,11 @@ snapshots:
 
   lilconfig@2.1.0: {}
 
-  limax@4.1.0:
+  limax@4.2.0:
     dependencies:
-      hepburn: 1.2.1
+      hepburn: 1.2.2
       lodash.deburr: 4.1.0
-      pinyin-pro: 3.26.0
+      pinyin-pro: 3.27.0
       speakingurl: 14.0.1
 
   lines-and-columns@1.2.4: {}
@@ -8772,7 +8765,7 @@ snapshots:
 
   picomatch@4.0.3: {}
 
-  pinyin-pro@3.26.0: {}
+  pinyin-pro@3.27.0: {}
 
   pkg-types@1.3.1:
     dependencies:
