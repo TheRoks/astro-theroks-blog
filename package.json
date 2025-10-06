@@ -38,7 +38,7 @@
     "eslint-plugin-astro": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "globals": "^16.3.0",
-    "limax": "4.2.0",
+    "limax": "4.2.1",
     "mdast-util-to-string": "^4.0.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
