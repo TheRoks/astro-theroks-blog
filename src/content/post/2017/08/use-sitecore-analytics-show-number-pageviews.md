@@ -3,7 +3,7 @@ title: "Use Sitecore analytics to show number of pageviews"
 path: "/use-sitecore-analytics-show-number-pageviews/"
 tags: ["Sitecore"]
 excerpt: "A brief description on how to show the number of pageviews by making use of Sitecore analytics"
-image: "~/assets/images/use-sitecore-analytics-show-number-pageviews/sitecore-analytics-show-pageviews.png"
+image: "/assets/images/use-sitecore-analytics-show-number-pageviews/sitecore-analytics-show-pageviews.png"
 publishDate: 2017-08-18
 updated: 2017-08-18
 ---

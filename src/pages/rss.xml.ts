@@ -1,10 +1,11 @@
 import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 
 import { SITE, BLOG } from "~/config.mjs";
 import { fetchPosts } from "~/utils/blog";
 import { getPermalink } from "~/utils/permalinks";
 
-export async function GET({ site }) {
+export async function GET({ site }: APIContext) {
   if (BLOG.disabled) {
     return new Response(null, {
       status: 404,

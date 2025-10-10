@@ -6,7 +6,8 @@ import BlogList from "~/components/blog/List.astro";
 import Pagination from "~/components/common/Pagination.astro";
 
 import { fetchPosts } from "~/utils/blog";
-import { TAG_BASE } from "~/utils/permalinks";
+import { TAG_BASE, getBlogPermalink } from "~/utils/permalinks";
+import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.tag?.disabled) return [];
@@ -32,10 +33,28 @@ export async function getStaticPaths({ paginate }) {
 const { page, tag } = Astro.props;
 
 const currentPage = page.currentPage ?? 1;
+
+// Create breadcrumbs: Home > Blog > Tag: {tagName}
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+    name: "Home",
+    url: new URL("/", SITE.origin).toString(),
+  },
+  {
+    name: "Blog",
+    url: new URL(getBlogPermalink(), SITE.origin).toString(),
+  },
+  {
+    name: `Tag: ${tag}`,
+    url: new URL(Astro.url.pathname, SITE.origin).toString(),
+  },
+];
+
 const meta = {
   title: `Posts by tag '${tag}'${currentPage > 1 ? ` — Page ${currentPage} ` : ""}`,
   description: SITE.description,
   noindex: BLOG?.tag?.noindex,
+  breadcrumbs: breadcrumbs,
 };
 ---
 

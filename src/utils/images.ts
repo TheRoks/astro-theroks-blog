@@ -1,5 +1,7 @@
-const load = async function () {
-  let images: Record<string, () => Promise<unknown>> | undefined = undefined;
+type ImageModule = Record<string, () => Promise<unknown>>;
+
+const load = async function (): Promise<ImageModule | undefined> {
+  let images: ImageModule | undefined = undefined;
   try {
     images = import.meta.glob("~/assets/images/**");
   } catch {
@@ -8,16 +10,16 @@ const load = async function () {
   return images;
 };
 
-let _images;
+let _images: Promise<ImageModule | undefined> | undefined;
 
 /** */
-export const fetchLocalImages = async () => {
+export const fetchLocalImages = async (): Promise<ImageModule | undefined> => {
   _images = _images || load();
   return await _images;
 };
 
 /** */
-export const findImage = async (imagePath?: string) => {
+export const findImage = async (imagePath?: string): Promise<string | null> => {
   if (typeof imagePath !== "string") {
     return null;
   }
@@ -31,7 +33,16 @@ export const findImage = async (imagePath?: string) => {
   } // For now only consume images using ~/assets alias (or absolute)
 
   const images = await fetchLocalImages();
+  if (!images) {
+    return null;
+  }
+
   const key = imagePath.replace("~/", "/src/");
 
-  return typeof images[key] === "function" ? (await images[key]())["default"] : null;
+  if (typeof images[key] === "function") {
+    const imageModule = await images[key]() as { default: string };
+    return imageModule.default;
+  }
+
+  return null;
 };

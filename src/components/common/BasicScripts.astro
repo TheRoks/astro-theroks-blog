@@ -31,11 +31,8 @@ import { SITE } from "~/config.mjs";
     }
   }
 
-  window.onload = function () {
-    let lastKnownScrollPosition = window.scrollY;
-    let ticking = true;
-
-    attachEvent("[data-aw-toggle-menu]", "click", function (_, elem) {
+  function setupEventListeners() {
+    attachEvent("[data-aw-toggle-menu]", "click", function (event, elem) {
       elem.classList.toggle("expanded");
       document.body.classList.toggle("overflow-hidden");
       document.getElementById("header")?.classList.toggle("h-screen");
@@ -82,6 +79,16 @@ import { SITE } from "~/config.mjs";
       newlink.href = href;
       newlink.click();
     });
+  }
+
+  // Setup event listeners on initial page load and after View Transitions
+  document.addEventListener("astro:page-load", () => {
+    setupEventListeners();
+  });
+
+  window.onload = function () {
+    let lastKnownScrollPosition = window.scrollY;
+    let ticking = true;
 
     function appyHeaderStylesOnScroll() {
       const header = document.getElementById("header");

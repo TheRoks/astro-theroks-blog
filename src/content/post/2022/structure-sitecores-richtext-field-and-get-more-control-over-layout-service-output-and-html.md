@@ -1,17 +1,26 @@
 ---
 publishDate: 2022-06-03T00:00:00Z
-title: Structure Sitecore's RichText field and get more control over layout service output and HTML
-description: Sitecore's rich text field is a good, bad, and ugly field. It's a real Swiss army knife. It can be used to create a lot of different HTML structures. But that's not a structured way to build a site.
-excerpt: Sitecore's rich text field is a good, bad, and ugly field. It's a real Swiss army knife. It can be used to create a lot of different HTML structures. But that's not a structured way to build a site.
-image: ~/assets/images/structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html/rich-text-editor.png
+title: "Transform Sitecore RichText Fields into Structured JSON for Headless CMS"
+description: "Learn how to parse Sitecore's RichText fields into structured JSON output for better control over Layout Service responses. Perfect for JSS and headless implementations with clean, maintainable HTML."
+excerpt: "Convert Sitecore's unstructured RichText fields into clean, structured JSON for your headless CMS. Gain complete control over HTML output, prevent unwanted markup, and separate content from code in your JSS applications."
+image: /assets/images/structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html/rich-text-editor.png
+category: Sitecore
 tags:
   - Sitecore
   - JSS
   - Headless
   - Layout Service
+  - CMS
+  - JSON
+  - C#
+author: TheRoks
 ---
 
-The inconvenience with Sitecore's rich text field is that it is a real Swiss army knife. It can be used to create a lot of different HTML structures. But that is not a structured way to build a site. Maintainance can also get hard when a lot of 'code' gets into the content. Besides it can be used to create not allowed HTML structures, content editors can also paste HTML which includes all kinds of HTML you don't want in the HTML output of your public website.
+Sitecore's RichText field is powerful but problematic—it's a Swiss army knife that allows any HTML structure, making content maintenance difficult and security risky. Content editors can paste Word HTML, inject inline styles, or create invalid markup that breaks your headless frontend.
+
+## The RichText Problem
+
+Traditional Sitecore RichText fields create three major challenges:
 
 Goals to achieve in this blog post:
 
