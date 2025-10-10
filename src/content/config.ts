@@ -5,7 +5,7 @@ const post = defineCollection({
   // Content Layer API: Load all markdown and MDX files from the post directory
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "./src/content/post"
+    base: "./src/content/post",
   }),
   // Enhanced schema with image helper for optimized images
   schema: ({ image }) =>

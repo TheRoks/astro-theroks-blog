@@ -17,7 +17,6 @@ To specify the .gif file that you want to use for the icon that represents Adobe
   Drive:Program FilesCommon FilesMicrosoft SharedWeb Server Extensions14TEMPLATEIMAGES
 
 - Edit the Docicon.xml file to include the .pdf file name extension. To do so:
-
   - Start Notepad, and then open the Docicon.xml file. The Docicon.xml file is located in one of the following folders on the server:
     Drive:Program FilesCommon FilesMicrosoft SharedWeb Server Extensions14TEMPLATEXML
 

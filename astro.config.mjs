@@ -43,7 +43,7 @@ export default defineConfig({
     icon({
       include: {
         tabler: ["*"],
-        logos: ["*"]
+        logos: ["*"],
       },
       svgoOptions: {
         plugins: [
