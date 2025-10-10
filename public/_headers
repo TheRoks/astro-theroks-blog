@@ -5,7 +5,7 @@
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://theroks.com; worker-src 'unsafe-inline' blob https://theroks.com; style-src 'self' 'unsafe-inline'; connect-src blob https://cloudflareinsights.com; report-uri https://theroks.report-uri.com/r/d/csp/reportOnly
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com; script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://theroks.com https://challenges.cloudflare.com; worker-src 'unsafe-inline' blob https://theroks.com; style-src 'self' 'unsafe-inline'; connect-src 'self' blob https://cloudflareinsights.com https://theroks.com; report-uri https://theroks.report-uri.com/r/d/csp/reportOnly
   Permissions-Policy: geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Access-Control-Allow-Origin: https://theroks.com
