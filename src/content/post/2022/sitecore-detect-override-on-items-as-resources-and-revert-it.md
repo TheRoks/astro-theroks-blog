@@ -1,18 +1,24 @@
 ---
 publishDate: 2022-10-07T00:00:00Z
-title: "Sitecore Detect Overrides on Items as Resources and revert it"
-description: "Sitecore's feature to store items as a resource file on disk has some challenges when you want to revert your edits."
-excerpt: "Sitecore's feature to store items as a resource file on disk has some challenges when you want to revert your edits."
+title: "Detect and Revert Sitecore Items as Resources (IAR) Overrides"
+description: "Learn how to identify and safely remove database overrides for Sitecore Items as Resources (IAR). Includes PowerShell scripts to detect and revert IAR items back to their resource file definitions."
+excerpt: "Sitecore Items as Resources (IAR) can exist in both resource files and the database, creating hidden overrides. Discover how to detect these overrides and safely revert them using the CompositeDataProvider and PowerShell Extensions."
 category: Sitecore
 tags:
   - Sitecore
   - IAR
   - PSE
+  - PowerShell
+  - Items as Resources
+  - Sitecore 10
+author: TheRoks
 ---
 
-Sitecore introduced in version 10.1 Items as Resource. With this feature, Sitecore items come directly from a resource file instead of the database. However, these items can still be in de database as well. In this case, an item is in a resource file and the database. The database will win and will be seen in the content editor in Sitecore.
+Sitecore 10.1+ introduced Items as Resources (IAR), allowing items to be stored as resource files instead of in the database. But here's the catch: when an item exists in both locations, the database version wins—creating invisible overrides that are difficult to detect and risky to remove.
 
-When such an item is overridden in the database, nobody will know and there is no safe way to delete these items. With this post, we'll find these IAR items and remove them safely from the database.
+This guide shows you how to identify these IAR overrides and safely revert them back to their resource file definitions.
+
+## Understanding IAR and the Override Problem
 
 ## Anatomy of CompositeDataProvider
 

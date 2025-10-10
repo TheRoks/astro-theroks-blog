@@ -1,17 +1,27 @@
 ---
-title: "Introducing Roslyn analyzers for Sitecore"
+publishDate: 2021-01-28T00:00:00Z
+title: "Improve Sitecore Code Quality with Roslyn Analyzers"
+description: "Boost your Sitecore development with custom Roslyn analyzers. Detect anti-patterns, enforce best practices, improve testability, and catch performance issues at compile time with real-time code analysis."
+excerpt: "Discover how Roslyn analyzers can transform your Sitecore development workflow. Automatically detect static class usage, enforce dependency injection, catch performance issues, and improve code quality with real-time feedback in Visual Studio."
 path: "/introducing-roslyn-analyzers-for-sitecore/"
-tags: ["Sitecore", "Roslyn", "Visual Studio", "dotNet"]
-excerpt: Introducing Roslyn analyzers for Sitecore. Using these analyzers will help you to analyze your project's source to find common issues.
-publishDate: 2021-01-28
+category: Sitecore
+tags:
+  - Sitecore
+  - Roslyn
+  - Visual Studio
+  - dotNet
+  - Code Quality
+  - Static Analysis
+  - NuGet
+author: TheRoks
 image: "/assets/images/introducing-roslyn-analyzers-for-sitecore/introducing-roslyn-analyzers-for-sitecore.png"
 ---
 
-With this post, I introduce a set of Roslyn analyzers for Sitecore. The goal for this project was to get more control on code quality, to be more aware of less optimal code constructions in Sitecore, and in the end, it will give you the possibility to write better unit tests.
+Want to catch Sitecore anti-patterns before they reach production? This NuGet package provides Roslyn analyzers specifically designed for Sitecore development, helping you write more testable code, avoid performance pitfalls, and follow Sitecore best practices—all with real-time feedback in Visual Studio.
 
-## What is Roslyn Analyzers
+## What Are Roslyn Analyzers?
 
-Roslyn-based analyzers use the .NET Compiler SDK (Roslyn APIs) to analyze your project's source code to find issues. They can be available as NuGet packages and Visual Studio extensions. With rulesets, you can set up the set of rules you want to comply with. How you do this in an effective way I wrote in a previous post about [controlling rulesets with NuGet packages](/using-nuget-to-control-fxcop-rulesets). The set analyzers that are released now are only available as a NuGet package. The advantage of NuGet packages is that they also can be used in continuous integration scenarios. Whereas the Visual Studio extension only can be used within Visual Studio.
+Roslyn analyzers use the .NET Compiler Platform (Roslyn APIs) to analyze source code in real-time, identifying issues as you type. They integrate seamlessly with Visual Studio and CI/CD pipelines, providing:
 
 ## Why using Analyzers with Sitecore
 

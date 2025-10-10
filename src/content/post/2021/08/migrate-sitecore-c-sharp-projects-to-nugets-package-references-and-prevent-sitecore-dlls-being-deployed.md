@@ -1,19 +1,26 @@
 ---
-title: "Migrate Sitecore C# projects to NuGet package references and deploy without Sitecore shipped dlls"
+publishDate: 2021-08-03T00:00:00Z
+title: "Centralize Sitecore NuGet Packages and Prevent DLL Deployment Bloat"
+description: "Learn how to migrate large Sitecore solutions to centralized NuGet PackageReferences. Manage versions from one location and prevent unnecessary Sitecore DLLs from deployment using Directory.Build.props."
+excerpt: "Managing NuGet packages across 150+ Sitecore projects? Discover how to centralize package versions, prevent version drift, and keep Sitecore's shipped DLLs out of your deployments with PackageReference and Directory.Build.props."
 path: "/migrate-sitecore-C-sharp-projects-to-nuget-package-references-and-deploy-without-sitecore-shipped-dlls/"
+category: Sitecore
 tags:
   - Sitecore
   - NuGet
-excerpt: Create an easy way to manage NuGet package versions in Sitecore solutions and keep deployments clean.
-publishDate: 2021-08-03T00:00:00Z
+  - MSBuild
+  - DevOps
+  - Helix
+  - Deployment
+author: TheRoks
 image: "/assets/images/migrate-sitecore-c-sharp-projects-to-nugets-package-references-and-prevent-sitecore-dlls-being-deployed/sitecore-packagereference.png"
 ---
 
-Working with a large Sitecore solution, i.e. more than 150 C# projects, it can be hard and a lot of work to update NuGet packages. I'll explain here in short what you can do to make life easier.
+Managing NuGet packages in large Sitecore solutions (150+ projects) is challenging. Different projects using different package versions leads to conflicts, bloated deployments, and maintenance headaches. Here's how to centralize package management and prevent unnecessary Sitecore DLLs from being deployed.
 
-## Central Manage PackageReference versions
+## The Challenge: Package Version Chaos in Helix Solutions
 
-A typical Sitecore solution contains many C# projects. Especially when following the Helix structure. A common problem that usually appears when the number of projects begins to pile up inside a single solution is maintaining consistency between NuGet versions, and quite some times you end up with every project using a different version of the same package. All kinds of validation scripts for this could prevent this. However, solving this problem at the front door is even better. Manage the versions inside the solution at a central point.
+Helix-structured Sitecore solutions contain numerous C# projects—Foundation, Feature, and Project layers can easily exceed 100+ projects. Without centralized package management:
 
 ### PackageReference per project
 
@@ -47,7 +54,7 @@ In each project (csproj) you add the packages you're going to use without the ve
 
 If someone attempts to add a version inside a csproj, he will get a build error:
 
-```
+```text
 The package reference 'Sitecore.ContentSearch' should not specify a version. Please specify the version in 'C:\git\mysolution\Packages.props' or set VersionOverride to override the centrally defined version.
 ```
 
