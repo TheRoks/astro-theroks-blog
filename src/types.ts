@@ -17,6 +17,7 @@ export interface Post {
   slug: string;
 
   publishDate: Date;
+  updateDate?: Date;
   title: string;
   description?: string;
 
@@ -48,4 +49,8 @@ export interface MetaSEO {
 
   ogTitle?: string;
   ogType?: string;
+
+  // For structured data (JSON-LD)
+  post?: Post;
+  updateDate?: Date;
 }

@@ -4,11 +4,12 @@ import { GoogleAnalytics } from "@astrolib/analytics";
 import { getImage } from "astro:assets";
 
 import { SITE } from "~/config.mjs";
-import { MetaSEO } from "~/types";
+import type { MetaSEO } from "~/types";
 import { getCanonical, getAsset } from "~/utils/permalinks";
 import { getRelativeUrlByFilePath } from "~/utils/directories";
 
 import CustomStyles from "~/components/CustomStyles.astro";
+import StructuredData from "~/components/common/StructuredData.astro";
 
 export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;
@@ -43,9 +44,9 @@ const image =
   typeof _image === "string"
     ? new URL(_image, Astro.site)
     : _image && typeof _image["src"] !== "undefined"
-    ? // @ts-ignore
-      new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
-    : null;
+      ? // @ts-ignore
+        new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
+      : null;
 ---
 
 <meta charset="UTF-8" />
@@ -81,6 +82,9 @@ const image =
 />
 
 <CustomStyles />
+
+<!-- Structured Data (JSON-LD) -->
+<StructuredData type={ogType === "article" ? "blog-posting" : "website"} post={Astro.props.post} />
 
 <!-- Google Site Verification -->
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}

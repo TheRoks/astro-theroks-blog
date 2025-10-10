@@ -30,6 +30,8 @@ const meta = {
   image: await findImage(post.image),
   noindex: BLOG?.post?.noindex,
   ogType: "article",
+  post: post, // Pass the full post object for structured data
+  updateDate: post.updateDate, // Pass update date for structured data
 };
 ---
 
