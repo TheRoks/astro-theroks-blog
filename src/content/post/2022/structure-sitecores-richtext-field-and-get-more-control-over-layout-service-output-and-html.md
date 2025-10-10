@@ -3,7 +3,7 @@ publishDate: 2022-06-03T00:00:00Z
 title: Structure Sitecore's RichText field and get more control over layout service output and HTML
 description: Sitecore's rich text field is a good, bad, and ugly field. It's a real Swiss army knife. It can be used to create a lot of different HTML structures. But that's not a structured way to build a site.
 excerpt: Sitecore's rich text field is a good, bad, and ugly field. It's a real Swiss army knife. It can be used to create a lot of different HTML structures. But that's not a structured way to build a site.
-image: ~/assets/images/structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html/rich-text-editor.png
+image: /assets/images/structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html/rich-text-editor.png
 tags:
   - Sitecore
   - JSS
