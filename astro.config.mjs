@@ -28,6 +28,12 @@ export default defineConfig({
 
   output: "static",
 
+  // Enable prefetching for faster navigation
+  prefetch: {
+    prefetchAll: true, // Prefetch all links on hover
+    defaultStrategy: "hover", // Start prefetching on hover
+  },
+
   // Enable experimental features for better DX
   experimental: {
     contentIntellisense: true, // Better IDE support for content collections
