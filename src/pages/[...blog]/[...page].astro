@@ -9,7 +9,8 @@ import Pagination from "~/components/common/Pagination.astro";
 
 import { fetchPosts } from "~/utils/blog";
 // import { findTags, findCategories } from '~/utils/blog';
-import { BLOG_BASE } from "~/utils/permalinks";
+import { BLOG_BASE, getBlogPermalink } from "~/utils/permalinks";
+import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export async function getStaticPaths({ paginate }) {
   if (BLOG?.disabled || BLOG?.list?.disabled) return [];
@@ -25,11 +26,24 @@ const currentPage = page.currentPage ?? 1;
 // const allCategories = await findCategories();
 // const allTags = await findTags();
 
+// Create breadcrumbs: Home > Blog
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+    name: "Home",
+    url: new URL("/", SITE.origin).toString(),
+  },
+  {
+    name: "Blog",
+    url: new URL(getBlogPermalink(), SITE.origin).toString(),
+  },
+];
+
 const meta = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "blog",
+  breadcrumbs: breadcrumbs,
 };
 ---
 

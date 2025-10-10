@@ -9,10 +9,11 @@ import { getCanonical, getAsset } from "~/utils/permalinks";
 import { getRelativeUrlByFilePath } from "~/utils/directories";
 
 import CustomStyles from "~/components/CustomStyles.astro";
-import StructuredData from "~/components/common/StructuredData.astro";
+import StructuredData, { type BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export interface Props extends MetaSEO {
   dontUseTitleTemplate?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const defaultImage = SITE.defaultImage
@@ -84,7 +85,11 @@ const image =
 <CustomStyles />
 
 <!-- Structured Data (JSON-LD) -->
-<StructuredData type={ogType === "article" ? "blog-posting" : "website"} post={Astro.props.post} />
+<StructuredData
+  type={ogType === "article" ? "blog-posting" : "website"}
+  post={Astro.props.post}
+  breadcrumbs={Astro.props.breadcrumbs}
+/>
 
 <!-- Google Site Verification -->
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}

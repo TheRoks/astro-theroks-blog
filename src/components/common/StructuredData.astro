@@ -3,12 +3,18 @@ import { SITE } from "~/config.mjs";
 import { getRelativeUrlByFilePath } from "~/utils/directories";
 import type { Post } from "~/types";
 
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 export interface Props {
   type?: "website" | "blog-posting";
   post?: Post;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { type = "website", post } = Astro.props;
+const { type = "website", post, breadcrumbs } = Astro.props;
 
 // Base organization/publisher data
 const publisher = {
@@ -86,6 +92,22 @@ if (type === "website") {
     }),
   };
 }
+
+// Generate BreadcrumbList schema if breadcrumbs are provided
+let breadcrumbSchema: any = null;
+if (breadcrumbs && breadcrumbs.length > 0) {
+  breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
 ---
 
 {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}

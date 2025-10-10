@@ -1,13 +1,14 @@
 ---
-import { BLOG } from "~/config.mjs";
+import { BLOG, SITE } from "~/config.mjs";
 
 import Layout from "~/layouts/PageLayout.astro";
 import SinglePost from "~/components/blog/SinglePost.astro";
 import ToBlogLink from "~/components/blog/ToBlogLink.astro";
 
-import { getCanonical, getPermalink } from "~/utils/permalinks";
+import { getCanonical, getPermalink, getBlogPermalink } from "~/utils/permalinks";
 import { fetchPosts } from "~/utils/blog";
 import { findImage } from "~/utils/images";
+import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export async function getStaticPaths() {
   if (BLOG?.disabled || BLOG?.post?.disabled) return [];
@@ -22,20 +23,40 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const url = getCanonical(getPermalink(post.permalink, "post"));
 
+// Handle image: if it's an AstroImage object, use it directly; otherwise try to find it
+const imageForMeta = typeof post.image === "string" ? await findImage(post.image) : post.image?.src || null;
+
+// Create breadcrumbs: Home > Blog > Post Title
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+    name: "Home",
+    url: new URL("/", SITE.origin).toString(),
+  },
+  {
+    name: "Blog",
+    url: new URL(getBlogPermalink(), SITE.origin).toString(),
+  },
+  {
+    name: post.title,
+    url: url.toString(),
+  },
+];
+
 const meta = {
   title: post.title,
   description: post.description,
   canonical: post.canonical || undefined,
   url: url,
-  image: await findImage(post.image),
+  image: imageForMeta || undefined,
   noindex: BLOG?.post?.noindex,
   ogType: "article",
   post: post, // Pass the full post object for structured data
   updateDate: post.updateDate, // Pass update date for structured data
+  breadcrumbs: breadcrumbs, // Pass breadcrumbs for structured data
 };
 ---
 
 <Layout {meta}>
-  <SinglePost post={{ ...post, image: meta.image }} url={url} />
+  <SinglePost post={{ ...post, image: imageForMeta || undefined }} url={url} />
   <ToBlogLink />
 </Layout>
