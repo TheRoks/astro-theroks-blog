@@ -1,0 +1,203 @@
+---
+import type { Post } from "~/types";
+import { fetchPosts } from "~/utils/blog";
+import { getPermalink } from "~/utils/permalinks";
+
+interface Props {
+  currentPost: Post;
+  maxArticles?: number;
+}
+
+const { currentPost, maxArticles = 3 } = Astro.props;
+
+// Get all published posts (already filtered by fetchPosts)
+const allPosts = await fetchPosts();
+
+// Calculate tag similarity for each post
+interface PostWithScore {
+  post: Post;
+  score: number;
+}
+
+const currentTags = currentPost.tags || [];
+
+const relatedPosts: PostWithScore[] = allPosts
+  .filter((post) => post.id !== currentPost.id) // Exclude current post
+  .map((post) => {
+    const postTags = post.tags || [];
+
+    // Calculate intersection (matching tags)
+    const matchingTags = currentTags.filter((tag) => postTags.includes(tag));
+
+    // Score is the number of matching tags
+    const score = matchingTags.length;
+
+    return {
+      post,
+      score,
+    };
+  })
+  .filter((item) => item.score > 0) // Only include posts with at least 1 matching tag
+  .sort((a, b) => b.score - a.score) // Sort by score descending
+  .slice(0, maxArticles); // Limit to maxArticles
+---
+
+{
+  relatedPosts.length > 0 && (
+    <aside class="related-articles" aria-labelledby="related-articles-heading">
+      <h2 id="related-articles-heading" class="related-articles__title">
+        Related Articles
+      </h2>
+      <ul class="related-articles__list" role="list">
+        {relatedPosts.map(({ post, score }) => {
+          const permalink = getPermalink(post.permalink, "post");
+          return (
+            <li class="related-articles__item">
+              <article class="related-articles__card">
+                <h3 class="related-articles__card-title">
+                  <a href={permalink} class="related-articles__link">
+                    {post.title}
+                  </a>
+                </h3>
+                {post.excerpt && <p class="related-articles__excerpt">{post.excerpt}</p>}
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    </aside>
+  )
+}
+
+<style>
+  .related-articles {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--aw-color-border, #e5e7eb);
+  }
+
+  .related-articles__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--aw-color-text-heading, #1f2937);
+  }
+
+  .related-articles__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .related-articles__item {
+    margin: 0;
+  }
+
+  .related-articles__card {
+    padding: 1.25rem;
+    border: 1px solid var(--aw-color-border, #e5e7eb);
+    border-radius: 0.5rem;
+    background-color: var(--aw-color-bg-page, #ffffff);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .related-articles__card:hover {
+    border-color: var(--aw-color-primary, #3b82f6);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .related-articles__card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .related-articles__link {
+    color: var(--aw-color-text-heading, #1f2937);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .related-articles__link:hover {
+    color: var(--aw-color-primary, #3b82f6);
+  }
+
+  .related-articles__link:focus {
+    outline: 2px solid var(--aw-color-primary, #3b82f6);
+    outline-offset: 2px;
+  }
+
+  .related-articles__excerpt {
+    font-size: 0.875rem;
+    color: var(--aw-color-text-muted, #6b7280);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+  }
+
+  .related-articles__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--aw-color-text-muted, #9ca3af);
+  }
+
+  .related-articles__match-info {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--aw-color-bg-secondary, #f3f4f6);
+    border-radius: 0.25rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .related-articles__list {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+
+  /* Dark mode support */
+  :global(.dark) .related-articles {
+    border-top-color: var(--aw-color-border-dark, #374151);
+  }
+
+  :global(.dark) .related-articles__title {
+    color: var(--aw-color-text-heading-dark, #f9fafb);
+  }
+
+  :global(.dark) .related-articles__card {
+    background-color: var(--aw-color-bg-page-dark, #1f2937);
+    border-color: var(--aw-color-border-dark, #374151);
+  }
+
+  :global(.dark) .related-articles__card:hover {
+    border-color: var(--aw-color-primary-dark, #60a5fa);
+  }
+
+  :global(.dark) .related-articles__link {
+    color: var(--aw-color-text-heading-dark, #f9fafb);
+  }
+
+  :global(.dark) .related-articles__link:hover {
+    color: var(--aw-color-primary-dark, #60a5fa);
+  }
+
+  :global(.dark) .related-articles__excerpt {
+    color: var(--aw-color-text-muted-dark, #9ca3af);
+  }
+
+  :global(.dark) .related-articles__meta {
+    color: var(--aw-color-text-muted-dark, #6b7280);
+  }
+
+  :global(.dark) .related-articles__match-info {
+    background-color: var(--aw-color-bg-secondary-dark, #374151);
+  }
+</style>
