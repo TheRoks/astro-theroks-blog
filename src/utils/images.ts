@@ -40,7 +40,7 @@ export const findImage = async (imagePath?: string): Promise<string | null> => {
   const key = imagePath.replace("~/", "/src/");
 
   if (typeof images[key] === "function") {
-    const imageModule = await images[key]() as { default: string };
+    const imageModule = (await images[key]()) as { default: string };
     return imageModule.default;
   }
 

@@ -536,7 +536,10 @@ export class RichTextDirective implements OnChanges {
 
   @Input("customRichTextOptions") options: Partial<Options> = {};
 
-  constructor(private viewContainer: ViewContainerRef, private templateRef: TemplateRef<unknown>) {}
+  constructor(
+    private viewContainer: ViewContainerRef,
+    private templateRef: TemplateRef<unknown>
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
