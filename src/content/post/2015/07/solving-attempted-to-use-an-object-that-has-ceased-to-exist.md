@@ -3,7 +3,7 @@ title: "Solving: Attempted to use an object that has ceased to exist."
 path: "/solving-attempted-to-use-an-object-that-has-ceased-to-exist/"
 tags: ["SharePoint"]
 excerpt: "How to solve the error attempted to use an object that has ceased to exist"
-image: "~/assets/images/solving-attempted-to-use-an-object-that-has-ceased-to-exist/attempted-to-use-an-object-that-has-ceased-to-exist.png"
+image: "/assets/images/solving-attempted-to-use-an-object-that-has-ceased-to-exist/attempted-to-use-an-object-that-has-ceased-to-exist.png"
 publishDate: 2015-07-06
 updated: 2015-07-06
 ---

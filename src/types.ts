@@ -1,7 +1,16 @@
-import type { CollectionEntry } from "astro:content";
+import type { ComponentProps } from "astro/types";
 
-type RenderedPost = Awaited<ReturnType<CollectionEntry<"post">["render"]>>;
-export type PostContentComponent = RenderedPost["Content"];
+// With Content Layer API, we use the render() function which returns { Content, headings, remarkPluginFrontmatter }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type PostContentComponent = ComponentProps<any>;
+
+// Image type from Astro's image() helper
+export interface AstroImage {
+  src: string;
+  width: number;
+  height: number;
+  format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+}
 
 export interface Post {
   id: string;
@@ -11,7 +20,8 @@ export interface Post {
   title: string;
   description?: string;
 
-  image?: string;
+  // Updated to support both string URLs and Astro's optimized images
+  image?: string | AstroImage;
 
   canonical?: string | URL;
   permalink?: string;

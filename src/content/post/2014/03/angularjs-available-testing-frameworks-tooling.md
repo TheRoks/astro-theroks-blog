@@ -3,7 +3,7 @@ title: "AngularJS available testing frameworks and tooling"
 path: "/angularjs-available-testing-frameworks-tooling/"
 tags: ["AngularJS"]
 excerpt: "AngularJS testing with Jasmine, Mocha, QUnit, Chutzpah, NodeJS, Karma, Protractor, Selenium, WebdriverJS, SinonJS, Chai and BlanketJS"
-image: "~/assets/images/angularjs-available-testing-frameworks-tooling/javascript-tools-frameworks.png"
+image: "/assets/images/angularjs-available-testing-frameworks-tooling/javascript-tools-frameworks.png"
 publishDate: 2014-03-29
 updated: 2014-03-29
 ---

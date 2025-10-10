@@ -6,7 +6,7 @@ tags:
   - NuGet
 excerpt: Create an easy way to manage NuGet package versions in Sitecore solutions and keep deployments clean.
 publishDate: 2021-08-03T00:00:00Z
-image: "~/assets/images/migrate-sitecore-c-sharp-projects-to-nugets-package-references-and-prevent-sitecore-dlls-being-deployed/sitecore-packagereference.png"
+image: "/assets/images/migrate-sitecore-c-sharp-projects-to-nugets-package-references-and-prevent-sitecore-dlls-being-deployed/sitecore-packagereference.png"
 ---
 
 Working with a large Sitecore solution, i.e. more than 150 C# projects, it can be hard and a lot of work to update NuGet packages. I'll explain here in short what you can do to make life easier.

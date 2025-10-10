@@ -1,9 +1,16 @@
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { Post } from "~/types";
 import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from "./permalinks";
 
-const generatePermalink = async ({ id, slug, publishDate, category }) => {
+interface PermalinkParams {
+  id: string;
+  slug: string;
+  publishDate: Date;
+  category?: string;
+}
+
+const generatePermalink = async ({ id, slug, publishDate, category }: PermalinkParams): Promise<string> => {
   const year = String(publishDate.getFullYear()).padStart(4, "0");
   const month = String(publishDate.getMonth() + 1).padStart(2, "0");
   const day = String(publishDate.getDate()).padStart(2, "0");
@@ -29,8 +36,8 @@ const generatePermalink = async ({ id, slug, publishDate, category }) => {
 };
 
 const getNormalizedPost = async (post: CollectionEntry<"post">): Promise<Post> => {
-  const { id, slug: rawSlug = "", data } = post;
-  const { Content } = await post.render();
+  const { id, data } = post;
+  const { Content } = await render(post);
 
   const {
     tags: rawTags = [],
@@ -40,7 +47,7 @@ const getNormalizedPost = async (post: CollectionEntry<"post">): Promise<Post> =
     ...rest
   } = data;
 
-  const slug = cleanSlug(rawSlug.split("/").pop());
+  const slug = cleanSlug(id.split("/").pop() || id);
   const publishDate = new Date(rawPublishDate);
   const category = rawCategory ? cleanSlug(rawCategory) : undefined;
   const tags = rawTags.map((tag: string) => cleanSlug(tag));
@@ -124,23 +131,23 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
 /** */
 export const findTags = async (): Promise<Array<string>> => {
   const posts = await fetchPosts();
-  const tags = posts.reduce((acc, post: Post) => {
+  const tags = posts.reduce((acc: string[], post: Post) => {
     if (post.tags && Array.isArray(post.tags)) {
       return [...acc, ...post.tags];
     }
     return acc;
-  }, []);
+  }, [] as string[]);
   return [...new Set(tags)];
 };
 
 /** */
 export const findCategories = async (): Promise<Array<string>> => {
   const posts = await fetchPosts();
-  const categories = posts.reduce((acc, post: Post) => {
+  const categories = posts.reduce((acc: string[], post: Post) => {
     if (post.category) {
       return [...acc, post.category];
     }
     return acc;
-  }, []);
+  }, [] as string[]);
   return [...new Set(categories)];
 };

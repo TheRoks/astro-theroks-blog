@@ -3,7 +3,7 @@ title: "Using the wpp.targets file together with Sitecore"
 path: "/using-wpp-targets-file-together-sitecore/"
 tags: ["Sitecore"]
 excerpt: "A brief description on how to use the wpp.targets file in a Visual Project to keep your web deploy packages clean."
-image: "~/assets/images/using-wpp-targets-file-together-sitecore/wpptarget-with-sitecore-deployment.png"
+image: "/assets/images/using-wpp-targets-file-together-sitecore/wpptarget-with-sitecore-deployment.png"
 publishDate: 2018-07-13
 updated: 2018-07-13
 ---

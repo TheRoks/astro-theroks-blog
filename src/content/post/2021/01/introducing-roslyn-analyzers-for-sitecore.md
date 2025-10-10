@@ -4,7 +4,7 @@ path: "/introducing-roslyn-analyzers-for-sitecore/"
 tags: ["Sitecore", "Roslyn", "Visual Studio", "dotNet"]
 excerpt: Introducing Roslyn analyzers for Sitecore. Using these analyzers will help you to analyze your project's source to find common issues.
 publishDate: 2021-01-28
-image: "~/assets/images/introducing-roslyn-analyzers-for-sitecore/introducing-roslyn-analyzers-for-sitecore.png"
+image: "/assets/images/introducing-roslyn-analyzers-for-sitecore/introducing-roslyn-analyzers-for-sitecore.png"
 ---
 
 With this post, I introduce a set of Roslyn analyzers for Sitecore. The goal for this project was to get more control on code quality, to be more aware of less optimal code constructions in Sitecore, and in the end, it will give you the possibility to write better unit tests.

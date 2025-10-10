@@ -28,6 +28,11 @@ export default defineConfig({
 
   output: "static",
 
+  // Enable experimental features for better DX
+  experimental: {
+    contentIntellisense: true, // Better IDE support for content collections
+  },
+
   integrations: [
     icon({
       include: {
