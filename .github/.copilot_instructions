@@ -1,0 +1,238 @@
+# Copilot Instructions for TheRoks Astro Blog
+
+This is a personal blog built with Astro 5.x, focusing on web development content with emphasis on Sitecore, .NET, and modern web technologies.
+
+## Project Overview
+
+**Tech Stack:**
+- **Framework:** Astro 5.x (Static Site Generation)
+- **Styling:** Tailwind CSS v4.x
+- **Language:** TypeScript
+- **Content:** Markdown/MDX with Content Collections
+- **Package Manager:** npm (Node.js >=22 recommended, but >=20 works)
+
+**Project Type:** Content-driven personal blog with ~40+ articles covering SharePoint, Sitecore, Angular, and modern web development.
+
+## Repository Structure
+
+```
+.
+├── .github/
+│   ├── instructions/          # Specialized coding instructions
+│   │   ├── a11y.instructions.md       # Accessibility guidelines (WCAG 2.2)
+│   │   ├── astro.instructions.md      # Astro-specific best practices
+│   │   ├── typescript.instructions.md # TypeScript standards
+│   │   └── markdown.instructions.md   # Content formatting rules
+│   └── workflows/             # CI/CD workflows
+├── src/
+│   ├── assets/               # Images and static assets
+│   ├── components/           # Astro components
+│   ├── content/              # Blog posts (Markdown/MDX)
+│   │   └── post/            # Organized by year
+│   ├── layouts/             # Page layouts
+│   ├── pages/               # Route pages
+│   ├── utils/               # Utility functions
+│   ├── config.mjs           # Site configuration
+│   └── data.js              # Navigation and footer data
+├── public/                  # Static files served as-is
+├── astro.config.mjs         # Astro configuration
+├── tailwind.config.cjs      # Tailwind configuration
+├── eslint.config.mjs        # ESLint flat config
+└── tsconfig.json            # TypeScript configuration
+```
+
+## Key Commands
+
+```bash
+npm install           # Install dependencies
+npm run dev          # Start dev server (http://localhost:4321)
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+npm run format:check # Check formatting without changes
+npm run typecheck    # Run TypeScript type checking
+```
+
+## Coding Standards
+
+### General Principles
+- **Minimal Changes:** Make the smallest possible modifications to achieve the goal
+- **Type Safety:** Leverage TypeScript for all new code
+- **Accessibility First:** Follow WCAG 2.2 Level AA standards (see `.github/instructions/a11y.instructions.md`)
+- **Content-Driven:** Embrace Astro's Islands Architecture - server-first with minimal client-side JS
+- **Progressive Enhancement:** Build with HTML/CSS first, enhance with JavaScript only when needed
+
+### File Organization
+- Use kebab-case for filenames: `my-component.astro`, `blog-post.md`
+- Place components in appropriate directories by function
+- Group related utilities together
+- Keep content organized by year in `src/content/post/YYYY/`
+
+### Code Style
+- **JavaScript/TypeScript:**
+  - Use ES modules (no CommonJS `require()`)
+  - Follow ESLint configuration (flat config with Astro + TypeScript)
+  - Prefer `const` over `let`, avoid `var`
+  - Use async/await over promises
+  - Smart tabs are allowed (ESLint configured for this)
+
+- **Astro Components:**
+  - Frontmatter at top, template below
+  - Server-render by default
+  - Use client directives sparingly (`client:load`, `client:idle`, `client:visible`)
+  - Extract reusable logic into utilities
+
+- **Styling:**
+  - Use Tailwind CSS utility classes
+  - Follow mobile-first responsive design
+  - Maintain consistent spacing and typography
+  - Use CSS custom properties for theming
+
+### Content Guidelines
+- All blog posts use frontmatter with: `publishDate`, `title`, `description`, `excerpt`, `category`, `tags`
+- Markdown files should follow the formatting rules in `.github/instructions/markdown.instructions.md`
+- Code blocks should specify language for syntax highlighting
+- Images should have descriptive alt text for accessibility
+
+## Important Configuration Files
+
+### Site Configuration (`src/config.mjs`)
+- Site metadata (title, description, origin)
+- Blog settings (posts per page, permalinks)
+- Analytics IDs (Google Analytics)
+- Date formatting preferences
+
+### Astro Config (`astro.config.mjs`)
+- Build output: static (SSG)
+- Prefetching enabled (hover strategy)
+- Integrations: sitemap, MDX, compress, icon, partytown
+- Markdown plugins: rehype-slug, rehype-autolink-headings, rehype-external-links
+- Shiki theme: github-dark-dimmed
+
+### ESLint Config (`eslint.config.mjs`)
+- Flat config format (ESLint 9.x)
+- Recommended rules for JavaScript, TypeScript, and Astro
+- Special handling for .astro files with TypeScript in `<script>` tags
+- Prettier integration to disable conflicting rules
+
+## Development Workflow
+
+### Making Changes
+1. Start with `npm run dev` to see changes live
+2. Run `npm run lint` frequently to catch issues early
+3. Use `npm run typecheck` for TypeScript validation
+4. Test builds with `npm run build` before committing
+5. Format code with `npm run format` before submitting
+
+### Adding New Content
+1. Create new Markdown file in `src/content/post/YYYY/`
+2. Include required frontmatter fields
+3. Follow markdown formatting guidelines
+4. Test locally with dev server
+5. Verify build succeeds
+
+### Modifying Components
+1. Keep components focused and single-purpose
+2. Test with different content scenarios
+3. Verify accessibility with keyboard navigation
+4. Check responsive behavior at various breakpoints
+5. Ensure no new lint or type errors
+
+## Specialized Instructions
+
+This repository includes detailed instructions for specific file types:
+
+- **Accessibility:** `.github/instructions/a11y.instructions.md` (applies to `**`)
+  - WCAG 2.2 Level AA compliance
+  - Keyboard navigation requirements
+  - Screen reader compatibility
+  - Color contrast guidelines
+
+- **Astro:** `.github/instructions/astro.instructions.md` (applies to `**/*.astro`, `**/*.ts`, `**/*.js`, `**/*.md`, `**/*.mdx`)
+  - Islands Architecture patterns
+  - Content Collections usage
+  - TypeScript integration
+  - Performance optimization
+
+- **TypeScript:** `.github/instructions/typescript.instructions.md` (applies to `**/*.ts`)
+  - ES2022+ baseline
+  - Pure ES modules
+  - Type safety practices
+  - Error handling patterns
+
+- **Markdown:** `.github/instructions/markdown.instructions.md` (applies to `**/*.md`)
+  - Frontmatter requirements
+  - Heading hierarchy
+  - Code block formatting
+  - Line length limits (400 chars)
+
+## Testing & Validation
+
+- **Linting:** `npm run lint` must pass (ESLint 9.x flat config)
+- **Type Checking:** `npm run typecheck` must pass (no TypeScript errors)
+- **Build:** `npm run build` must complete successfully
+- **Formatting:** `npm run format:check` should pass
+
+## Common Patterns
+
+### Blog Post Structure
+```markdown
+---
+publishDate: 2024-01-01T00:00:00Z
+title: "Post Title"
+description: "SEO description"
+excerpt: "Summary for listing pages"
+category: Development
+tags:
+  - Tag1
+  - Tag2
+---
+
+Content here...
+```
+
+### Component Import Pattern
+```astro
+---
+import Layout from '~/layouts/Layout.astro';
+import { getPermalink } from '~/utils/permalinks';
+---
+
+<Layout>
+  <!-- content -->
+</Layout>
+```
+
+### Utility Usage
+```typescript
+import { getAsset, getBlogPermalink } from '~/utils/permalinks';
+import { SITE, BLOG } from '~/config.mjs';
+```
+
+## Additional Context
+
+- **Analytics:** Google Analytics is configured via Partytown for performance
+- **SEO:** Automated sitemap generation, robots.txt, and meta tags
+- **Performance:** Image optimization with Sharp, compression of assets
+- **Icons:** Using Astro Icon with Tabler and Logos iconsets
+- **RSS:** RSS feed automatically generated for blog posts
+
+## When in Doubt
+
+1. Check existing patterns in the codebase
+2. Refer to specialized instruction files in `.github/instructions/`
+3. Run `npm run lint && npm run typecheck && npm run build` to validate changes
+4. Keep changes minimal and focused
+5. Prioritize accessibility and performance
+
+## Security Notes
+
+- Never commit API keys or secrets
+- Use environment variables for sensitive data
+- Validate and sanitize external input
+- Follow OWASP guidelines for web security
+
+---
+
+**Remember:** This is a static site generation project. Most pages are built at compile time. Keep the architecture simple, performant, and accessible.
