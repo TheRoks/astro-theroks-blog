@@ -1,0 +1,13 @@
+{
+  "name": "@repo/ui",
+  "version": "0.9.8",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "devDependencies": {
+    "astro": "5.14.3",
+    "typescript": "5.9.3"
+  }
+}
