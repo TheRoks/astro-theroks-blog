@@ -9,7 +9,7 @@ This is a personal blog built with Astro 5.x, focusing on web development conten
 - **Styling:** Tailwind CSS v4.x
 - **Language:** TypeScript
 - **Content:** Markdown/MDX with Content Collections
-- **Package Manager:** npm (Node.js >=22 recommended, but >=20 works)
+- **Package Manager:** pnpm (Node.js >=22 recommended, but >=20 works)
 
 **Project Type:** Content-driven personal blog with ~40+ articles covering SharePoint, Sitecore, Angular, and modern web development.
 
@@ -44,14 +44,14 @@ This is a personal blog built with Astro 5.x, focusing on web development conten
 ## Key Commands
 
 ```bash
-npm install           # Install dependencies
-npm run dev          # Start dev server (http://localhost:4321)
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run format       # Format code with Prettier
-npm run format:check # Check formatting without changes
-npm run typecheck    # Run TypeScript type checking
+pnpm install      # Install dependencies
+pnpm dev          # Start dev server (http://localhost:4321)
+pnpm build        # Build for production
+pnpm preview      # Preview production build
+pnpm lint         # Run ESLint
+pnpm format       # Format code with Prettier
+pnpm format:check # Check formatting without changes
+pnpm typecheck    # Run TypeScript type checking
 ```
 
 ## Coding Standards
@@ -119,11 +119,11 @@ npm run typecheck    # Run TypeScript type checking
 ## Development Workflow
 
 ### Making Changes
-1. Start with `npm run dev` to see changes live
-2. Run `npm run lint` frequently to catch issues early
-3. Use `npm run typecheck` for TypeScript validation
-4. Test builds with `npm run build` before committing
-5. Format code with `npm run format` before submitting
+1. Start with `pnpm dev` to see changes live
+2. Run `pnpm lint` frequently to catch issues early
+3. Use `pnpm typecheck` for TypeScript validation
+4. Test builds with `pnpm build` before committing
+5. Format code with `pnpm format` before submitting
 
 ### Adding New Content
 1. Create new Markdown file in `src/content/post/YYYY/`
@@ -169,10 +169,10 @@ This repository includes detailed instructions for specific file types:
 
 ## Testing & Validation
 
-- **Linting:** `npm run lint` must pass (ESLint 9.x flat config)
-- **Type Checking:** `npm run typecheck` must pass (no TypeScript errors)
-- **Build:** `npm run build` must complete successfully
-- **Formatting:** `npm run format:check` should pass
+- **Linting:** `pnpm lint` must pass (ESLint 9.x flat config)
+- **Type Checking:** `pnpm typecheck` must pass (no TypeScript errors)
+- **Build:** `pnpm build` must complete successfully
+- **Formatting:** `pnpm format:check` should pass
 
 ## Common Patterns
 
@@ -222,7 +222,7 @@ import { SITE, BLOG } from '~/config.mjs';
 
 1. Check existing patterns in the codebase
 2. Refer to specialized instruction files in `.github/instructions/`
-3. Run `npm run lint && npm run typecheck && npm run build` to validate changes
+3. Run `pnpm lint && pnpm typecheck && pnpm build` to validate changes
 4. Keep changes minimal and focused
 5. Prioritize accessibility and performance
 
