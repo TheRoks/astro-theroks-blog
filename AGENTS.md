@@ -4,7 +4,7 @@
 
 This document explains how AI coding agents should work in this repository to automate tasks, keep quality high, and stay aligned with our Astro setup and content standards.
 
-The project is an Astro 5.x site with Tailwind CSS and the Content Layer API for Markdown/MDX posts.
+The project is an Astro 5.x site with Tailwind CSS and the Content Layer API for Markdown/MDX posts, organized as a **PNPM workspace** with multiple apps and shared packages.
 
 ### Key references in this repo
 
@@ -16,28 +16,40 @@ Node requirement: use Node 22+ (see `package.json` engines). Use pnpm for comman
 
 ## Project layout (quick map)
 
-- `src/content/post/` — MD/MDX posts loaded via Content Layer API (see `src/content/config.ts`)
-- `src/components/` — UI components and islands
-- `src/layouts/` — page and markdown layouts
-- `src/pages/` — route files (Astro pages and endpoints)
-- `src/assets/` — local images and styles for bundling
-- `public/` — static files served as-is (e.g., `public/assets/images/...`)
-- `astro.config.mjs`, `tsconfig.json`, `tailwind.config.cjs` — core config
+**Workspace Structure**: This is a PNPM workspace with multiple apps and packages.
 
-There are experimental folders under `apps/` that aren’t part of the primary site build; focus on the root app unless explicitly requested.
+- **Workspace Root**:
+  - `pnpm-workspace.yaml` — workspace configuration
+  - `package.json` — root workspace scripts and dev dependencies
+  
+- **apps/blog/**: Main Astro blog application (work here for blog changes)
+  - `src/content/post/` — MD/MDX posts loaded via Content Layer API (see `src/content/config.ts`)
+  - `src/components/` — UI components and islands
+  - `src/layouts/` — page and markdown layouts
+  - `src/pages/` — route files (Astro pages and endpoints)
+  - `src/assets/` — local images and styles for bundling
+  - `public/` — static files served as-is (e.g., `public/assets/images/...`)
+  - `astro.config.mjs`, `tsconfig.json`, `tailwind.config.cjs` — app-specific config
+
+- **packages/**: Shared workspace packages
+  - `config/` — shared tooling configurations (ESLint, Prettier, Tailwind)
+  - `ui/` — shared UI components (Logo, CustomStyles)
+  - `types/` — shared TypeScript definitions
+
+**Note**: The blog application is now in `apps/blog/` directory. All content, component, and asset paths are relative to `apps/blog/`.
 
 ## What agents should do
 
 When making changes, prefer server-rendered Astro components and minimal client JS. Follow the repo instructions linked above.
 
 - Content authoring
-  - Add new posts under `src/content/post/` using MD/MDX.
-  - Validate frontmatter fields against `src/content/config.ts` schema: title, optional description/image/canonical/publishDate/draft/excerpt/category/tags/author.
+  - Add new posts under `apps/blog/src/content/post/` using MD/MDX.
+  - Validate frontmatter fields against `apps/blog/src/content/config.ts` schema: title, optional description/image/canonical/publishDate/draft/excerpt/category/tags/author.
   - Follow `.github/instructions/markdown.instructions.md` for headings, code blocks, links, images (alt text required), and structure.
-  - Place large/static images in `public/assets/images/...` and reference via absolute path (`/assets/images/...`).
+  - Place large/static images in `apps/blog/public/assets/images/...` and reference via absolute path (`/assets/images/...`).
 
 - Components and pages
-  - Add or update `.astro` files in `src/components` and `src/pages`.
+  - Add or update `.astro` files in `apps/blog/src/components` and `apps/blog/src/pages`.
   - Use islands only when interactivity is required; pick the lightest hydration strategy (`client:idle`, `client:visible`, etc.).
   - Keep CSS scoped; prefer Tailwind utility classes where appropriate.
 
@@ -50,6 +62,9 @@ When making changes, prefer server-rendered Astro components and minimal client 
   - Optimize images and use responsive strategies where possible.
   - Default to zero JS; only add interactivity when needed.
 
+- Code style
+  - Run `pnpm format` before committing. Enforce ESLint rules as defined in `eslint.config.mjs`.
+
 ## Commands agents should use
 
 Run these from the repo root with pnpm:
@@ -61,6 +76,10 @@ Run these from the repo root with pnpm:
 - Format code: `pnpm format`
 - Typecheck: `pnpm typecheck`
 - Astro utilities (e.g., sync types): `pnpm astro sync`
+
+**Workspace-specific commands:**
+- Run command in blog app: `pnpm --filter @repo/blog <command>`
+- Run command in all packages: `pnpm -r <command>`
 
 ## Definition of done (quality gates)
 
@@ -77,13 +96,13 @@ If you change public behavior, update or add minimal docs in the repo to explain
 ## Common tasks playbook
 
 - Add a new blog post
-  1. Create `src/content/post/my-post-slug.mdx` (or `.md`).
-  2. Include frontmatter fields per `src/content/config.ts` and markdown guidelines.
-  3. Add images under `public/assets/images/my-post-slug/` and reference with `/assets/images/...` paths.
+  1. Create `apps/blog/src/content/post/my-post-slug.mdx` (or `.md`).
+  2. Include frontmatter fields per `apps/blog/src/content/config.ts` and markdown guidelines.
+  3. Add images under `apps/blog/public/assets/images/my-post-slug/` and reference with `/assets/images/...` paths.
   4. Run: `pnpm astro sync` (if types change), `pnpm lint`, `pnpm typecheck`, `pnpm build`.
 
 - Create a new component
-  1. Add `src/components/MyComponent.astro`.
+  1. Add `apps/blog/src/components/MyComponent.astro`.
   2. Keep it server-rendered by default; add hydration only if necessary.
   3. Include prop types and sensible defaults.
   4. Verify usage in a page or layout and run the quality gates.
