@@ -1,0 +1,113 @@
+---
+import { SITE } from "~/config.mjs";
+import { getRelativeUrlByFilePath } from "@repo/utils/directories";
+import type { Post } from "@repo/types";
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export interface Props {
+  type?: "website" | "blog-posting";
+  post?: Post;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { type = "website", post, breadcrumbs } = Astro.props;
+
+// Base organization/publisher data
+const publisher = {
+  "@type": "Person",
+  name: "Stefan Roks",
+  url: SITE.origin,
+};
+
+// Get absolute URL for current page
+const currentUrl = new URL(Astro.url.pathname, Astro.site || SITE.origin).toString();
+
+// Helper to get absolute image URL
+const getAbsoluteImageUrl = (image: string | { src: string } | undefined) => {
+  if (!image) return undefined;
+
+  if (typeof image === "string") {
+    // Already an absolute URL
+    if (image.startsWith("http")) return image;
+    // Relative path - make absolute
+    return new URL(image, Astro.site || SITE.origin).toString();
+  }
+
+  // Image object with src property
+  if (image.src) {
+    const relativePath = getRelativeUrlByFilePath(image.src);
+    return new URL(relativePath, Astro.site || SITE.origin).toString();
+  }
+
+  return undefined;
+};
+
+let structuredData: any = {};
+
+if (type === "website") {
+  // WebSite schema for homepage/general pages
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    description: SITE.description,
+    url: SITE.origin,
+    inLanguage: SITE.language || "en",
+    author: publisher,
+  };
+} else if (type === "blog-posting" && post) {
+  // BlogPosting schema for blog posts
+  const imageUrl = getAbsoluteImageUrl(post.image);
+
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt || post.description || "",
+    image: imageUrl,
+    datePublished: post.publishDate?.toISOString(),
+    dateModified: post.updateDate?.toISOString() || post.publishDate?.toISOString(),
+    author: {
+      "@type": "Person",
+      name: post.author || "Stefan Roks",
+      url: SITE.origin,
+    },
+    publisher: publisher,
+    url: currentUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": currentUrl,
+    },
+    inLanguage: SITE.language || "en",
+    ...(post.tags &&
+      post.tags.length > 0 && {
+        keywords: post.tags.join(", "),
+      }),
+    ...(post.category && {
+      articleSection: post.category,
+    }),
+  };
+}
+
+// Generate BreadcrumbList schema if breadcrumbs are provided
+let breadcrumbSchema: any = null;
+if (breadcrumbs && breadcrumbs.length > 0) {
+  breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
+---
+
+{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}

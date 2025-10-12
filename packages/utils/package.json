@@ -1,0 +1,21 @@
+{
+  "name": "@repo/utils",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./blog": "./src/blog.ts",
+    "./directories": "./src/directories.ts",
+    "./frontmatter": "./src/frontmatter.mjs",
+    "./images": "./src/images.ts",
+    "./permalinks": "./src/permalinks.ts",
+    "./utils": "./src/utils.ts"
+  },
+  "devDependencies": {
+    "astro": "5.14.3",
+    "limax": "4.2.1",
+    "mdast-util-to-string": "4.0.0",
+    "reading-time": "1.5.0",
+    "typescript": "5.9.3"
+  }
+}

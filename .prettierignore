@@ -3,3 +3,8 @@ node_modules
 .github
 .changeset
 pnpm-lock.yaml
+src
+public
+astro.config.mjs
+tsconfig.json
+tailwind.config.cjs

@@ -1,0 +1,14 @@
+{
+  "name": "@repo/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Logo": "./src/Logo.astro",
+    "./CustomStyles": "./src/CustomStyles.astro"
+  },
+  "devDependencies": {
+    "astro": "5.14.3",
+    "astro-icon": "1.1.5"
+  }
+}
