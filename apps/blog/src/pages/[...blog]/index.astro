@@ -5,9 +5,9 @@ import Layout from "~/layouts/PageLayout.astro";
 import SinglePost from "~/components/blog/SinglePost.astro";
 import ToBlogLink from "~/components/blog/ToBlogLink.astro";
 
-import { getCanonical, getPermalink, getBlogPermalink } from "~/utils/permalinks";
-import { fetchPosts } from "~/utils/blog";
-import { findImage } from "~/utils/images";
+import { getCanonical, getPermalink, getBlogPermalink } from "@repo/utils/permalinks";
+import { fetchPosts } from "@repo/utils/blog";
+import { findImage } from "@repo/utils/images";
 import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export async function getStaticPaths() {

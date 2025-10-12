@@ -4,11 +4,11 @@ import { Picture } from "astro:assets";
 import PostTags from "~/components/blog/Tags.astro";
 
 import { BLOG } from "~/config.mjs";
-import type { Post } from "~/types";
+import type { Post } from "@repo/types";
 
-import { getPermalink } from "~/utils/permalinks";
-import { findImage } from "~/utils/images";
-import { getFormattedDate } from "~/utils/utils";
+import { getPermalink } from "@repo/utils/permalinks";
+import { findImage } from "@repo/utils/images";
+import { getFormattedDate } from "@repo/utils/utils";
 
 export interface Props {
   post: Post;

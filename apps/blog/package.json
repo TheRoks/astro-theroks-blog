@@ -12,7 +12,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/config": "workspace:*"
+    "@repo/config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*"
   },
   "devDependencies": {
     "@astrojs/mdx": "4.3.7",

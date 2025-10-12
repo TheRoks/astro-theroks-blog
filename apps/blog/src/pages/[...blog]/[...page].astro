@@ -7,9 +7,9 @@ import Headline from "~/components/blog/Headline.astro";
 import Pagination from "~/components/common/Pagination.astro";
 // import PostTags from "~/components/blog/Tags.astro";
 
-import { fetchPosts } from "~/utils/blog";
+import { fetchPosts } from "@repo/utils/blog";
 // import { findTags, findCategories } from '~/utils/blog';
-import { BLOG_BASE, getBlogPermalink } from "~/utils/permalinks";
+import { BLOG_BASE, getBlogPermalink } from "@repo/utils/permalinks";
 import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export async function getStaticPaths({ paginate }) {

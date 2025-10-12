@@ -4,11 +4,11 @@ import { GoogleAnalytics } from "@astrolib/analytics";
 import { getImage } from "astro:assets";
 
 import { SITE } from "~/config.mjs";
-import type { MetaSEO } from "~/types";
-import { getCanonical, getAsset } from "~/utils/permalinks";
-import { getRelativeUrlByFilePath } from "~/utils/directories";
+import type { MetaSEO } from "@repo/types";
+import { getCanonical, getAsset } from "@repo/utils/permalinks";
+import { getRelativeUrlByFilePath } from "@repo/utils/directories";
 
-import CustomStyles from "~/components/CustomStyles.astro";
+import CustomStyles from "@repo/ui/CustomStyles";
 import StructuredData, { type BreadcrumbItem } from "~/components/common/StructuredData.astro";
 
 export interface Props extends MetaSEO {

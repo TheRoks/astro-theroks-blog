@@ -2,8 +2,8 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 
 import { SITE, BLOG } from "~/config.mjs";
-import { fetchPosts } from "~/utils/blog";
-import { getPermalink } from "~/utils/permalinks";
+import { fetchPosts } from "@repo/utils/blog";
+import { getPermalink } from "@repo/utils/permalinks";
 
 export async function GET({ site }: APIContext) {
   if (BLOG.disabled) {
