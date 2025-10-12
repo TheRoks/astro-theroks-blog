@@ -1,0 +1,154 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { defineConfig } from "astro/config";
+
+import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
+import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
+import compress from "astro-compress";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+
+import { SITE } from "./src/config.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const whenExternalScripts = (items = []) =>
+  SITE.googleAnalyticsId ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
+
+export default defineConfig({
+  site: SITE.origin,
+  base: SITE.basePathname,
+  trailingSlash: SITE.trailingSlash ? "always" : "never",
+
+  output: "static",
+
+  // Enable prefetching for faster navigation
+  prefetch: {
+    prefetchAll: true, // Prefetch all links on hover
+    defaultStrategy: "hover", // Start prefetching on hover
+  },
+
+  // Enable experimental features for better DX
+  experimental: {
+    contentIntellisense: true, // Better IDE support for content collections
+  },
+
+  integrations: [
+    icon({
+      include: {
+        tabler: ["*"],
+        logos: ["*"],
+      },
+      svgoOptions: {
+        plugins: [
+          {
+            name: "preset-default",
+            params: {
+              overrides: {
+                removeDoctype: false,
+              },
+            },
+          },
+        ],
+      },
+    }),
+    sitemap({
+      serialize(item) {
+        if (/blog/.test(item.url) || /about/.test(item.url)) {
+          return undefined;
+        }
+        item.changefreq = "weekly";
+        item.priority = 0.7;
+
+        return item;
+      },
+    }),
+    mdx(),
+
+    ...whenExternalScripts(() =>
+      partytown({
+        config: { forward: ["dataLayer.push"] },
+      })
+    ),
+
+    compress({
+      css: true,
+      html: {
+        removeAttributeQuotes: false,
+      },
+      img: false,
+      js: true,
+      svg: false,
+
+      logger: 1,
+    }),
+  ],
+
+  markdown: {
+    shikiConfig: {
+      // Choose from Shiki's built-in themes (or add your own)
+      // https://github.com/shikijs/shiki/blob/main/docs/themes.md
+      theme: "github-dark-dimmed",
+      // Add custom languages
+      // Note: Shiki has countless langs built-in, including .astro!
+      // https://github.com/shikijs/shiki/blob/main/docs/languages.md
+      langs: [],
+      // Enable word wrap to prevent horizontal scrolling
+      wrap: false,
+    },
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          content: {
+            type: "element",
+            tagName: "span",
+            properties: { className: ["heading-link", "not-prose"] },
+            children: [
+              {
+                type: "element",
+                tagName: "img",
+                properties: { src: "/assets/link.svg", width: "16px", height: "16px" },
+                children: [],
+              },
+            ],
+          },
+        },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          content: {
+            type: "element",
+            tagName: "img",
+            properties: {
+              src: "/assets/external-link.svg",
+              alt: "External link icon",
+              width: "16px",
+              height: "16px",
+            },
+            children: [],
+          },
+          contentProperties: { className: ["external-link-icon", "not-prose"] },
+        },
+      ],
+    ],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "~": path.resolve(__dirname, "./src"),
+      },
+    },
+  },
+});

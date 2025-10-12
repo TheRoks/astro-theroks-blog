@@ -1,0 +1,24 @@
+---
+// BlogPostingJSONLD.astro
+
+const { title, description, url, ogType } = Astro.props;
+
+if (ogType !== "article") {
+  return;
+}
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description,
+  url: url,
+  author: {
+    "@type": "Person",
+    name: "Stefan Roks",
+    url: "https://theroks.com/about",
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

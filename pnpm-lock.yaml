@@ -13,6 +13,43 @@ importers:
 
   .:
     devDependencies:
+      '@eslint/js':
+        specifier: 9.37.0
+        version: 9.37.0
+      eslint:
+        specifier: 9.37.0
+        version: 9.37.0(jiti@2.6.1)
+      eslint-config-prettier:
+        specifier: 10.1.8
+        version: 10.1.8(eslint@9.37.0(jiti@2.6.1))
+      eslint-plugin-astro:
+        specifier: 1.3.1
+        version: 1.3.1(eslint@9.37.0(jiti@2.6.1))
+      eslint-plugin-jsx-a11y:
+        specifier: 6.10.2
+        version: 6.10.2(eslint@9.37.0(jiti@2.6.1))
+      globals:
+        specifier: 16.4.0
+        version: 16.4.0
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
+      prettier-plugin-astro:
+        specifier: 0.14.1
+        version: 0.14.1
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+      typescript-eslint:
+        specifier: 8.46.0
+        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
+
+  apps/blog:
+    dependencies:
+      '@repo/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+    devDependencies:
       '@astrojs/mdx':
         specifier: 4.3.7
         version: 4.3.7(astro@5.14.3(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.44.0)(typescript@5.9.3)(yaml@2.8.0))
@@ -31,9 +68,6 @@ importers:
       '@astrolib/seo':
         specifier: 1.0.0-beta.8
         version: 1.0.0-beta.8(astro@5.14.3(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.44.0)(typescript@5.9.3)(yaml@2.8.0))
-      '@eslint/js':
-        specifier: 9.37.0
-        version: 9.37.0
       '@fontsource/inter':
         specifier: 4.5.15
         version: 4.5.15
@@ -58,33 +92,12 @@ importers:
       astro-icon:
         specifier: 1.1.5
         version: 1.1.5
-      eslint:
-        specifier: 9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-config-prettier:
-        specifier: 10.1.8
-        version: 10.1.8(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-astro:
-        specifier: 1.3.1
-        version: 1.3.1(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-jsx-a11y:
-        specifier: 6.10.2
-        version: 6.10.2(eslint@9.37.0(jiti@2.6.1))
-      globals:
-        specifier: 16.4.0
-        version: 16.4.0
       limax:
         specifier: 4.2.1
         version: 4.2.1
       mdast-util-to-string:
         specifier: 4.0.0
         version: 4.0.0
-      prettier:
-        specifier: 3.6.2
-        version: 3.6.2
-      prettier-plugin-astro:
-        specifier: 0.14.1
-        version: 0.14.1
       reading-time:
         specifier: 1.5.0
         version: 1.5.0
@@ -106,6 +119,39 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+
+  packages/config:
+    devDependencies:
+      '@eslint/js':
+        specifier: 9.37.0
+        version: 9.37.0
+      '@tailwindcss/typography':
+        specifier: 0.5.19
+        version: 0.5.19(tailwindcss@4.1.14)
+      eslint:
+        specifier: 9.37.0
+        version: 9.37.0(jiti@2.6.1)
+      eslint-config-prettier:
+        specifier: 10.1.8
+        version: 10.1.8(eslint@9.37.0(jiti@2.6.1))
+      eslint-plugin-astro:
+        specifier: 1.3.1
+        version: 1.3.1(eslint@9.37.0(jiti@2.6.1))
+      eslint-plugin-jsx-a11y:
+        specifier: 6.10.2
+        version: 6.10.2(eslint@9.37.0(jiti@2.6.1))
+      globals:
+        specifier: 16.4.0
+        version: 16.4.0
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
+      prettier-plugin-astro:
+        specifier: 0.14.1
+        version: 0.14.1
+      tailwindcss:
+        specifier: 4.1.14
+        version: 4.1.14
       typescript-eslint:
         specifier: 8.46.0
         version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
