@@ -23,11 +23,20 @@ astro-theroks-blog/
 │       ├── tailwind.config.cjs
 │       └── package.json
 └── packages/
-    └── config/                 # Shared tooling configurations
-        ├── eslint.config.mjs
-        ├── prettier.config.js
-        ├── tailwind.config.js
-        └── package.json
+    ├── config/                 # Shared tooling configurations
+    │   ├── eslint.config.mjs
+    │   ├── prettier.config.js
+    │   ├── tailwind.config.js
+    │   └── package.json
+    ├── types/                  # Shared TypeScript types
+    │   ├── package.json
+    │   └── src/index.ts
+    ├── utils/                  # Shared utility functions
+    │   ├── package.json
+    │   └── src/
+    └── ui/                     # Shared UI components
+        ├── package.json
+        └── src/
 ```
 
 ### 2. Package Configuration
@@ -40,13 +49,31 @@ astro-theroks-blog/
 #### Blog App (`@repo/blog`)
 - Contains all blog content, pages, and components
 - App-specific dependencies (Astro, integrations, etc.)
-- Consumes shared config from `@repo/config`
+- Consumes shared packages: `@repo/config`, `@repo/types`, `@repo/utils`, `@repo/ui`
 
 #### Config Package (`@repo/config`)
 - Shared ESLint configuration
 - Shared Prettier configuration
 - Base Tailwind CSS configuration
 - Consumed by apps via workspace references
+
+#### Types Package (`@repo/types`)
+- Post and MetaSEO interface definitions
+- Shared type definitions used across all packages
+- Ensures type consistency throughout the workspace
+
+#### Utils Package (`@repo/utils`)
+- Blog post fetching and processing utilities
+- Permalink and URL generation functions
+- Image handling utilities
+- Path and directory utilities
+- Frontmatter processing
+- General utility functions
+
+#### UI Package (`@repo/ui`)
+- Logo component
+- CustomStyles component
+- Reusable Astro components for all apps
 
 ### 3. Dependency Management
 
@@ -80,12 +107,25 @@ Removed old root-level files that are now in `apps/blog/`:
 - `tailwind.config.cjs`
 - `vscode.tailwind.json`
 
+### 7. Package Extraction (Phase 3)
+
+Extracted shared code into workspace packages:
+- Created `packages/types` with TypeScript type definitions
+- Created `packages/utils` with utility functions
+- Created `packages/ui` with shared Astro components
+- Updated all imports in blog app to use workspace packages:
+  - `~/types` → `@repo/types`
+  - `~/utils/*` → `@repo/utils/*`
+  - `~/components/Logo.astro` → `@repo/ui/Logo`
+  - `~/components/CustomStyles.astro` → `@repo/ui/CustomStyles`
+
 ## Quality Validation
 
 All quality gates pass successfully:
 
 ✅ **Build**: 116 pages built successfully  
 ✅ **Lint**: No errors  
+✅ **Type Check**: No errors (5 workspace projects)
 ✅ **Type Check**: No errors  
 ✅ **Dev Server**: Starts successfully on http://localhost:4321
 
@@ -99,20 +139,24 @@ All quality gates pass successfully:
 
 ## Migration Notes
 
-### What Was Kept Together
-- Utilities (`src/utils/`) remain in the blog app (tightly coupled to blog logic)
-- Components remain in the blog app (app-specific)
-- Content and pages remain in the blog app (app-specific)
-
 ### What Was Extracted
-- ESLint configuration → `packages/config/eslint.config.mjs`
-- Prettier configuration → `packages/config/prettier.config.js`
-- Tailwind base configuration → `packages/config/tailwind.config.js`
+- **Configuration** → `packages/config/` (ESLint, Prettier, Tailwind)
+- **Types** → `packages/types/` (Post, MetaSEO interfaces)
+- **Utilities** → `packages/utils/` (blog, permalinks, images, directories, frontmatter, utils)
+- **UI Components** → `packages/ui/` (Logo, CustomStyles)
 
-### Future Opportunities
-- Extract truly shared components into `packages/ui` if multiple apps are added
-- Extract shared utilities into `packages/utils` if reused across apps
-- Extract shared types into `packages/types` if needed across apps
+### What Remains in Blog App
+- Blog-specific components (`src/components/blog/`, `src/components/common/`, `src/components/widgets/`)
+- Content and pages (`src/content/`, `src/pages/`)
+- Layouts (`src/layouts/`)
+- Assets (`src/assets/`, `public/`)
+- Blog configuration (`src/config.mjs`)
+
+### Benefits of Extraction
+- **Reusability**: Shared packages can be used by future apps
+- **Type Safety**: Centralized type definitions ensure consistency
+- **Maintainability**: Clear separation of concerns
+- **Testability**: Packages can be tested independently
 
 ## Commands Reference
 

@@ -11,6 +11,9 @@ The project is an Astro 5.x site with Tailwind CSS and the Content Layer API for
 This repository uses a **PNPM workspace**:
 - `apps/blog/` — Main Astro blog application
 - `packages/config/` — Shared ESLint, Prettier, and Tailwind configurations
+- `packages/types/` — Shared TypeScript type definitions
+- `packages/utils/` — Shared utility functions
+- `packages/ui/` — Shared UI components (Logo, CustomStyles)
 - Commands run from workspace root delegate to appropriate packages
 
 ### Key references in this repo
@@ -31,7 +34,11 @@ Node requirement: use Node 22+ (see `package.json` engines). Use pnpm for comman
 - `apps/blog/src/pages/` — route files (Astro pages and endpoints)
 - `apps/blog/src/assets/` — local images and styles for bundling
 - `apps/blog/public/` — static files served as-is (e.g., `public/assets/images/...`)
-- `apps/blog/astro.config.mjs`, `apps/blog/tsconfig.json`, `apps/blog/tailwind.config.cjs` — core config
+- `apps/blog/astro.config.mjs`, `apps/blog/tsconfig.json`, `apps/blog/tailwind.config.cjs` — blog app config
+- `packages/config/` — shared tooling configurations (ESLint, Prettier, Tailwind)
+- `packages/types/` — shared TypeScript types (Post, MetaSEO interfaces)
+- `packages/utils/` — shared utility functions (blog, permalinks, images, etc.)
+- `packages/ui/` — shared UI components (Logo, CustomStyles)
 
 
 ## What agents should do

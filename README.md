@@ -15,11 +15,17 @@ astro-theroks-blog/
 │       ├── astro.config.mjs
 │       └── package.json
 ├── packages/
-│   └── config/                  # Shared configurations (ESLint, Prettier, Tailwind)
-│       ├── eslint.config.mjs
-│       ├── prettier.config.js
-│       ├── tailwind.config.js
-│       └── package.json
+│   ├── config/                  # Shared configurations (ESLint, Prettier, Tailwind)
+│   │   ├── eslint.config.mjs
+│   │   ├── prettier.config.js
+│   │   ├── tailwind.config.js
+│   │   └── package.json
+│   ├── types/                   # Shared TypeScript types
+│   │   └── src/index.ts
+│   ├── utils/                   # Shared utility functions
+│   │   └── src/
+│   └── ui/                      # Shared UI components
+│       └── src/
 ├── pnpm-workspace.yaml          # Workspace configuration
 └── package.json                 # Workspace root
 ```
@@ -102,6 +108,30 @@ Shared tooling configurations at `packages/config/`:
 - Prettier configuration for code formatting
 - Tailwind CSS base configuration
 - Consumed by apps via workspace references
+
+### Types Package (`@repo/types`)
+
+Shared TypeScript type definitions at `packages/types/`:
+- Post and MetaSEO interfaces
+- Common type definitions used across the workspace
+- Ensures type consistency between packages
+
+### Utils Package (`@repo/utils`)
+
+Shared utility functions at `packages/utils/`:
+- Blog post fetching and processing (`blog.ts`)
+- Permalink and URL generation (`permalinks.ts`)
+- Image handling utilities (`images.ts`)
+- Path and directory utilities (`directories.ts`)
+- Frontmatter processing (`frontmatter.mjs`)
+- General utility functions (`utils.ts`)
+
+### UI Package (`@repo/ui`)
+
+Shared UI components at `packages/ui/`:
+- Logo component (`Logo.astro`)
+- Custom styles component (`CustomStyles.astro`)
+- Reusable across multiple apps in the workspace
 
 ## 📝 Content Management
 
