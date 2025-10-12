@@ -1,0 +1,26 @@
+---
+import { SITE } from "~/config.mjs";
+import Layout from "~/layouts/PageLayout.astro";
+
+import BlogList from "~/components/blog/List.astro";
+import { fetchPosts } from "~/utils/blog";
+import Headline from "~/components/blog/Headline.astro";
+import ToBlogLink from "~/components/blog/ToBlogLink.astro";
+
+const meta = {
+  title: SITE.title,
+  description: SITE.description,
+  dontUseTitleTemplate: true,
+};
+
+let data = await fetchPosts();
+data = data.slice(0, 5);
+---
+
+<Layout {meta}>
+  <section class="px-6 sm:px-6 mx-auto max-w-4xl">
+    <Headline subtitle="Thoughts on .NET Development">TheRoks</Headline>
+    <BlogList posts={data} />
+    <ToBlogLink />
+  </section>
+</Layout>

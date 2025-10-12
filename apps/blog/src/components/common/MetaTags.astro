@@ -1,0 +1,108 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import { GoogleAnalytics } from "@astrolib/analytics";
+import { getImage } from "astro:assets";
+
+import { SITE } from "~/config.mjs";
+import type { MetaSEO } from "~/types";
+import { getCanonical, getAsset } from "~/utils/permalinks";
+import { getRelativeUrlByFilePath } from "~/utils/directories";
+
+import CustomStyles from "~/components/CustomStyles.astro";
+import StructuredData, { type BreadcrumbItem } from "~/components/common/StructuredData.astro";
+
+export interface Props extends MetaSEO {
+  dontUseTitleTemplate?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const defaultImage = SITE.defaultImage
+  ? (
+      await getImage({
+        src: SITE.defaultImage,
+        width: 1200,
+        height: 628,
+      })
+    ).src
+  : "";
+
+const {
+  title = SITE.name,
+  description = "",
+  image: _image = defaultImage,
+
+  canonical = getCanonical(String(Astro.url.pathname)),
+  noindex = false,
+  nofollow = false,
+
+  ogTitle = title,
+  ogType = "website",
+
+  dontUseTitleTemplate = false,
+} = Astro.props;
+
+const image =
+  typeof _image === "string"
+    ? new URL(_image, Astro.site)
+    : _image && typeof _image["src"] !== "undefined"
+      ? // @ts-ignore
+        new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
+      : null;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<AstroSeo
+  title={title}
+  titleTemplate={dontUseTitleTemplate ? "%s" : `%s — ${SITE.name}`}
+  description={description}
+  canonical={String(canonical)}
+  noindex={noindex}
+  nofollow={nofollow}
+  openGraph={{
+    url: String(canonical),
+    title: ogTitle,
+    description: description,
+    type: ogType,
+    images: image
+      ? [
+          {
+            url: image.toString(),
+            alt: ogTitle,
+          },
+        ]
+      : undefined,
+    // site_name: 'SiteName',
+  }}
+  twitter={{
+    handle: "@theroks",
+    // site: '@site',
+    cardType: image ? "summary_large_image" : undefined,
+  }}
+/>
+
+<CustomStyles />
+
+<!-- Structured Data (JSON-LD) -->
+<StructuredData
+  type={ogType === "article" ? "blog-posting" : "website"}
+  post={Astro.props.post}
+  breadcrumbs={Astro.props.breadcrumbs}
+/>
+
+<!-- Google Site Verification -->
+{SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
+
+<!-- Google Analytics -->
+{SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
+
+<!-- {SITE.splitbeeAnalytics?.enabled && <SplitbeeAnalytics {...SITE.splitbeeAnalytics} />} -->
+
+<link rel="shortcut icon" href={getAsset("/icon.png")} />
+<link rel="icon" type="image/svg+xml" href={getAsset("/icon.png")} />
+<link rel="mask-icon" href={getAsset("/icon.png")} color="#8D46E7" />
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "3a97b7004e184fb3864600759db69a73"}'></script>
