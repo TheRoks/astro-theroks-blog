@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@astrojs/mdx": "4.3.8",
+    "@astrojs/mdx": "4.3.9",
     "@astrojs/partytown": "2.1.4",
     "@astrojs/rss": "4.0.13",
     "@astrojs/sitemap": "3.6.0",
@@ -28,7 +28,7 @@
     "@iconify-json/tabler": "1.2.23",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.16",
-    "astro": "5.15.1",
+    "astro": "5.15.2",
     "astro-compress": "2.3.8",
     "astro-icon": "1.1.5",
     "eslint": "9.38.0",
