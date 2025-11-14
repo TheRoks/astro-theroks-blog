@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@astrojs/mdx": "4.3.9",
+    "@astrojs/mdx": "4.3.10",
     "@astrojs/partytown": "2.1.4",
     "@astrojs/rss": "4.0.13",
     "@astrojs/sitemap": "3.6.0",
