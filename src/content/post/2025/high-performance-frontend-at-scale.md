@@ -11,6 +11,7 @@ tags:
   - performance
   - architecture
 author: "TheRoks"
+excerpt: "How to architect a frontend monorepo for both fast CI builds and optimal runtime performance using NX, pnpm, Vite, and Next.js. This guide explains the 'transpile early, bundle late' approach for scalable, cache-friendly delivery."
 ---
 
 Scaling a frontend architecture involves more than just adding folders to a repository. As a codebase grows from a single application to a workspace with 50, 100, or 500 libraries, the physics of development change. Manual builds become impossible, CI times skyrocket, and the "works on my machine" problem becomes a daily blocker.
