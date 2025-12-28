@@ -6,6 +6,7 @@ import PostTags from "~/components/blog/Tags.astro";
 import SocialShare from "~/components/common/SocialShare.astro";
 import RelatedArticles from "~/components/blog/RelatedArticles.astro";
 
+import { BLOG } from "~/config.mjs";
 import { getPermalink } from "~/utils/permalinks";
 import { getFormattedDate } from "~/utils/utils";
 
@@ -27,16 +28,16 @@ const { post, url } = Astro.props;
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
           {
-            post.category && (
-              <>
-                {" "}
-                ·
-                <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
-                  {post.category.replaceAll("-", " ")}
-                </a>
-              </>
-            )
-          }
+                    post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
+                      <>
+                        {" "}
+                        ·
+                        <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
+                          {post.category.replaceAll("-", " ")}
+                        </a>
+                      </>
+                    )
+                  }
         </p>
       </div>
       <h1
