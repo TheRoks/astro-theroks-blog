@@ -25,7 +25,7 @@
     "@eslint/js": "9.39.2",
     "@fontsource/inter": "4.5.15",
     "@iconify-json/logos": "1.2.10",
-    "@iconify-json/tabler": "1.2.24",
+    "@iconify-json/tabler": "1.2.25",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.16.6",
