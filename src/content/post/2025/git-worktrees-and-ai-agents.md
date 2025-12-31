@@ -17,9 +17,9 @@ There is a better way. By combining **Git Worktrees** with **AI Agents**, you ca
 
 ## Prerequisites
 
-*   **Git 2.5+**: Worktrees have been around since 2015, but they are often overlooked.
-*   **VS Code**: Or any editor that supports multi-root workspaces or separate windows.
-*   **An AI Assistant**: GitHub Copilot, Claude Code, or similar.
+- **Git 2.5+**: Worktrees have been around since 2015, but they are often overlooked.
+- **VS Code**: Or any editor that supports multi-root workspaces or separate windows.
+- **An AI Assistant**: GitHub Copilot, Claude Code, or similar.
 
 ## The Deep Dive: Git Worktrees 101
 
@@ -71,7 +71,7 @@ By combining Worktrees with Agents, you create **isolated sandboxes**. You can s
 
 ## A Pragmatic Workflow: Mindset-Based Worktrees
 
-Instead of creating a worktree for every single feature (which clutters your disk), adopt a mindset-based approach. Create persistent worktrees for specific *types* of work:
+Instead of creating a worktree for every single feature (which clutters your disk), adopt a mindset-based approach. Create persistent worktrees for specific _types_ of work:
 
 1.  **`work`**: Your main active development.
 2.  **`review`**: A clean slot for checking out PRs.
@@ -131,9 +131,9 @@ Let's revisit the interruption scenario with this new workflow.
 
 VS Code handles this natively. You can open each worktree as a separate window, effectively giving you multiple monitors for your codebase.
 
-*   **Window 1 (Main):** Deep work on Feature A.
-*   **Window 2 (Agent):** Copilot Agent implementing unit tests in the `scratch` worktree.
-*   **Window 3 (Review):** Reviewing a teammate's PR in the `review` worktree.
+- **Window 1 (Main):** Deep work on Feature A.
+- **Window 2 (Agent):** Copilot Agent implementing unit tests in the `scratch` worktree.
+- **Window 3 (Review):** Reviewing a teammate's PR in the `review` worktree.
 
 ![VS Code Multi-root workspace](https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=1920)
 

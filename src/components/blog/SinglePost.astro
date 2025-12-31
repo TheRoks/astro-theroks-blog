@@ -28,16 +28,16 @@ const { post, url } = Astro.props;
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
           {
-                    post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
-                      <>
-                        {" "}
-                        ·
-                        <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
-                          {post.category.replaceAll("-", " ")}
-                        </a>
-                      </>
-                    )
-                  }
+            post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
+              <>
+                {" "}
+                ·
+                <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
+                  {post.category.replaceAll("-", " ")}
+                </a>
+              </>
+            )
+          }
         </p>
       </div>
       <h1
