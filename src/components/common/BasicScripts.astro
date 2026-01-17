@@ -11,16 +11,28 @@ import { SITE } from "~/config.mjs";
     }
   }
 
-  if ((defaultTheme && defaultTheme.endsWith(":only")) || (!localStorage.theme && defaultTheme !== "system")) {
-    applyTheme(defaultTheme.replace(":only", ""));
-  } else if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    applyTheme("dark");
-  } else {
-    applyTheme("light");
+  function getPreferredTheme() {
+    if (defaultTheme && defaultTheme.endsWith(":only")) {
+      return defaultTheme.replace(":only", "");
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      return storedTheme;
+    }
+
+    if (defaultTheme && defaultTheme !== "system") {
+      return defaultTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
+
+  function applyPreferredTheme() {
+    applyTheme(getPreferredTheme());
+  }
+
+  applyPreferredTheme();
 
   function attachEvent(selector, event, fn) {
     const matches = typeof selector === "string" ? document.querySelectorAll(selector) : selector;
@@ -83,6 +95,7 @@ import { SITE } from "~/config.mjs";
 
   // Setup event listeners on initial page load and after View Transitions
   document.addEventListener("astro:page-load", () => {
+    applyPreferredTheme();
     setupEventListeners();
   });
 
@@ -114,6 +127,7 @@ import { SITE } from "~/config.mjs";
   };
 
   window.onpageshow = function () {
+    applyPreferredTheme();
     document.documentElement.classList.add("motion-safe:scroll-smooth");
     const elem = document.querySelector("[data-aw-toggle-menu]");
     if (elem) {
