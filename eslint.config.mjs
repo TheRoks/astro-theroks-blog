@@ -4,34 +4,37 @@
 // - JS base rules from @eslint/js
 // - Astro recommended flat config
 // - TypeScript via typescript-eslint (non-typed to match previous setup)
+// - JSX accessibility plugin for a11y checks
 // - Prettier to disable formatting rules
 
 import eslint from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
 import astroPlugin from "eslint-plugin-astro";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 import globals from "globals";
 
-export default tseslint.config(
+export default defineConfig([
   // Ignore build output and vendored artifacts
-  {
-    ignores: [
-      // from legacy .eslintignore
-      "dist",
-      "node_modules",
-      ".github",
-      "src/content/types.generated.d.ts",
-      // general
-      ".astro",
-      "public",
-    ],
-  },
+  globalIgnores([
+    // Build outputs and caches
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/.astro/**",
+    // Generated types
+    "src/content/types.generated.d.ts",
+    // Static assets
+    "public/**",
+    // CI/CD
+    ".github/**",
+  ]),
 
-  // Base JS recommended only for JS/TS files (not .astro)
-  {
-    files: ["**/*.{js,cjs,mjs,ts,tsx,mts,cts}"],
-    extends: [eslint.configs.recommended],
-  },
+  // Base JS recommended for all JS/TS files
+  eslint.configs.recommended,
+
+  // TypeScript recommended (no type-checking) for TS files
+  ...tseslint.configs.recommended,
 
   // Project language options + common rules carried over (only JS/TS files)
   {
@@ -46,6 +49,24 @@ export default tseslint.config(
     },
   },
 
+  // TS-specific tweaks carried over from legacy config
+  {
+    files: ["**/*.{ts,tsx,mts,cts}"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
+      "@typescript-eslint/no-non-null-assertion": "off",
+      // Avoid duplicate false-positives in TS files
+      "no-undef": "off",
+    },
+  },
+
   // Node config files: allow require/module globals
   {
     files: ["**/*.config.{js,cjs,mjs}", "**/.*rc.{js,cjs}", "astro.config.mjs", ".prettierrc.js"],
@@ -54,8 +75,17 @@ export default tseslint.config(
     },
   },
 
+  // Config files may use require() in CJS files
+  {
+    files: ["**/*.config.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
+
   // Astro recommended (handles .astro parsing)
-  astroPlugin.configs["flat/recommended"],
+  ...astroPlugin.configs.recommended,
+
   // Ensure TypeScript is used inside <script> of .astro files
   {
     files: ["**/*.astro"],
@@ -63,23 +93,6 @@ export default tseslint.config(
       parserOptions: {
         parser: tseslint.parser,
       },
-    },
-  },
-
-  // TypeScript recommended (no type-checking) only for TS files
-  {
-    files: ["**/*.{ts,tsx,mts,cts}"],
-    extends: [...tseslint.configs.recommended],
-  },
-
-  // TS-specific tweaks carried over from legacy config
-  {
-    files: ["**/*.{ts,tsx,mts,cts}"],
-    rules: {
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
-      "@typescript-eslint/no-non-null-assertion": "off",
-      // Avoid duplicate false-positives in TS files
-      "no-undef": "off",
     },
   },
 
@@ -93,14 +106,12 @@ export default tseslint.config(
     },
   },
 
-  // Config files may use require() in CJS files
+  // JSX accessibility for TSX/JSX files using flat config
   {
-    files: ["**/*.config.cjs"],
-    rules: {
-      "@typescript-eslint/no-require-imports": "off",
-    },
+    files: ["**/*.{tsx,jsx}"],
+    ...jsxA11y.flatConfigs.recommended,
   },
 
   // Prettier last to turn off formatting rules
-  prettier
-);
+  prettier,
+]);

@@ -26,7 +26,7 @@ This guide shows you how to automate minor and patch updates using GitHub Action
 
 ## The catch: “safe” updates are only safe with good checks
 
-Minor and patch updates are *usually* non-breaking, but upstream SemVer discipline varies. If your tests are weak or your branch protection is lax, auto-merge just accelerates the wrong failure mode. The fix is to keep the scope narrow and let required checks be the gate.
+Minor and patch updates are _usually_ non-breaking, but upstream SemVer discipline varies. If your tests are weak or your branch protection is lax, auto-merge just accelerates the wrong failure mode. The fix is to keep the scope narrow and let required checks be the gate.
 
 ## Options for auto-merging dependency updates
 

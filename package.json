@@ -28,6 +28,7 @@
     "@iconify-json/tabler": "1.2.26",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "astro": "5.16.6",
     "astro-compress": "2.3.8",
     "astro-icon": "1.1.5",
@@ -52,12 +53,5 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a",
-  "pnpm": {
-    "overrides": {
-      "form-data@2.x.x": "^4.0.0",
-      "ws@8.x.x": "^8.17.1",
-      "tar-fs@2.x.x": "^3.0.0"
-    }
-  }
+  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
 }

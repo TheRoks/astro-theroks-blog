@@ -7,10 +7,28 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 10
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    versioning-strategy: "increase"
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+    # Add reviewers if you have team members
+    # reviewers:
+    #   - "username"
+    # Add assignees
+    # assignees:
+    #   - "username"
+    allow:
+      - dependency-type: "all"
+    # Ignore specific packages if needed
+    # ignore:
+    #   - dependency-name: "package-name"
+    #     versions: ["x.x.x"]
     groups:
       astro:
         patterns:
@@ -28,11 +46,43 @@ updates:
         patterns:
           - "tailwind*"
           - "@tailwindcss/*"
-      dev-dependencies:
+      dev-dependencies-minor:
         dependency-type: "development"
         update-types:
           - "minor"
+      dev-dependencies-patch:
+        dependency-type: "development"
+        update-types:
           - "patch"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Daily security updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    versioning-strategy: "increase"
+    commit-message:
+      prefix: "chore(deps-security)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "security"
+    allow:
+      - dependency-type: "all"
+    # Only create PRs for security updates
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
@@ -40,8 +90,14 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
     commit-message:
       prefix: "chore(ci)"
+    labels:
+      - "dependencies"
+      - "github-actions"
     groups:
       github-actions:
         patterns:
