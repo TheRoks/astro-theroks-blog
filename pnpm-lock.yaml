@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  form-data@2.x.x: ^4.0.0
-  ws@8.x.x: ^8.17.1
-  tar-fs@2.x.x: ^3.0.0
-
 importers:
 
   .:
@@ -49,6 +44,9 @@ importers:
       '@tailwindcss/vite':
         specifier: 4.1.18
         version: 4.1.18(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0))
+      '@types/eslint-plugin-jsx-a11y':
+        specifier: ^6.10.1
+        version: 6.10.1(jiti@2.6.1)
       astro:
         specifier: 5.16.6
         version: 5.16.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.2)(terser@5.39.0)(typescript@5.9.3)
@@ -953,6 +951,9 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/eslint-plugin-jsx-a11y@6.10.1':
+    resolution: {integrity: sha512-5RtuPVe0xz8BAhrkn2oww6Uw885atf962Q4fqZo48QdO3EQA7oCEDSXa6optgJ1ZMds3HD9ITK5bfm4AWuoXFQ==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -3107,6 +3108,7 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   terser@5.39.0:
     resolution: {integrity: sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw==}
@@ -4220,6 +4222,13 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 2.1.0
+
+  '@types/eslint-plugin-jsx-a11y@6.10.1(jiti@2.6.1)':
+    dependencies:
+      eslint: 9.39.2(jiti@2.6.1)
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
 
   '@types/estree-jsx@1.0.5':
     dependencies:

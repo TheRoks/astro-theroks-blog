@@ -49,7 +49,7 @@ const relatedPosts: PostWithScore[] = allPosts
         Related Articles
       </h2>
       <ul class="related-articles__list" role="list">
-        {relatedPosts.map(({ post, score }) => {
+        {relatedPosts.map(({ post }) => {
           const permalink = getPermalink(post.permalink, "post");
           return (
             <li class="related-articles__item">
