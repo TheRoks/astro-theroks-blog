@@ -30,7 +30,7 @@ importers:
         specifier: 9.39.2
         version: 9.39.2
       '@fontsource-variable/inter':
-        specifier: ^5.0.0
+        specifier: 5.2.8
         version: 5.2.8
       '@iconify-json/logos':
         specifier: 1.2.10
