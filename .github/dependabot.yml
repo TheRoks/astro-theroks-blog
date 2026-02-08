@@ -49,6 +49,10 @@ updates:
         patterns:
           - "eslint*"
           - "@eslint/*"
+      fontsource:
+        patterns:
+          - "@fontsource/*"
+          - "@fontsource-variable/*"
       typescript:
         patterns:
           - "typescript*"
@@ -58,6 +62,17 @@ updates:
           - "@tailwindcss/*"
       dev-dependencies:
         dependency-type: "development"
+        exclude-patterns:
+          - "astro*"
+          - "@astrojs/*"
+          - "@astrolib/*"
+          - "eslint*"
+          - "@eslint/*"
+          - "@fontsource/*"
+          - "@fontsource-variable/*"
+          - "typescript*"
+          - "tailwind*"
+          - "@tailwindcss/*"
       other-prod:
         dependency-type: "production"
 
