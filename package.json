@@ -29,7 +29,7 @@
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-    "astro": "5.17.1",
+    "astro": "5.17.2",
     "astro-compress": "2.3.9",
     "astro-icon": "1.1.5",
     "eslint": "10.0.0",
