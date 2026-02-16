@@ -34,7 +34,7 @@
     "astro-icon": "1.1.5",
     "eslint": "10.0.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-astro": "1.5.0",
+    "eslint-plugin-astro": "1.6.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "globals": "17.3.0",
     "limax": "4.2.2",
