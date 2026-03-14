@@ -27,6 +27,10 @@ export default defineConfig({
 
   output: "static",
 
+  image: {
+    domains: ["images.unsplash.com"],
+  },
+
   // Enable prefetching for faster navigation
   prefetch: {
     prefetchAll: true, // Prefetch all links on hover
