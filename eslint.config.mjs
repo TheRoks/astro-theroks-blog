@@ -36,16 +36,12 @@ export default defineConfig([
   // TypeScript recommended (no type-checking) for TS files
   ...tseslint.configs.recommended,
 
-  // Project language options + common rules carried over (only JS/TS files)
+  // Project language options (only JS/TS files)
   {
     files: ["**/*.{js,cjs,mjs,ts,tsx,mts,cts}"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
-    },
-    rules: {
-      // Keep smart-tabs behavior from legacy config
-      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
     },
   },
 
