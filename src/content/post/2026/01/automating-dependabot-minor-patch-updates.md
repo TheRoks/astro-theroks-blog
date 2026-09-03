@@ -4,14 +4,14 @@ description: "Configure GitHub Actions to automatically merge non-breaking depen
 excerpt: "Managing dependency updates at scale creates alert fatigue and security drift. This guide demonstrates a pragmatic approach to automating minor and patch updates using GitHub Actions while preserving manual review for major changes."
 path: "/automating-dependabot-minor-patch-updates/"
 publishDate: 2026-01-17
-updated: 2026-01-17
+updateDate: 2026-01-17
 category: DevOps
 tags:
   - GitHub Actions
   - Dependabot
   - Automation
   - DevOps
-author: TheRoks
+author: Stefan Roks
 ---
 
 Dependabot is good at finding updates, but it is noisy at scale. When you manage dozens of repositories, the constant stream of pull requests for minor version bumps creates alert fatigue. Engineers either ignore them and drift behind on security patches, or they merge blindly and take on real risk.

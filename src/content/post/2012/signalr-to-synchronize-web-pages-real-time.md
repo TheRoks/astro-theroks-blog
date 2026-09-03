@@ -4,7 +4,7 @@ path: "/signalr-to-synchronize-web-pages-real-time/"
 tags: ["dotNET"]
 excerpt: "SignalR is a client- and server-side solution with Javascript on client and ASP.NET on the back end to create these kinds of applications."
 publishDate: 2012-11-25
-updated: 2012-11-25
+updateDate: 2012-11-25
 ---
 
 ## What is SignalR

@@ -38,17 +38,43 @@ import { SITE } from "~/config.mjs";
     const matches = typeof selector === "string" ? document.querySelectorAll(selector) : selector;
     if (matches && matches.length) {
       matches.forEach((elem) => {
+        const bindingKey = `__awBound${event}`;
+        if (elem[bindingKey]) return;
+
         elem.addEventListener(event, (e) => fn(e, elem), false);
+        elem[bindingKey] = true;
       });
     }
   }
 
   function setupEventListeners() {
     attachEvent("[data-aw-toggle-menu]", "click", function (_event, elem) {
+      const menu = document.querySelector("#site-navigation");
+      const isOpen = elem.getAttribute("aria-expanded") === "true";
+
       elem.classList.toggle("expanded");
       document.body.classList.toggle("overflow-hidden");
       document.getElementById("header")?.classList.toggle("h-screen");
-      document.querySelector("#header nav")?.classList.toggle("hidden");
+      menu?.classList.toggle("hidden");
+      elem.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    attachEvent([document], "keydown", function (event) {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      const toggle = document.querySelector("[data-aw-toggle-menu]");
+      if (toggle?.getAttribute("aria-expanded") !== "true") {
+        return;
+      }
+
+      toggle.classList.remove("expanded");
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+      document.getElementById("header")?.classList.remove("h-screen");
+      document.getElementById("site-navigation")?.classList.add("hidden");
+      toggle.focus();
     });
 
     attachEvent("[data-aw-toggle-color-scheme]", "click", function () {
@@ -132,6 +158,7 @@ import { SITE } from "~/config.mjs";
     const elem = document.querySelector("[data-aw-toggle-menu]");
     if (elem) {
       elem.classList.remove("expanded");
+      elem.setAttribute("aria-expanded", "false");
     }
     document.body.classList.remove("overflow-hidden");
     document.getElementById("header")?.classList.remove("h-screen");

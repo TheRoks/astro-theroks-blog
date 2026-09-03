@@ -42,8 +42,8 @@ const getNormalizedPost = async (post: CollectionEntry<"post">): Promise<Post> =
   const {
     tags: rawTags = [],
     category: rawCategory,
-    author = "Anonymous",
-    publishDate: rawPublishDate = new Date(),
+    author = "Stefan Roks",
+    publishDate: rawPublishDate,
     ...rest
   } = data;
 

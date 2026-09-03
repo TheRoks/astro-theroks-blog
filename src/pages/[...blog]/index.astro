@@ -47,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const meta: MetaSEO = {
   title: post.title,
-  description: post.description,
+  description: post.description || post.excerpt,
   canonical: post.canonical || undefined,
   url: url,
   image: imageForMeta || undefined,

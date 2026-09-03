@@ -4,7 +4,7 @@ path: "/exclude-code-from-test-coverage-and-code-analysis/"
 tags: ["dotNET"]
 excerpt: "See how to exclude code from test coverage and code analysis results. This can be done by using several attributes in your code."
 publishDate: 2011-07-08
-updated: 2011-07-08
+updateDate: 2011-07-08
 ---
 
 When working with generated code, I don’t want this to affect my code coverage, code metrics or code analysis. All these statistics are interesting over code that really matters. To exclude generated code from these statistics you can use a few attributes.

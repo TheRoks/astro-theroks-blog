@@ -4,7 +4,7 @@ path: "/best-practices-version-web-api/"
 tags: ["dotNET"]
 excerpt: "Versioning a Web API can be done in several ways. This post will describe four ways to version a Web API. It will compare the strategies."
 publishDate: 2013-09-27
-updated: 2013-09-27
+updateDate: 2013-09-27
 ---
 
 Once you publish an Web API, it’s set stone. Publishing an API is not a trivial move to do. Users or customers rely on the API not changing after publishing. But however requirements will change always. So there’s a need to evolve the API without breaking existing clients.

@@ -4,7 +4,7 @@ description: "Configure your shell to automatically load the correct Node.js ver
 excerpt: "A .nvmrc file declares the intended Node.js version, but without a shell hook it is just a hint. This guide shows how to make your terminal act on that hint automatically — across zsh, bash, and Windows environments."
 path: "/auto-switch-node-version-nvmrc/"
 publishDate: 2026-04-05
-updated: 2026-04-05
+updateDate: 2026-04-05
 category: Developer Experience
 tags:
   - Node.js
@@ -13,7 +13,7 @@ tags:
   - zsh
   - bash
   - Windows
-author: TheRoks
+author: Stefan Roks
 ---
 
 Switching between Node.js projects that target different runtimes is a persistent source of friction. The canonical solution is to commit a `.nvmrc` file to the repository — a single-line file containing the required Node.js version — and then let the shell enforce it automatically on every directory change. Without a hook, developers must remember to run `nvm use` manually, and version drift is inevitable.

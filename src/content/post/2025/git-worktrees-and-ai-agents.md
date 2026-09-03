@@ -4,7 +4,7 @@ description: "Stop stashing and switching. Learn how to combine Git Worktrees wi
 publishDate: 2025-12-28
 category: "Workflow"
 tags: ["git", "productivity", "ai", "copilot", "workflow"]
-author: "TheRoks"
+author: Stefan Roks
 image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920"
 excerpt: "Context switching is the silent killer of developer productivity. Here is how Git Worktrees and AI agents solve it."
 ---

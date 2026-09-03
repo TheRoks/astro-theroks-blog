@@ -4,7 +4,7 @@ path: "/remove-table-from-web-part-zone-with-control-adapter/"
 tags: ["SharePoint"]
 excerpt: "If you need to make a SharePoint site compliant and render pages without nested tables you will need to make use of a control adapter."
 publishDate: 2012-05-13
-updated: 2012-05-13
+updateDate: 2012-05-13
 ---
 
 If you need to make a SharePoint site compliant and render pages without nested tables you will need to make use of a control adapter. They actually serve a purpose of providing a way of completely changing the rendering of a control based on the browser type of the client, which turns out to be useful in a number of situations.

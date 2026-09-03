@@ -19,18 +19,19 @@ const { type = "website", post, breadcrumbs } = Astro.props;
 // Base organization/publisher data
 const publisher = {
   "@type": "Person",
+  "@id": `${SITE.origin}/about#person`,
   name: "Stefan Roks",
-  url: SITE.origin,
+  url: `${SITE.origin}/about`,
 };
 
 const personIdentity = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${SITE.origin}/#person`,
+  "@id": `${SITE.origin}/about#person`,
   name: "Stefan Roks",
   description: SITE.description,
-  url: SITE.origin,
-  jobTitle: "Web Developer",
+  url: `${SITE.origin}/about`,
+  jobTitle: "Lead Developer SitecoreAI at Achmea",
   sameAs: [
     "https://x.com/theroks",
     "https://stackoverflow.com/users/12258906/stefan-roks",
@@ -89,8 +90,9 @@ if (type === "website") {
     dateModified: post.updateDate?.toISOString() || post.publishDate?.toISOString(),
     author: {
       "@type": "Person",
+      "@id": `${SITE.origin}/about#person`,
       name: post.author || "Stefan Roks",
-      url: SITE.origin,
+      url: `${SITE.origin}/about`,
     },
     publisher: publisher,
     url: currentUrl,

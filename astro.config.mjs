@@ -14,7 +14,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 
-import { SITE } from "./src/config.mjs";
+import { SITE, BLOG } from "./src/config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -64,7 +64,13 @@ export default defineConfig({
     }),
     sitemap({
       serialize(item) {
-        if (/blog/.test(item.url) || /about/.test(item.url)) {
+        if (/\/blog(?:\/|$)/.test(item.url) || /\/about(?:\/|$)/.test(item.url)) {
+          return undefined;
+        }
+
+        // Keep URLs marked noindex out of the sitemap. Search engines should not
+        // be asked to index archive pages that the page itself excludes.
+        if (BLOG?.tag?.noindex && /\/tag(?:\/|$)/.test(item.url)) {
           return undefined;
         }
         item.changefreq = "weekly";

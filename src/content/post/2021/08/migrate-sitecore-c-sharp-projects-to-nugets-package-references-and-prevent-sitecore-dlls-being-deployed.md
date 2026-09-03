@@ -12,7 +12,7 @@ tags:
   - DevOps
   - Helix
   - Deployment
-author: TheRoks
+author: Stefan Roks
 image: "/assets/images/migrate-sitecore-c-sharp-projects-to-nugets-package-references-and-prevent-sitecore-dlls-being-deployed/sitecore-packagereference.png"
 ---
 

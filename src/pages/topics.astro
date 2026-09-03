@@ -1,0 +1,72 @@
+---
+import Layout from "~/layouts/PageLayout.astro";
+import { SITE } from "~/config.mjs";
+import { getPermalink } from "~/utils/permalinks";
+import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
+
+const topics = [
+  {
+    name: "Sitecore and headless CMS",
+    tag: "sitecore",
+    description: "Sitecore architecture, Layout Service, JSS, and content delivery patterns.",
+  },
+  {
+    name: ".NET and C#",
+    tag: "dotnet",
+    description: "Practical .NET, C#, NuGet, testing, and code-quality notes.",
+  },
+  {
+    name: "Frontend architecture",
+    tag: "architecture",
+    description: "Frontend performance, monorepos, Vite, Nx, and application structure.",
+  },
+  {
+    name: "Developer workflow",
+    tag: "workflow",
+    description: "Git, AI-assisted development, productivity, and repeatable workflows.",
+  },
+  {
+    name: "DevOps and automation",
+    tag: "devops",
+    description: "CI/CD, Dependabot, Azure DevOps, and deployment automation.",
+  },
+];
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { name: "Home", url: new URL("/", SITE.origin).toString() },
+  { name: "Topics", url: new URL("/topics", SITE.origin).toString() },
+];
+
+const meta = {
+  title: "Topics",
+  description: "Browse TheRoks technical notes by topic: Sitecore, .NET, frontend architecture, workflow, and DevOps.",
+  breadcrumbs,
+};
+---
+
+<Layout {meta}>
+  <section class="mx-auto max-w-4xl px-6 py-12 sm:py-16 lg:py-20">
+    <header class="mb-10 max-w-3xl">
+      <h1 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">Topics</h1>
+      <p class="mt-4 text-xl text-muted dark:text-slate-400">
+        Start with a subject area, then follow the related articles to go deeper.
+      </p>
+    </header>
+    <ul class="grid gap-6 sm:grid-cols-2">
+      {
+        topics.map((topic) => (
+          <li>
+            <article class="h-full rounded-lg border border-gray-200 p-6 transition hover:border-primary hover:shadow-md dark:border-slate-700 dark:hover:border-blue-400">
+              <h2 class="font-heading text-2xl font-bold">
+                <a class="hover:text-primary" href={getPermalink(topic.tag, "tag")}>
+                  {topic.name}
+                </a>
+              </h2>
+              <p class="mt-3 text-muted dark:text-slate-400">{topic.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

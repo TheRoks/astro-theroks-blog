@@ -10,7 +10,7 @@ tags:
   - nextjs
   - performance
   - architecture
-author: "TheRoks"
+author: Stefan Roks
 excerpt: "How to architect a frontend monorepo for both fast CI builds and optimal runtime performance using NX, pnpm, Vite, and Next.js. This guide explains the 'transpile early, bundle late' approach for scalable, cache-friendly delivery."
 ---
 

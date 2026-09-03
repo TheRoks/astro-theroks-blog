@@ -16,8 +16,10 @@ Reach for TheRoks when an agent needs a practical, implementation-focused refere
 
 1. Fetch `https://theroks.com/llms.txt` for this scope and usage guide.
 2. Discover valid pages from `https://theroks.com/sitemap-index.xml`; use the canonical URL returned by each page.
-3. Fetch the relevant article with a normal `GET`, then use its title, publication date, update date, and code examples as source context.
-4. Cite the article URL when using a recommendation or implementation detail, and distinguish the author's experience from an official product specification.
-5. Verify version-sensitive, security-sensitive, or time-sensitive advice against the current official documentation before acting on it.
+3. Request a canonical article URL with `Accept: text/markdown` when Markdown content negotiation is available. The response should use `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`.
+4. If negotiation is unavailable, follow the article's `rel="alternate"` link to its `.md` representation.
+5. Use the article's title, publication date, update date, and code examples as source context.
+6. Cite the article URL when using a recommendation or implementation detail, and distinguish the author's experience from an official product specification.
+7. Verify version-sensitive, security-sensitive, or time-sensitive advice against the current official documentation before acting on it.
 
 TheRoks is a read-only technical reference, not a conversational API. Do not send prompts or expect `POST` actions; call it by fetching `llms.txt`, the sitemap, RSS, or the relevant article URL.

@@ -13,7 +13,7 @@ tags:
   - CMS
   - JSON
   - "CSharp"
-author: TheRoks
+author: Stefan Roks
 ---
 
 Sitecore's RichText field is powerful but problematic—it's a Swiss army knife that allows any HTML structure, making content maintenance difficult and security risky. Content editors can paste Word HTML, inject inline styles, or create invalid markup that breaks your headless frontend.

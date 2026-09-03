@@ -4,7 +4,7 @@ description: "Use React cache, Context, and use() to share server-fetched, reque
 excerpt: "A pragmatic Next.js 16 pattern for sharing server-fetched data across the client tree: cache it per request, pass a Promise into Context, and let leaf components suspend behind tight Suspense boundaries."
 path: "/sharing-request-scoped-feature-flags-with-client-components/"
 publishDate: 2026-01-06
-updated: 2026-01-06
+updateDate: 2026-01-06
 category: Next.js
 tags:
   - Next.js
@@ -13,7 +13,7 @@ tags:
   - Suspense
   - Performance
   - Architecture
-author: TheRoks
+author: Stefan Roks
 ---
 
 Next.js App Router pushes you toward Server Components for data fetching. That’s good for performance, but it changes how you share “global-ish” data like feature flags across your UI.
