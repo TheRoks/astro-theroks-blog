@@ -9,7 +9,7 @@
   Permissions-Policy: geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Access-Control-Allow-Origin: https://theroks.com
-  Vary: Origin
+  Vary: Accept, Accept-Encoding, Origin
 
 https://astro-theroks-blog.pages.dev/*
   X-Robots-Tag: noindex
