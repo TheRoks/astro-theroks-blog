@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro";
+
 type ImageModule = Record<string, () => Promise<unknown>>;
 
 const load = async function (): Promise<ImageModule | undefined> {
@@ -19,7 +21,7 @@ export const fetchLocalImages = async (): Promise<ImageModule | undefined> => {
 };
 
 /** */
-export const findImage = async (imagePath?: string): Promise<string | null> => {
+export const findImage = async (imagePath?: string): Promise<string | ImageMetadata | null> => {
   if (typeof imagePath !== "string") {
     return null;
   }
@@ -40,7 +42,7 @@ export const findImage = async (imagePath?: string): Promise<string | null> => {
   const key = imagePath.replace("~/", "/src/");
 
   if (typeof images[key] === "function") {
-    const imageModule = (await images[key]()) as { default: string };
+    const imageModule = (await images[key]()) as { default: ImageMetadata };
     return imageModule.default;
   }
 

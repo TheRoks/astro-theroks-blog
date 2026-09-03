@@ -1,6 +1,4 @@
 ---
-import { AstroSeo } from "@astrolib/seo";
-import { GoogleAnalytics } from "@astrolib/analytics";
 import { getImage } from "astro:assets";
 
 import { SITE } from "~/config.mjs";
@@ -48,39 +46,41 @@ const image =
       ? // @ts-ignore
         new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
       : null;
+
+const googleAnalyticsScript = `window.dataLayer = window.dataLayer || [];
+function gtag() { window.dataLayer.push(arguments); }
+gtag("js", new Date());
+gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<AstroSeo
-  title={title}
-  titleTemplate={dontUseTitleTemplate ? "%s" : `%s — ${SITE.name}`}
-  description={description}
-  canonical={String(canonical)}
-  noindex={noindex}
-  nofollow={nofollow}
-  openGraph={{
-    url: String(canonical),
-    title: ogTitle,
-    description: description,
-    type: ogType,
-    images: image
-      ? [
-          {
-            url: image.toString(),
-            alt: ogTitle,
-          },
-        ]
-      : undefined,
-    // site_name: 'SiteName',
-  }}
-  twitter={{
-    handle: "@theroks",
-    // site: '@site',
-    cardType: image ? "summary_large_image" : undefined,
-  }}
-/>
+<title>{dontUseTitleTemplate ? title : `${title} — ${SITE.name}`}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={String(canonical)} />
+{
+  (noindex || nofollow) && (
+    <meta name="robots" content={[noindex && "noindex", nofollow && "nofollow"].filter(Boolean).join(", ")} />
+  )
+}
+
+<!-- Open Graph -->
+<meta property="og:url" content={String(canonical)} />
+<meta property="og:title" content={ogTitle} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE.name} />
+{image && <meta property="og:image" content={image.toString()} />}
+{image && <meta property="og:image:alt" content={ogTitle} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+<meta name="twitter:creator" content="@theroks" />
+<meta name="twitter:title" content={ogTitle} />
+{description && <meta name="twitter:description" content={description} />}
+{image && <meta name="twitter:image" content={image.toString()} />}
+{image && <meta name="twitter:image:alt" content={ogTitle} />}
 
 <CustomStyles />
 
@@ -95,7 +95,19 @@ const image =
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
 
 <!-- Google Analytics -->
-{SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
+{
+  SITE.googleAnalyticsId && (
+    <>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${SITE.googleAnalyticsId}`}
+        type="text/partytown"
+      />
+      <script is:inline type="text/partytown" set:html={googleAnalyticsScript} />
+    </>
+  )
+}
 
 <!-- {SITE.splitbeeAnalytics?.enabled && <SplitbeeAnalytics {...SITE.splitbeeAnalytics} />} -->
 
@@ -103,6 +115,7 @@ const image =
 <link rel="icon" type="image/svg+xml" href={getAsset("/icon.png")} />
 <link rel="mask-icon" href={getAsset("/icon.png")} color="#8D46E7" />
 <script
+  is:inline
   defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
   data-cf-beacon='{"token": "3a97b7004e184fb3864600759db69a73"}'></script>

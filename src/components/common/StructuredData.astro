@@ -109,5 +109,5 @@ if (breadcrumbs && breadcrumbs.length > 0) {
 }
 ---
 
-{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
-{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+{structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+{breadcrumbSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}

@@ -1,5 +1,16 @@
-@config "../../../tailwind.config.cjs";
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --color-primary: var(--aw-color-primary);
+  --color-secondary: var(--aw-color-secondary);
+  --color-accent: var(--aw-color-accent);
+  --color-page: var(--aw-color-text-page);
+  --color-muted: var(--aw-color-text-muted);
+  --font-sans: var(--aw-font-sans);
+  --font-serif: var(--aw-font-serif);
+  --font-heading: var(--aw-font-heading);
+}
 
 @layer components {
   /* Tailwind color utilities now provide text-page and text-muted */

@@ -2,16 +2,16 @@
   "version": 1.1,
   "atDirectives": [
     {
-      "name": "@tailwind",
-      "description": "@tailwind tailwindcss"
+      "name": "@import",
+      "description": "@import tailwindcss"
     },
     {
-      "name": "@layer",
-      "description": "@layer tailwindcss"
+      "name": "@theme",
+      "description": "@theme tailwindcss"
     },
     {
-      "name": "@apply",
-      "description": "@apply tailwindcss"
+      "name": "@plugin",
+      "description": "@plugin tailwindcss"
     }
   ]
 }

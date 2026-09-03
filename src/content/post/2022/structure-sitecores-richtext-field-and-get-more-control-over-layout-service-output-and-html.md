@@ -325,7 +325,8 @@ internal class HtmlElementToNodeParser<T> : IHtmlDocumentToNodeParser where T : 
 The structured output of the Layout Service will be as shown below. Every HTML element will be a JSON object which will describe all of its properties. The HTML elements and attributes that are not supported will be ignored by the parsers and therefore not shown in the output.
 
 ```json
-"fields": {
+{
+  "fields": {
   "Text": {
     "value": "<p>In deze paragraaf laten we nog eens wat er gebeurd als je via de Rich Text editor lijstjes toevoegt aan de paragraaf. Je kun een ordered (genummerd) en een unordered (bullets) toevoegen. Het voordeel van deze manier is dat je wel linkjes en andere markup in de list items kunt zetten.</p>\r\n<ol>\r\n    <li>Dit is item 1 met een <a href=\"/test/content\">link</a></li>\r\n    <li>Dit is item 2 met <strong>strong</strong> text</li>\r\n    <li>Dit is item 3 met <em>emphasized</em> text</li>\r\n</ol>\r\n<ul>\r\n    <li>Dit is item 1 met een <a href=\"/test/content\">link</a></li>\r\n    <li>Dit is item 2 met <strong>strong </strong>text</li>\r\n    <li>Dit is item 3 met <em>emphasized </em>text</li>\r\n</ul>",
     "document": {

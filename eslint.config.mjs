@@ -4,13 +4,11 @@
 // - JS base rules from @eslint/js
 // - Astro recommended flat config
 // - TypeScript via typescript-eslint (non-typed to match previous setup)
-// - JSX accessibility plugin for a11y checks
 // - Prettier to disable formatting rules
 
 import eslint from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
 import astroPlugin from "eslint-plugin-astro";
-import jsxA11y from "eslint-plugin-jsx-a11y";
 import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 import globals from "globals";
@@ -104,12 +102,6 @@ export default defineConfig([
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-expressions": "off",
     },
-  },
-
-  // JSX accessibility for TSX/JSX files using flat config
-  {
-    files: ["**/*.{tsx,jsx}"],
-    ...jsxA11y.flatConfigs.recommended,
   },
 
   // Prettier last to turn off formatting rules

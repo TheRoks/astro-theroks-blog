@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
@@ -94,6 +95,48 @@ export default defineConfig({
   ],
 
   markdown: {
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "append",
+            content: {
+              type: "element",
+              tagName: "span",
+              properties: { className: ["heading-link", "not-prose"] },
+              children: [
+                {
+                  type: "element",
+                  tagName: "img",
+                  properties: { src: "/assets/link.svg", width: "16px", height: "16px" },
+                  children: [],
+                },
+              ],
+            },
+          },
+        ],
+        [
+          rehypeExternalLinks,
+          {
+            target: "_blank",
+            content: {
+              type: "element",
+              tagName: "img",
+              properties: {
+                src: "/assets/external-link.svg",
+                alt: "External link icon",
+                width: "16px",
+                height: "16px",
+              },
+              children: [],
+            },
+            contentProperties: { className: ["external-link-icon", "not-prose"] },
+          },
+        ],
+      ],
+    }),
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md
@@ -105,46 +148,6 @@ export default defineConfig({
       // Enable word wrap to prevent horizontal scrolling
       wrap: false,
     },
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: { className: ["heading-link", "not-prose"] },
-            children: [
-              {
-                type: "element",
-                tagName: "img",
-                properties: { src: "/assets/link.svg", width: "16px", height: "16px" },
-                children: [],
-              },
-            ],
-          },
-        },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          target: "_blank",
-          content: {
-            type: "element",
-            tagName: "img",
-            properties: {
-              src: "/assets/external-link.svg",
-              alt: "External link icon",
-              width: "16px",
-              height: "16px",
-            },
-            children: [],
-          },
-          contentProperties: { className: ["external-link-icon", "not-prose"] },
-        },
-      ],
-    ],
   },
 
   vite: {

@@ -11,14 +11,16 @@ import { fetchPosts } from "~/utils/blog";
 // import { findTags, findCategories } from '~/utils/blog';
 import { BLOG_BASE, getBlogPermalink } from "~/utils/permalinks";
 import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
+import type { GetStaticPaths } from "astro";
+import type { MetaSEO } from "~/types";
 
-export async function getStaticPaths({ paginate }) {
+export const getStaticPaths = (async ({ paginate }) => {
   if (BLOG?.disabled || BLOG?.list?.disabled) return [];
   return paginate(await fetchPosts(), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: BLOG.postsPerPage,
   });
-}
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 const currentPage = page.currentPage ?? 1;
@@ -38,11 +40,11 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
 ];
 
-const meta = {
+const meta: MetaSEO = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
-  ogType: "blog",
+  ogType: "website",
   breadcrumbs: breadcrumbs,
 };
 ---
