@@ -3,7 +3,7 @@ import { getImage } from "astro:assets";
 
 import { SITE } from "~/config.mjs";
 import type { MetaSEO } from "~/types";
-import { getCanonical, getAsset } from "~/utils/permalinks";
+import { getCanonical, getAsset, getPermalink } from "~/utils/permalinks";
 import { getRelativeUrlByFilePath } from "~/utils/directories";
 
 import CustomStyles from "~/components/CustomStyles.astro";
@@ -47,6 +47,10 @@ const image =
         new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
       : null;
 
+const markdownAlternate = Astro.props.post?.permalink
+  ? getAsset(`${getPermalink(Astro.props.post.permalink, "post")}.md`)
+  : undefined;
+
 const googleAnalyticsScript = `window.dataLayer = window.dataLayer || [];
 function gtag() { window.dataLayer.push(arguments); }
 gtag("js", new Date());
@@ -60,6 +64,7 @@ gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
 {description && <meta name="description" content={description} />}
 <link rel="canonical" href={String(canonical)} />
 <link rel="sitemap" href={getAsset("/sitemap-index.xml")} />
+{markdownAlternate && <link rel="alternate" type="text/markdown" href={markdownAlternate} />}
 {
   (noindex || nofollow) && (
     <meta name="robots" content={[noindex && "noindex", nofollow && "nofollow"].filter(Boolean).join(", ")} />
