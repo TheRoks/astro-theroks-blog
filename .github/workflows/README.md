@@ -29,14 +29,14 @@ Runs on every pull request to review dependency changes.
 **What it does:**
 - Scans for vulnerabilities in dependency changes
 - Fails on moderate or higher severity issues
-- Posts summary comments on PRs
+- Publishes a dependency review summary and fails on moderate-or-higher severity issues
 
 ### 🤖 Dependabot (`../dependabot.yml`)
 
 Automated dependency updates configuration.
 
 **What it does:**
-- Weekly dependency updates (Mondays at 9 AM)
+- Daily dependency updates for npm packages and weekly GitHub Actions updates
 - Groups related packages together (Astro, ESLint, TypeScript, Tailwind)
 - Automatic GitHub Actions updates
 - Semantic commit messages with `chore(deps)` prefix
@@ -47,7 +47,8 @@ All workflows use minimal required permissions for security.
 
 ## Caching Strategy
 
-- **pnpm cache**: Automatically handled by `setup-node@v4` with `cache: 'pnpm'`
+- **pnpm cache**: Automatically handled by `setup-node@v6` with `cache: 'pnpm'`
+- **Runtime**: Node 24 LTS is read from the repository `.nvmrc`; pnpm 11 is pinned in `package.json`.
 - **Node modules**: Cached based on `pnpm-lock.yaml` hash
 - **Build artifacts**: Stored for 7 days
 
@@ -73,6 +74,9 @@ pnpm typecheck
 
 # Full build
 pnpm build
+
+# High-severity dependency audit
+pnpm audit --audit-level=high
 ```
 
 ## Branch Protection Rules
