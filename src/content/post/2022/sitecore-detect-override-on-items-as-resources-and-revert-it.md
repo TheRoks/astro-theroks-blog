@@ -11,7 +11,7 @@ tags:
   - PowerShell
   - Items as Resources
   - Sitecore 10
-author: TheRoks
+author: Stefan Roks
 ---
 
 Sitecore 10.1+ introduced Items as Resources (IAR), allowing items to be stored as resource files instead of in the database. But here's the catch: when an item exists in both locations, the database version wins—creating invisible overrides that are difficult to detect and risky to remove.

@@ -4,7 +4,7 @@ path: "/angularjs-communication-controllers/"
 tags: ["AngularJS"]
 excerpt: There are many different ways to communicate between different Angular controllers in the same app. I will show what's the best way in my opinion for now. Communicate with events. The alternative way is by using a inherited scope.
 publishDate: 2013-12-15
-updated: 2013-12-15
+updateDate: 2013-12-15
 ---
 
 There are many different ways to communicate between different Angular controllers in the same app. I will show what's the best way in my opinion for now. Communicate with events. The alternative way is by using a inherited scope.

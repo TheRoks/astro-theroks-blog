@@ -7,8 +7,9 @@ const CONFIG = {
   basePathname: "/",
   trailingSlash: false,
 
-  title: "TheRoks — Thoughts on Development",
-  description: "🚀 Stefan Roks - Web Developer",
+  title: "TheRoks — Practical notes on software development",
+  description:
+    "Practical notes from Stefan Roks on Sitecore, .NET, frontend architecture, developer workflow, and DevOps.",
   defaultImage: defaultImage,
 
   defaultTheme: "system", // Values: "system" | "light" | "dark" | "light:only" | "dark:only"

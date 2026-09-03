@@ -59,6 +59,7 @@ gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
 <title>{dontUseTitleTemplate ? title : `${title} — ${SITE.name}`}</title>
 {description && <meta name="description" content={description} />}
 <link rel="canonical" href={String(canonical)} />
+<link rel="sitemap" href={getAsset("/sitemap-index.xml")} />
 {
   (noindex || nofollow) && (
     <meta name="robots" content={[noindex && "noindex", nofollow && "nofollow"].filter(Boolean).join(", ")} />

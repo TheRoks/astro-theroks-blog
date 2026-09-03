@@ -19,7 +19,13 @@ data = data.slice(0, 5);
 
 <Layout {meta}>
   <section class="px-6 sm:px-6 mx-auto max-w-4xl">
-    <Headline subtitle="Thoughts on .NET Development">TheRoks</Headline>
+    <Headline subtitle="Practical notes on Sitecore, .NET, frontend architecture, and developer workflow"
+      >TheRoks</Headline
+    >
+    <p class="mx-auto mb-12 max-w-3xl text-center text-lg text-muted dark:text-slate-400">
+      Implementation-focused guides, lessons learned, and technical references from Stefan Roks.
+      <a class="text-primary underline underline-offset-4" href="/topics">Browse topics</a>.
+    </p>
     <BlogList posts={data} />
     <ToBlogLink />
   </section>

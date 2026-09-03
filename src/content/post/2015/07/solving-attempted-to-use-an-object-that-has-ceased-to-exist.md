@@ -5,7 +5,7 @@ tags: ["SharePoint"]
 excerpt: "How to solve the error attempted to use an object that has ceased to exist"
 image: "/assets/images/solving-attempted-to-use-an-object-that-has-ceased-to-exist/attempted-to-use-an-object-that-has-ceased-to-exist.png"
 publishDate: 2015-07-06
-updated: 2015-07-06
+updateDate: 2015-07-06
 ---
 
 Sometimes in SharePoint you get errors that were not very clear when you start. However if you develop for some time in SharePoint you’ll learn the best practices and you will avoid some simple mistakes. One of these errors is: Attempted to use an object that has ceased to exist. `(Exception from HRESULT: 0x80030102 (STG_E_REVERTED))`

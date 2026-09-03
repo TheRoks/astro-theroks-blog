@@ -22,9 +22,24 @@ const { post } = Astro.props;
   <article>
     <header class={post.image ? "" : ""}>
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
+        <p class="flex flex-wrap gap-x-2 gap-y-1">
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
+          <span>
+            <span class="sr-only">Published </span>
+            <time datetime={post.publishDate.toISOString()}>{getFormattedDate(post.publishDate)}</time>
+          </span>
+          <span aria-hidden="true">·</span>
+          <span>By {post.author || "Stefan Roks"}</span>
+          {
+            post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>
+                  Last updated <time datetime={post.updateDate.toISOString()}>{getFormattedDate(post.updateDate)}</time>
+                </span>
+              </>
+            )
+          }
           {
             post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
               <>

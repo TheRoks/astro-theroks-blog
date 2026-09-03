@@ -27,13 +27,14 @@ const post = defineCollection({
       canonical: z.url().optional(),
 
       // Use coerce.date() for consistent date parsing
-      publishDate: z.coerce.date().optional(),
+      publishDate: z.coerce.date(),
+      updateDate: z.coerce.date().optional(),
       draft: z.boolean().default(false),
 
       excerpt: z.string().optional(),
       category: z.string().optional(),
       tags: z.array(z.string()).default([]),
-      author: z.string().default("TheRoks"),
+      author: z.string().default("Stefan Roks"),
     }),
 });
 

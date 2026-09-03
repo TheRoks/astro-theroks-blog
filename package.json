@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "content:check": "node scripts/content-audit.mjs",
+    "build": "pnpm content:check && astro build && pnpm generate:redirects",
+    "generate:redirects": "node scripts/generate-redirects.mjs dist/_redirects",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",

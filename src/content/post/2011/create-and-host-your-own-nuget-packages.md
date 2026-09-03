@@ -4,7 +4,7 @@ path: "/create-and-host-your-own-nuget-packages/"
 tags: ["dotNET", "NuGet"]
 excerpt: NuGet is a package manager that simplifies the process of discovering, installing and using third-parties .NET libraries. It is free to download, open source and you are able to create your own package and submit them. In this post I’ll show how to create your own package and host them yourself.
 publishDate: 2011-01-21
-updated: 2011-01-21
+updateDate: 2011-01-21
 ---
 
 NuGet is a package manager that simplifies the process of discovering, installing and using third-parties .NET libraries. It is free to download, open source and you are able to create your own package and submit them. In this post I’ll show how to create your own package and host them yourself.

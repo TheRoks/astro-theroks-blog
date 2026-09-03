@@ -11,6 +11,10 @@ export const headerData = {
       href: "/tag/sitecore",
     },
     {
+      text: "Topics",
+      href: "/topics",
+    },
+    {
       text: "About me",
       href: "/about",
     },

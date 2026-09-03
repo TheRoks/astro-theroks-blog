@@ -4,7 +4,7 @@ path: "/managed-metadata-navigation/"
 tags: ["SharePoint"]
 excerpt: "Use Powershell to create a Managed Metadata ServiceApplication. In this post is a sample Powershell script shown to create the SSA."
 publishDate: 2012-12-22
-updated: 2012-12-22
+updateDate: 2012-12-22
 ---
 
 ## What is Managed metadata
@@ -26,7 +26,7 @@ Metadata can be used as two different kinds of navigation:
 
 By default, these are shown in the left hand navigation area below the Quick Launch bar.
 
-![Managed metadata navigation](/assets/images/managed-metadata-navigation/hieracrchie.png) Hierarchies can be displayed for any selected Managed Metadata field. In the interface users can drill down through the hierarchy of terms to filter the library contents progressively, narrowing or broadening their scope to find the right documents to display. You can display navigation for multiple managed metadata column. In addition, single value choice fields and content types can be used as additional navigational fields.
+![Managed metadata navigation](/assets/images/managed-metadata-navigation/hierarchie.png) Hierarchies can be displayed for any selected Managed Metadata field. In the interface users can drill down through the hierarchy of terms to filter the library contents progressively, narrowing or broadening their scope to find the right documents to display. You can display navigation for multiple managed metadata column. In addition, single value choice fields and content types can be used as additional navigational fields.
 
 ![Managed metadata filter](/assets/images/managed-metadata-navigation/filter.png) Finally, “key filters” allow users to type in filter values for a predefined metadata column. These key filters can also be used for other field types, such as choice fields, date-time, or person fields.
 

@@ -4,7 +4,7 @@ path: "/how-to-unit-test-code-with-a-fluent-interface-with-typemock-isolator/"
 tags: ["dotNET"]
 excerpt: "How to unit test code with a fluent interface with TypeMock Isolator"
 publishDate: 2011-08-14
-updated: 2011-08-14
+updateDate: 2011-08-14
 ---
 
 Recently I was asked to write a unit test for some code that had a fluent interface. The code made calls to a database that should be mocked/faked. Faking and mocking is done by TypeMock Isolator.

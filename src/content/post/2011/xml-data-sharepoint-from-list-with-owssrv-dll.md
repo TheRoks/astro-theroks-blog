@@ -4,7 +4,7 @@ path: "/xml-data-sharepoint-from-list-with-owssrv-dll/"
 tags: ["SharePoint"]
 excerpt: "While working on a project I needed to create a InfoPath form a nested repeated table that will be filled with data from a SharePoint list."
 publishDate: 2011-07-20
-updated: 2011-07-20
+updateDate: 2011-07-20
 ---
 
 While working on a project I needed to create a InfoPath form a nested repeated table that will be filled with data from a SharePoint list.

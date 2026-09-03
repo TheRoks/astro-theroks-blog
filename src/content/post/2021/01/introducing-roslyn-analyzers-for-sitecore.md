@@ -13,7 +13,7 @@ tags:
   - Code Quality
   - Static Analysis
   - NuGet
-author: TheRoks
+author: Stefan Roks
 image: "/assets/images/introducing-roslyn-analyzers-for-sitecore/introducing-roslyn-analyzers-for-sitecore.png"
 ---
 

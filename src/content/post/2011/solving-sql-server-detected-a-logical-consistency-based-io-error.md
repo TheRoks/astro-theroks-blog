@@ -4,7 +4,7 @@ path: "/solving-sql-server-detected-a-logical-consistency-based-io-error/"
 tags: ["SharePoint"]
 excerpt: "See here how I solved the SQL server detected a logical consistency-based i/o error"
 publishDate: 2011-07-28
-updated: 2011-07-28
+updateDate: 2011-07-28
 ---
 
 When creating a new Secure Store Service Application in SharePoint 2010 I had this error:

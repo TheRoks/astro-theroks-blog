@@ -4,7 +4,7 @@ path: "/related-items-with-a-content-query-webpart/"
 tags: ["SharePoint"]
 excerpt: "Show related items in SharePoint 2010 with a Content Query WebPart based on Managed Metadata Service. See this post to see how setup this configuration."
 publishDate: 2013-01-12
-updated: 2013-01-12
+updateDate: 2013-01-12
 ---
 
 Working on an internet facing site there was a requirement to show frequently asked questions (FAQ’s) as related items to a page. The amount of FAQ’s is about 500.
