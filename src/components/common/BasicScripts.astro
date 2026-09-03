@@ -44,7 +44,7 @@ import { SITE } from "~/config.mjs";
   }
 
   function setupEventListeners() {
-    attachEvent("[data-aw-toggle-menu]", "click", function (event, elem) {
+    attachEvent("[data-aw-toggle-menu]", "click", function (_event, elem) {
       elem.classList.toggle("expanded");
       document.body.classList.toggle("overflow-hidden");
       document.getElementById("header")?.classList.toggle("h-screen");

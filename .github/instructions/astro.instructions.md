@@ -8,7 +8,7 @@ applyTo: '**/*.astro, **/*.ts, **/*.js, **/*.md, **/*.mdx'
 Instructions for building high-quality Astro applications following the content-driven, server-first architecture with modern best practices.
 
 ## Project Context
-- Astro 5.x with Islands Architecture and Content Layer API
+- Astro 7.x with Islands Architecture and Content Layer API
 - TypeScript for type safety and better DX with auto-generated types
 - Content-driven websites (blogs, marketing, e-commerce, documentation)
 - Server-first rendering with selective client-side hydration
@@ -145,12 +145,12 @@ const blog = defineCollection({
 - Use environment variables for configuration management
 - Enable compression and caching for production builds
 
-## Key Astro v5.0 Updates
+## Current Astro 7 Practices
 
 ### Breaking Changes
-- **ClientRouter**: Use `<ClientRouter />` instead of `<ViewTransitions />`
-- **TypeScript**: Auto-generated types in `.astro/types.d.ts` (run `astro sync`)
-- **Content Layer API**: New `glob()` and `file()` loaders for enhanced performance
+- **Markdown**: Astro 7 defaults to Sätteri; use the configured Unified processor when existing Rehype plugins need compatibility.
+- **TypeScript**: Use `astro check` for Astro component and TypeScript diagnostics; generated types live in `.astro/types.d.ts`.
+- **Content Layer API**: Define collections in `src/content.config.ts` and run `astro sync` after schema changes.
 
 ### Migration Example
 ```typescript

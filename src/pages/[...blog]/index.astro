@@ -9,6 +9,7 @@ import { getCanonical, getPermalink, getBlogPermalink } from "~/utils/permalinks
 import { fetchPosts } from "~/utils/blog";
 import { findImage } from "~/utils/images";
 import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
+import type { MetaSEO } from "~/types";
 
 export async function getStaticPaths() {
   if (BLOG?.disabled || BLOG?.post?.disabled) return [];
@@ -24,7 +25,9 @@ const { post } = Astro.props;
 const url = getCanonical(getPermalink(post.permalink, "post"));
 
 // Handle image: if it's an AstroImage object, use it directly; otherwise try to find it
-const imageForMeta = typeof post.image === "string" ? await findImage(post.image) : post.image?.src || null;
+const imageForMetaCandidate = typeof post.image === "string" ? await findImage(post.image) : post.image;
+const imageForMeta =
+  typeof imageForMetaCandidate === "string" ? imageForMetaCandidate : imageForMetaCandidate?.src || null;
 
 // Create breadcrumbs: Home > Blog > Post Title
 const breadcrumbs: BreadcrumbItem[] = [
@@ -42,7 +45,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
 ];
 
-const meta = {
+const meta: MetaSEO = {
   title: post.title,
   description: post.description,
   canonical: post.canonical || undefined,
@@ -57,6 +60,6 @@ const meta = {
 ---
 
 <Layout {meta}>
-  <SinglePost post={{ ...post, image: imageForMeta || undefined }} url={url} />
+  <SinglePost post={{ ...post, image: imageForMeta || undefined }} />
   <ToBlogLink />
 </Layout>

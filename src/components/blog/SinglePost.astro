@@ -51,13 +51,24 @@ const { post } = Astro.props;
 
       {
         post.image ? (
-          <Picture
-            src={post.image}
-            class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-            alt={post.description || ""}
-            inferSize
-            pictureAttributes={{}}
-          />
+          typeof post.image === "string" ? (
+            <Picture
+              src={post.image}
+              width={1200}
+              height={675}
+              class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+              alt={post.description || ""}
+              pictureAttributes={{}}
+            />
+          ) : (
+            <Picture
+              src={post.image}
+              class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+              alt={post.description || ""}
+              inferSize
+              pictureAttributes={{}}
+            />
+          )
         ) : (
           <div class="max-w-3xl mx-auto px-4 sm:px-6">
             <div class="border-t dark:border-slate-700" />

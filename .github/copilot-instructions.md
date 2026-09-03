@@ -2,13 +2,13 @@
 
 Project snapshot
 
-- Astro 5.x (static output), Tailwind CSS v4, TypeScript, MD/MDX content via Content Collections
-- Package manager: pnpm, Node >= 22 (see package.json engines)
+- Astro 7.x (static output), Tailwind CSS v4, TypeScript, MD/MDX content via Content Collections
+- Package manager: pnpm 11, Node 24 LTS (see `.nvmrc` and package.json engines)
 - Path alias: `~` => `./src` (see `astro.config.mjs` Vite resolve)
 
 Architecture and where things live
 
-- Content: `src/content/post/**` (see `src/content/config.ts` for schema). Use frontmatter fields: `title`, optional `description`, `image` (string URL or import), `canonical`, `publishDate`, `draft`, `excerpt`, `category`, `tags`, `author`.
+- Content: `src/content/post/**` (see `src/content.config.ts` for schema). Use frontmatter fields: `title`, optional `description`, `image` (string URL or import), `canonical`, `publishDate`, `draft`, `excerpt`, `category`, `tags`, `author`.
 - Pages: `src/pages/**` (e.g., `index.astro`, dynamic blog routes under `src/pages/[...blog]/**`).
 - Layouts: `src/layouts/**` (e.g., `PageLayout.astro` used by pages; pass a `meta` object).
 - Components: `src/components/**` (blog list/detail, pagination, etc.). Prefer server-rendered islands, minimal hydration.
@@ -20,13 +20,15 @@ Key patterns to follow
 - Permalinks: generate/resolve links via `getPermalink(slug, type)`, `getBlogPermalink()`; the post pattern comes from `BLOG.post.permalink` in `src/config.mjs` and `POST_PERMALINK_PATTERN` in `src/utils/permalinks.ts`.
 - Images: reference large/static images from `public/assets/images/...` using absolute paths (`/assets/images/...`).
 - Content types: run `pnpm astro sync` if you change content schema to refresh generated types.
+- Markdown uses the Unified processor configured in `astro.config.mjs` for heading slugs, heading links, and external-link icons.
+- Tailwind uses CSS-first configuration in `src/assets/styles/base.css`; do not add a legacy `tailwind.config.cjs`.
 - Imports: use `~` alias, e.g. `import { BLOG, SITE } from "~/config.mjs"`.
 - Markdown/MDX: rehype plugins add slugs, anchor links, and external-link icons; specify language on code fences.
 
 Developer workflow
 
 - Local: `pnpm dev` (http://localhost:4321), `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm preview`, `pnpm format`/`pnpm format:check`.
-- CI (see `.github/workflows`): PR validation runs format check, lint, typecheck, and build. Match these locally before pushing.
+- CI (see `.github/workflows`): PR validation runs format check, lint, `astro check`, build, and a high-severity dependency audit. Dependency review runs separately on pull requests.
 - Definition of Done: Build/Lint/Typecheck PASS, preview sanity check, and create with accessibility in mind (`.github/instructions/a11y.instructions.md`).
 
 Common tasks (examples)

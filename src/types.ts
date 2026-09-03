@@ -1,16 +1,12 @@
 import type { ComponentProps } from "astro/types";
+import type { ImageMetadata } from "astro";
 
 // With Content Layer API, we use the render() function which returns { Content, headings, remarkPluginFrontmatter }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PostContentComponent = ComponentProps<any>;
 
-// Image type from Astro's image() helper
-export interface AstroImage {
-  src: string;
-  width: number;
-  height: number;
-  format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
-}
+// Image type returned by Astro's image() helper.
+export type AstroImage = ImageMetadata;
 
 export interface Post {
   id: string;
@@ -48,7 +44,9 @@ export interface MetaSEO {
   nofollow?: boolean;
 
   ogTitle?: string;
-  ogType?: string;
+  ogType?: "website" | "article";
+  url?: string | URL;
+  breadcrumbs?: Array<{ name: string; url: string }>;
 
   // For structured data (JSON-LD)
   post?: Post;

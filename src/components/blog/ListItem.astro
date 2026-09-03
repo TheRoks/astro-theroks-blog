@@ -15,7 +15,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const image = await findImage(post.image);
+const image = typeof post.image === "string" ? await findImage(post.image) : post.image;
 
 const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
 ---
@@ -25,7 +25,16 @@ const link = !BLOG?.post?.disabled ? getPermalink(post.permalink, "post") : "";
     image && (
       <a class="relative block group" href={link ?? "javascript:void(0)"}>
         <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-          {image && (
+          {typeof image === "string" ? (
+            <Picture
+              src={image}
+              width={1200}
+              height={675}
+              class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+              alt={post.title}
+              pictureAttributes={{}}
+            />
+          ) : (
             <Picture
               src={image}
               class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"

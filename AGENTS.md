@@ -4,7 +4,7 @@
 
 This document explains how AI coding agents should work in this repository to automate tasks, keep quality high, and stay aligned with our Astro setup and content standards.
 
-The project is an Astro 5.x site with Tailwind CSS and the Content Layer API for Markdown/MDX posts.
+The project is an Astro 7.x site with Tailwind CSS v4 and the Content Layer API for Markdown/MDX posts.
 
 ### Key references in this repo
 
@@ -12,17 +12,17 @@ The project is an Astro 5.x site with Tailwind CSS and the Content Layer API for
 - Markdown/content rules: `.github/instructions/markdown.instructions.md`
 - Accessibility guidance: `.github/instructions/a11y.instructions.md`
 
-Node requirement: use Node 22+ (see `package.json` engines). Use pnpm for commands (pnpm-lock.yaml present).
+Node requirement: use the pinned Node 24 LTS version in `.nvmrc`. Use pnpm 11 for commands (pnpm-lock.yaml present).
 
 ## Project layout (quick map)
 
-- `src/content/post/` — MD/MDX posts loaded via Content Layer API (see `src/content/config.ts`)
+- `src/content/post/` — MD/MDX posts loaded via Content Layer API (see `src/content.config.ts`)
 - `src/components/` — UI components and islands
 - `src/layouts/` — page and markdown layouts
 - `src/pages/` — route files (Astro pages and endpoints)
 - `src/assets/` — local images and styles for bundling
 - `public/` — static files served as-is (e.g., `public/assets/images/...`)
-- `astro.config.mjs`, `tsconfig.json`, `tailwind.config.cjs` — core config
+- `astro.config.mjs`, `tsconfig.json`, and `src/assets/styles/base.css` — core config
 
 There are experimental folders under `apps/` that aren’t part of the primary site build; focus on the root app unless explicitly requested.
 
@@ -32,7 +32,7 @@ When making changes, prefer server-rendered Astro components and minimal client 
 
 - Content authoring
   - Add new posts under `src/content/post/` using MD/MDX.
-  - Validate frontmatter fields against `src/content/config.ts` schema: title, optional description/image/canonical/publishDate/draft/excerpt/category/tags/author.
+  - Validate frontmatter fields against `src/content.config.ts` schema: title, optional description/image/canonical/publishDate/draft/excerpt/category/tags/author.
   - Follow `.github/instructions/markdown.instructions.md` for headings, code blocks, links, images (alt text required), and structure.
   - Place large/static images in `public/assets/images/...` and reference via absolute path (`/assets/images/...`).
 
@@ -59,7 +59,7 @@ Run these from the repo root with pnpm:
 - Preview build: `pnpm preview`
 - Lint code: `pnpm lint`
 - Format code: `pnpm format`
-- Typecheck: `pnpm typecheck`
+- Typecheck: `pnpm typecheck` (`astro check`)
 - Astro utilities (e.g., sync types): `pnpm astro sync`
 
 ## Definition of done (quality gates)
@@ -78,7 +78,7 @@ If you change public behavior, update or add minimal docs in the repo to explain
 
 - Add a new blog post
   1. Create `src/content/post/my-post-slug.mdx` (or `.md`).
-  2. Include frontmatter fields per `src/content/config.ts` and markdown guidelines.
+  2. Include frontmatter fields per `src/content.config.ts` and markdown guidelines.
   3. Add images under `public/assets/images/my-post-slug/` and reference with `/assets/images/...` paths.
   4. Run: `pnpm astro sync` (if types change), `pnpm lint`, `pnpm typecheck`, `pnpm build`.
 
