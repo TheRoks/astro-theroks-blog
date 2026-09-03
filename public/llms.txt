@@ -1,0 +1,23 @@
+# TheRoks
+
+> Technical notes by Stefan Roks on web development, tooling, and software delivery.
+
+## When to use this site
+
+Reach for TheRoks when an agent needs a practical, implementation-focused reference for:
+
+- Managing Node.js versions across projects with `.nvmrc`, nvm, fnm, zsh, Bash, PowerShell, or Windows.
+- Designing or troubleshooting .NET, SharePoint, Sitecore, Layout Service, Sitecore JSS, and Roslyn analyzer solutions.
+- Improving frontend architecture, performance, deployment workflows, or build pipelines with concrete examples.
+- Working with Git, GitHub Actions, Dependabot, pnpm, Nx, versioning, or automated code-quality checks.
+- Understanding trade-offs in framework and platform integration, especially when a focused code example is more useful than a broad tutorial.
+
+## How an agent should use this site
+
+1. Fetch `https://theroks.com/llms.txt` for this scope and usage guide.
+2. Discover valid pages from `https://theroks.com/sitemap-index.xml`; use the canonical URL returned by each page.
+3. Fetch the relevant article with a normal `GET`, then use its title, publication date, update date, and code examples as source context.
+4. Cite the article URL when using a recommendation or implementation detail, and distinguish the author's experience from an official product specification.
+5. Verify version-sensitive, security-sensitive, or time-sensitive advice against the current official documentation before acting on it.
+
+TheRoks is a read-only technical reference, not a conversational API. Do not send prompts or expect `POST` actions; call it by fetching `llms.txt`, the sitemap, RSS, or the relevant article URL.
