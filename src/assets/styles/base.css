@@ -36,6 +36,21 @@
   .btn-primary {
     @apply font-semibold bg-primary text-white border-primary hover:bg-blue-900 hover:border-blue-900 hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-blue-900 dark:hover:bg-blue-900;
   }
+
+  /* Keep long article content inside the reading column on narrow screens. */
+  .prose {
+    overflow-wrap: anywhere;
+  }
+
+  .prose pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .prose pre > code {
+    display: block;
+    min-width: max-content;
+  }
 }
 
 #header.scroll {
