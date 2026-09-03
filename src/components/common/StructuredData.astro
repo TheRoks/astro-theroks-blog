@@ -23,6 +23,22 @@ const publisher = {
   url: SITE.origin,
 };
 
+const personIdentity = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE.origin}/#person`,
+  name: "Stefan Roks",
+  description: SITE.description,
+  url: SITE.origin,
+  jobTitle: "Web Developer",
+  sameAs: [
+    "https://x.com/theroks",
+    "https://stackoverflow.com/users/12258906/stefan-roks",
+    "https://www.linkedin.com/in/stefan-roks-82a3aa4/",
+    "https://github.com/theroks",
+  ],
+};
+
 // Get absolute URL for current page
 const currentUrl = new URL(Astro.url.pathname, Astro.site || SITE.origin).toString();
 
@@ -107,7 +123,10 @@ if (breadcrumbs && breadcrumbs.length > 0) {
     })),
   };
 }
+
+const isHomepage = Astro.url.pathname === SITE.basePathname;
 ---
 
 {structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+{isHomepage && <script is:inline type="application/ld+json" set:html={JSON.stringify(personIdentity)} />}
 {breadcrumbSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
