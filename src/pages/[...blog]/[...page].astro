@@ -3,15 +3,13 @@ import { SITE, BLOG } from "~/config.mjs";
 
 import Layout from "~/layouts/PageLayout.astro";
 import BlogList from "~/components/blog/List.astro";
-import Headline from "~/components/blog/Headline.astro";
 import Pagination from "~/components/common/Pagination.astro";
-// import PostTags from "~/components/blog/Tags.astro";
 
 import { fetchPosts } from "~/utils/blog";
-// import { findTags, findCategories } from '~/utils/blog';
-import { BLOG_BASE, getBlogPermalink } from "~/utils/permalinks";
+import { BLOG_BASE, getBlogPermalink, getPermalink } from "~/utils/permalinks";
 import type { BreadcrumbItem } from "~/components/common/StructuredData.astro";
 import type { GetStaticPaths } from "astro";
+import { getFormattedDate } from "~/utils/utils";
 import type { MetaSEO } from "~/types";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -25,8 +23,10 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 const currentPage = page.currentPage ?? 1;
 
-// const allCategories = await findCategories();
-// const allTags = await findTags();
+const isArchive = currentPage === 1;
+const posts = isArchive ? await fetchPosts() : [];
+const postsByYear = Object.groupBy(posts, ({ publishDate }) => String(publishDate.getFullYear()));
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
 // Create breadcrumbs: Home > Blog
 const breadcrumbs: BreadcrumbItem[] = [
@@ -35,13 +35,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     url: new URL("/", SITE.origin).toString(),
   },
   {
-    name: "Blog",
+    name: "All posts",
     url: new URL(getBlogPermalink(), SITE.origin).toString(),
   },
 ];
 
 const meta: MetaSEO = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ""}`,
+  title: isArchive ? "All posts" : `Blog — Page ${currentPage}`,
   description: SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "website",
@@ -51,12 +51,67 @@ const meta: MetaSEO = {
 
 <Layout {meta}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline subtitle="">TheRoks</Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <!--
-      <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
-      <PostTags tags={allTags}  title="Search by Tags:" />
-    -->
+    <h1 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+      {isArchive ? "All posts" : `Blog — Page ${currentPage}`}
+    </h1>
+    {
+      isArchive ? (
+        <>
+          <p class="mt-4">
+            {posts.length} published posts, newest first.{" "}
+            <a class="underline" href={getPermalink("topics")}>
+              Browse by topic
+            </a>
+            .
+          </p>
+          {years.length > 0 && (
+            <nav aria-label="Jump to year" class="mt-6">
+              <ul class="flex flex-wrap gap-x-4 gap-y-1">
+                {years.map((year) => (
+                  <li>
+                    <a class="inline-block py-2 underline" href={`#year-${year}`}>
+                      {year}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+          {years.map((year) => (
+            <section class="mt-10" aria-labelledby={`year-${year}`}>
+              <h2 id={`year-${year}`} class="scroll-mt-24 font-heading text-2xl font-bold">
+                {year}
+              </h2>
+              <ul class="mt-2 divide-y divide-slate-200 dark:divide-slate-700">
+                {postsByYear[year]?.map((post) => (
+                  <li class="flex flex-col gap-x-6 py-2 sm:flex-row sm:justify-between">
+                    {BLOG?.post?.disabled ? (
+                      <span>{post.title}</span>
+                    ) : (
+                      <a class="font-medium underline" href={getPermalink(post.permalink, "post")}>
+                        {post.title}
+                      </a>
+                    )}
+                    <time class="shrink-0 text-sm" datetime={post.publishDate.toISOString()}>
+                      {getFormattedDate(post.publishDate)}
+                    </time>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </>
+      ) : (
+        <>
+          <p class="my-4">
+            <a class="underline" href={getBlogPermalink()}>
+              Browse all posts
+            </a>
+          </p>
+          <BlogList posts={page.data} />
+          <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+        </>
+      )
+    }
   </section>
 </Layout>

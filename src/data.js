@@ -1,10 +1,14 @@
-import { getAsset } from "./utils/permalinks";
+import { getAsset, getBlogPermalink } from "./utils/permalinks";
 
 export const headerData = {
   links: [
     {
       text: "Home",
       href: "/",
+    },
+    {
+      text: "All posts",
+      href: getBlogPermalink(),
     },
     {
       text: "Sitecore",
