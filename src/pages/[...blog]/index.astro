@@ -27,8 +27,8 @@ const url = getCanonical(getPermalink(post.permalink, "post"));
 // Handle image: if it's an AstroImage object, use it directly; otherwise try to find it
 const imageForMetaCandidate =
   typeof post.image === "string"
-    ? (await findImage(post.image.replace(/^\/assets\//, "~/assets/"))) ??
-      (post.image.startsWith("/assets/") ? post.image : null)
+    ? ((await findImage(post.image.replace(/^\/assets\//, "~/assets/"))) ??
+      (post.image.startsWith("/assets/") ? post.image : null))
     : post.image;
 const imageForMeta =
   typeof imageForMetaCandidate === "string" ? imageForMetaCandidate : imageForMetaCandidate?.src || null;

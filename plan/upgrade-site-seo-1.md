@@ -1,7 +1,7 @@
 ---
 goal: Align crawl signals and improve technical article discovery
 date_created: 2026-11-03
-status: 'In progress'
+status: "In progress"
 ---
 
 # Introduction
@@ -23,20 +23,20 @@ Align generated URLs with production redirects, then improve the Sitecore entry 
 
 - GOAL-001: Make sitemap and canonical signals agree.
 
-| Task | Description | Completed | Date |
-|------|-------------|-----------|------|
-| TASK-001 | Set the HTML slash convention in src/config.mjs and use permalink helpers for internal navigation. | ✅ | 2026-11-03 |
-| TASK-002 | Include the archive and About in astro.config.mjs sitemap output. Keep numbered archives and noindex tags excluded. | ✅ | 2026-11-03 |
+| Task     | Description                                                                                                         | Completed | Date       |
+| -------- | ------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
+| TASK-001 | Set the HTML slash convention in src/config.mjs and use permalink helpers for internal navigation.                  | ✅        | 2026-11-03 |
+| TASK-002 | Include the archive and About in astro.config.mjs sitemap output. Keep numbered archives and noindex tags excluded. | ✅        | 2026-11-03 |
 
 ### Implementation Phase 2
 
 - GOAL-002: Improve discovery and authorship.
 
-| Task | Description | Completed | Date |
-|------|-------------|-----------|------|
-| TASK-003 | Build a curated Sitecore hub at /topics/sitecore/ and link it from navigation, Topics, and Sitecore posts. | ✅ | 2026-11-03 |
-| TASK-004 | Link Stefan Roks bylines and article structured data to /about/. | ✅ | 2026-11-03 |
-| TASK-005 | In Search Console, inspect the archive, hub, and recent and older articles. Export page and query performance for the last 90 days and prioritize articles by impressions and relevant query fit. Refresh the highest-priority article while preserving its slug. | | |
+| Task     | Description                                                                                                                                                                                                                                                       | Completed | Date       |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
+| TASK-003 | Build a curated Sitecore hub at /topics/sitecore/ and link it from navigation, Topics, and Sitecore posts.                                                                                                                                                        | ✅        | 2026-11-03 |
+| TASK-004 | Link Stefan Roks bylines and article structured data to /about/.                                                                                                                                                                                                  | ✅        | 2026-11-03 |
+| TASK-005 | In Search Console, inspect the archive, hub, and recent and older articles. Export page and query performance for the last 90 days and prioritize articles by impressions and relevant query fit. Refresh the highest-priority article while preserving its slug. |           |            |
 
 ## 3. Alternatives
 

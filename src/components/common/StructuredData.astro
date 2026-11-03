@@ -129,16 +129,18 @@ const isHomepage = Astro.url.pathname === SITE.basePathname;
 
 {structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
 {isHomepage && <script is:inline type="application/ld+json" set:html={JSON.stringify(personIdentity)} />}
-{currentUrl === authorUrl && (
-  <script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      url: authorUrl,
-      mainEntity: personIdentity,
-    })}
-  />
-)}
+{
+  currentUrl === authorUrl && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        url: authorUrl,
+        mainEntity: personIdentity,
+      })}
+    />
+  )
+}
 {breadcrumbSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}

@@ -30,7 +30,17 @@ const author = post.author || "Stefan Roks";
             <time datetime={post.publishDate.toISOString()}>{getFormattedDate(post.publishDate)}</time>
           </span>
           <span aria-hidden="true">·</span>
-          <span>By {author === "Stefan Roks" ? <a class="underline" href={getPermalink("about")}>{author}</a> : author}</span>
+          <span
+            >By {
+              author === "Stefan Roks" ? (
+                <a class="underline" href={getPermalink("about")}>
+                  {author}
+                </a>
+              ) : (
+                author
+              )
+            }</span
+          >
           {
             post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
               <>
@@ -107,9 +117,15 @@ const author = post.author || "Stefan Roks";
       }
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      {post.tags?.some((tag) => tag.toLowerCase() === "sitecore") && (
-        <p class="mb-4"><a class="underline" href={getPermalink("topics/sitecore")}>Explore Sitecore development guides</a></p>
-      )}
+      {
+        post.tags?.some((tag) => tag.toLowerCase() === "sitecore") && (
+          <p class="mb-4">
+            <a class="underline" href={getPermalink("topics/sitecore")}>
+              Explore Sitecore development guides
+            </a>
+          </p>
+        )
+      }
       <PostTags tags={post.tags} class="mr-5" />
       <!-- <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" /> -->
     </div>
