@@ -42,32 +42,30 @@ const relatedPosts: PostWithScore[] = allPosts
   .slice(0, maxArticles); // Limit to maxArticles
 ---
 
-{
-  relatedPosts.length > 0 && (
-    <aside class="related-articles" aria-labelledby="related-articles-heading">
-      <h2 id="related-articles-heading" class="related-articles__title">
-        Related Articles
-      </h2>
-      <ul class="related-articles__list" role="list">
-        {relatedPosts.map(({ post }) => {
-          const permalink = getPermalink(post.permalink, "post");
-          return (
-            <li class="related-articles__item">
-              <article class="related-articles__card">
-                <h3 class="related-articles__card-title">
-                  <a href={permalink} class="related-articles__link">
-                    {post.title}
-                  </a>
-                </h3>
-                {post.excerpt && <p class="related-articles__excerpt">{post.excerpt}</p>}
-              </article>
-            </li>
-          );
-        })}
-      </ul>
-    </aside>
-  )
-}
+{relatedPosts.length > 0 && (
+  <aside class="related-articles" aria-labelledby="related-articles-heading">
+    <h2 id="related-articles-heading" class="related-articles__title">
+      Related Articles
+    </h2>
+    <ul class="related-articles__list" role="list">
+      {relatedPosts.map(({ post }) => {
+        const permalink = getPermalink(post.permalink, "post");
+        return (
+          <li class="related-articles__item">
+            <article class="related-articles__card">
+              <h3 class="related-articles__card-title">
+                <a href={permalink} class="related-articles__link">
+                  {post.title}
+                </a>
+              </h3>
+              {post.excerpt && <p class="related-articles__excerpt">{post.excerpt}</p>}
+            </article>
+          </li>
+        );
+      })}
+    </ul>
+  </aside>
+)}
 
 <style>
   .related-articles {

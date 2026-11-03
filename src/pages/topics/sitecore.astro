@@ -33,25 +33,29 @@ const guides = [
 
 <Layout {meta}>
   <section class="mx-auto max-w-4xl px-6 py-12 sm:px-8">
-    <a class="underline" href={getPermalink("topics")}>All topics</a>
+    <a class="underline" href={getPermalink("topics")}>
+      All topics
+    </a>
     <h1 class="mt-4 font-heading text-4xl font-bold tracking-tight">Sitecore development guides</h1>
     <p class="mt-4">
       Find practical examples for delivering content through Sitecore Layout Service, maintaining Sitecore
       installations, and writing testable Sitecore code. Choose a guide based on what you need to do.
     </p>
-    {
-      guides.map(({ task, slug, title, description }) => (
-        <section class="mt-8">
-          <h2 class="font-heading text-2xl font-bold">{task}</h2>
-          <p class="mt-2">
-            <a class="underline" href={getPermalink(slug, "post")}>
-              {title}
-            </a>
-          </p>
-          <p class="mt-2">{description}</p>
-        </section>
-      ))
-    }
-    <p class="mt-8"><a class="underline" href={getPermalink("sitecore", "tag")}>Browse all Sitecore posts</a></p>
+    {guides.map(({ task, slug, title, description }) => (
+      <section class="mt-8">
+        <h2 class="font-heading text-2xl font-bold">{task}</h2>
+        <p class="mt-2">
+          <a class="underline" href={getPermalink(slug, "post")}>
+            {title}
+          </a>
+        </p>
+        <p class="mt-2">{description}</p>
+      </section>
+    ))}
+    <p class="mt-8">
+      <a class="underline" href={getPermalink("sitecore", "tag")}>
+        Browse all Sitecore posts
+      </a>
+    </p>
   </section>
 </Layout>

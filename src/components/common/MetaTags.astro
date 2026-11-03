@@ -65,11 +65,9 @@ gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
 <link rel="canonical" href={String(canonical)} />
 <link rel="sitemap" href={getAsset("/sitemap-index.xml")} />
 {markdownAlternate && <link rel="alternate" type="text/markdown" href={markdownAlternate} />}
-{
-  (noindex || nofollow) && (
-    <meta name="robots" content={[noindex && "noindex", nofollow && "nofollow"].filter(Boolean).join(", ")} />
-  )
-}
+{(noindex || nofollow) && (
+  <meta name="robots" content={[noindex && "noindex", nofollow && "nofollow"].filter(Boolean).join(", ")} />
+)}
 
 <!-- Open Graph -->
 <meta property="og:url" content={String(canonical)} />
@@ -101,19 +99,17 @@ gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
 
 <!-- Google Analytics -->
-{
-  SITE.googleAnalyticsId && (
-    <>
-      <script
-        is:inline
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${SITE.googleAnalyticsId}`}
-        type="text/partytown"
-      />
-      <script is:inline type="text/partytown" set:html={googleAnalyticsScript} />
-    </>
-  )
-}
+{SITE.googleAnalyticsId && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${SITE.googleAnalyticsId}`}
+      type="text/partytown"
+    />
+    <script is:inline type="text/partytown" set:html={googleAnalyticsScript} />
+  </>
+)}
 
 <!-- {SITE.splitbeeAnalytics?.enabled && <SplitbeeAnalytics {...SITE.splitbeeAnalytics} />} -->
 
@@ -124,4 +120,5 @@ gtag("config", ${JSON.stringify(SITE.googleAnalyticsId)});`;
   is:inline
   defer
   src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "3a97b7004e184fb3864600759db69a73"}'></script>
+  data-cf-beacon='{"token": "3a97b7004e184fb3864600759db69a73"}'
+></script>
