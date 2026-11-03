@@ -5,6 +5,7 @@
 
 @theme inline {
   --color-primary: var(--aw-color-primary);
+  --color-primary-text: var(--aw-color-primary-text);
   --color-secondary: var(--aw-color-secondary);
   --color-accent: var(--aw-color-accent);
   --color-page: var(--aw-color-text-page);
