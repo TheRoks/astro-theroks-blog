@@ -56,64 +56,62 @@ const meta: MetaSEO = {
     <h1 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
       {isArchive ? "All posts" : `Blog — Page ${currentPage}`}
     </h1>
-    {
-      isArchive ? (
-        <>
-          <p class="mt-4">
-            {posts.length} published posts, newest first.{" "}
-            <a class="underline" href={getPermalink("topics")}>
-              Browse by topic
-            </a>
-            .
-          </p>
-          {years.length > 0 && (
-            <nav aria-label="Jump to year" class="mt-6">
-              <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {years.map((year) => (
-                  <li>
-                    <a class="inline-block py-2 underline" href={`#year-${year}`}>
-                      {year}
+    {isArchive ? (
+      <>
+        <p class="mt-4">
+          {posts.length} published posts, newest first.{" "}
+          <a class="underline" href={getPermalink("topics")}>
+            Browse by topic
+          </a>
+          .
+        </p>
+        {years.length > 0 && (
+          <nav aria-label="Jump to year" class="mt-6">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1">
+              {years.map((year) => (
+                <li>
+                  <a class="inline-block py-2 underline" href={`#year-${year}`}>
+                    {year}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+        {years.map((year) => (
+          <section class="mt-10" aria-labelledby={`year-${year}`}>
+            <h2 id={`year-${year}`} class="scroll-mt-24 font-heading text-2xl font-bold">
+              {year}
+            </h2>
+            <ul class="mt-2 divide-y divide-slate-200 dark:divide-slate-700">
+              {postsByYear[year]?.map((post) => (
+                <li class="flex flex-col gap-x-6 py-2 sm:flex-row sm:justify-between">
+                  {BLOG?.post?.disabled ? (
+                    <span>{post.title}</span>
+                  ) : (
+                    <a class="font-medium underline" href={getPermalink(post.permalink, "post")}>
+                      {post.title}
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
-          {years.map((year) => (
-            <section class="mt-10" aria-labelledby={`year-${year}`}>
-              <h2 id={`year-${year}`} class="scroll-mt-24 font-heading text-2xl font-bold">
-                {year}
-              </h2>
-              <ul class="mt-2 divide-y divide-slate-200 dark:divide-slate-700">
-                {postsByYear[year]?.map((post) => (
-                  <li class="flex flex-col gap-x-6 py-2 sm:flex-row sm:justify-between">
-                    {BLOG?.post?.disabled ? (
-                      <span>{post.title}</span>
-                    ) : (
-                      <a class="font-medium underline" href={getPermalink(post.permalink, "post")}>
-                        {post.title}
-                      </a>
-                    )}
-                    <time class="shrink-0 text-sm" datetime={post.publishDate.toISOString()}>
-                      {getFormattedDate(post.publishDate)}
-                    </time>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </>
-      ) : (
-        <>
-          <p class="my-4">
-            <a class="underline" href={getBlogPermalink()}>
-              Browse all posts
-            </a>
-          </p>
-          <BlogList posts={page.data} />
-          <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-        </>
-      )
-    }
+                  )}
+                  <time class="shrink-0 text-sm" datetime={post.publishDate.toISOString()}>
+                    {getFormattedDate(post.publishDate)}
+                  </time>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </>
+    ) : (
+      <>
+        <p class="my-4">
+          <a class="underline" href={getBlogPermalink()}>
+            Browse all posts
+          </a>
+        </p>
+        <BlogList posts={page.data} />
+        <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+      </>
+    )}
   </section>
 </Layout>

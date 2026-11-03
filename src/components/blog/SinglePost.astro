@@ -30,102 +30,85 @@ const author = post.author || "Stefan Roks";
             <time datetime={post.publishDate.toISOString()}>{getFormattedDate(post.publishDate)}</time>
           </span>
           <span aria-hidden="true">·</span>
-          <span
-            >By {
-              author === "Stefan Roks" ? (
-                <a class="underline" href={getPermalink("about")}>
-                  {author}
-                </a>
-              ) : (
-                author
-              )
-            }</span
-          >
-          {
-            post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>
-                  Last updated <time datetime={post.updateDate.toISOString()}>{getFormattedDate(post.updateDate)}</time>
-                </span>
-              </>
-            )
-          }
-          {
-            post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
-              <>
-                {" "}
-                ·
-                <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
-                  {post.category.replaceAll("-", " ")}
-                </a>
-              </>
-            )
-          }
+          <span>
+            By{" "}
+            {author === "Stefan Roks" ? (
+              <a class="underline" href={getPermalink("about")}>
+                {author}
+              </a>
+            ) : (
+              author
+            )}
+          </span>
+          {post.updateDate && post.updateDate.getTime() !== post.publishDate.getTime() && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>
+                Last updated <time datetime={post.updateDate.toISOString()}>{getFormattedDate(post.updateDate)}</time>
+              </span>
+            </>
+          )}
+          {post.category && !BLOG?.disabled && !BLOG?.category?.disabled && (
+            <>
+              {" "}
+              ·
+              <a class="capitalize hover:underline" href={getPermalink(post.category, "category")}>
+                {post.category.replaceAll("-", " ")}
+              </a>
+            </>
+          )}
         </p>
       </div>
-      <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading"
-      >
+      <h1 class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">
         {post.title}
       </h1>
-      <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-left sm:text-justify"
-      >
+      <p class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-left sm:text-justify">
         {post.excerpt}
       </p>
 
-      {
-        post.image ? (
-          typeof post.image === "string" ? (
-            <Picture
-              src={post.image}
-              width={1200}
-              height={675}
-              class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-              alt={post.description || ""}
-              pictureAttributes={{}}
-            />
-          ) : (
-            <Picture
-              src={post.image}
-              class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-              alt={post.description || ""}
-              inferSize
-              pictureAttributes={{}}
-            />
-          )
+      {post.image ? (
+        typeof post.image === "string" ? (
+          <Picture
+            src={post.image}
+            width={1200}
+            height={675}
+            class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+            alt={post.description || ""}
+            pictureAttributes={{}}
+          />
         ) : (
-          <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
-          </div>
+          <Picture
+            src={post.image}
+            class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+            alt={post.description || ""}
+            inferSize
+            pictureAttributes={{}}
+          />
         )
-      }
+      ) : (
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+          <div class="border-t dark:border-slate-700" />
+        </div>
+      )}
     </header>
-    <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
-    >
-      {
-        post.Content ? (
-          <>
-            {/* @ts-ignore */}
-            <post.Content />
-          </>
-        ) : (
-          <Fragment set:html={post.content} />
-        )
-      }
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8">
+      {post.Content ? (
+        <>
+          {/* @ts-ignore */}
+          <post.Content />
+        </>
+      ) : (
+        <Fragment set:html={post.content} />
+      )}
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      {
-        post.tags?.some((tag) => tag.toLowerCase() === "sitecore") && (
-          <p class="mb-4">
-            <a class="underline" href={getPermalink("topics/sitecore")}>
-              Explore Sitecore development guides
-            </a>
-          </p>
-        )
-      }
+      {post.tags?.some((tag) => tag.toLowerCase() === "sitecore") && (
+        <p class="mb-4">
+          <a class="underline" href={getPermalink("topics/sitecore")}>
+            Explore Sitecore development guides
+          </a>
+        </p>
+      )}
       <PostTags tags={post.tags} class="mr-5" />
       <!-- <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" /> -->
     </div>
