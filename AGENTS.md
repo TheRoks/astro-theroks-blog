@@ -12,7 +12,7 @@ The project is an Astro 7.x site with Tailwind CSS v4 and the Content Layer API 
 - Markdown/content rules: `.github/instructions/markdown.instructions.md`
 - Accessibility guidance: `.github/instructions/a11y.instructions.md`
 
-Node requirement: use the pinned Node 26 LTS version in `.nvmrc`. Use pnpm 11 for commands (pnpm-lock.yaml present).
+Node requirement: use the pinned Node 26 LTS version in `.nvmrc`. Use pnpm 12 for commands (pnpm-lock.yaml present).
 
 ## Project layout (quick map)
 

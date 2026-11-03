@@ -3,7 +3,7 @@
 Project snapshot
 
 - Astro 7.x (static output), Tailwind CSS v4, TypeScript, MD/MDX content via Content Collections
-- Package manager: pnpm 11, Node 26 LTS (see `.nvmrc` and package.json engines)
+- Package manager: pnpm 12, Node 26 LTS (see `.nvmrc` and package.json engines)
 - Path alias: `~` => `./src` (see `astro.config.mjs` Vite resolve)
 
 Architecture and where things live
