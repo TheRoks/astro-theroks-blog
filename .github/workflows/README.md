@@ -48,7 +48,7 @@ All workflows use minimal required permissions for security.
 ## Caching Strategy
 
 - **pnpm cache**: Automatically handled by `setup-node@v6` with `cache: 'pnpm'`
-- **Runtime**: Node 24 LTS is read from the repository `.nvmrc`; pnpm 11 is pinned in `package.json`.
+- **Runtime**: Node 26 LTS is read from the repository `.nvmrc`; pnpm 11 is pinned in `package.json`.
 - **Node modules**: Cached based on `pnpm-lock.yaml` hash
 - **Build artifacts**: Stored for 7 days
 
