@@ -1,0 +1,57 @@
+---
+import Layout from "~/layouts/PageLayout.astro";
+import { getPermalink } from "~/utils/permalinks";
+
+const meta = {
+  title: "Sitecore development guides",
+  description: "Practical Sitecore guides for headless content delivery, Items as Resources, and .NET code quality.",
+};
+
+const guides = [
+  {
+    task: "Deliver structured content to a headless frontend",
+    slug: "structure-sitecores-richtext-field-and-get-more-control-over-layout-service-output-and-html",
+    title: "Transform Sitecore RichText fields into structured JSON",
+    description:
+      "Start here if you use JSS and want more control over the HTML your frontend renders from Layout Service content.",
+  },
+  {
+    task: "Maintain Sitecore 10 installations",
+    slug: "sitecore-detect-override-on-items-as-resources-and-revert-it",
+    title: "Detect and revert Items as Resources overrides",
+    description: "Use PowerShell to find database items that override resource files before deciding what to revert.",
+  },
+  {
+    task: "Improve Sitecore .NET code quality",
+    slug: "introducing-roslyn-analyzers-for-sitecore",
+    title: "Use Roslyn analyzers for Sitecore",
+    description:
+      "Identify Sitecore API patterns that make code harder to test and see how dependency injection can help.",
+  },
+];
+---
+
+<Layout {meta}>
+  <section class="mx-auto max-w-4xl px-6 py-12 sm:px-8">
+    <a class="underline" href={getPermalink("topics")}>All topics</a>
+    <h1 class="mt-4 font-heading text-4xl font-bold tracking-tight">Sitecore development guides</h1>
+    <p class="mt-4">
+      Find practical examples for delivering content through Sitecore Layout Service, maintaining Sitecore
+      installations, and writing testable Sitecore code. Choose a guide based on what you need to do.
+    </p>
+    {
+      guides.map(({ task, slug, title, description }) => (
+        <section class="mt-8">
+          <h2 class="font-heading text-2xl font-bold">{task}</h2>
+          <p class="mt-2">
+            <a class="underline" href={getPermalink(slug, "post")}>
+              {title}
+            </a>
+          </p>
+          <p class="mt-2">{description}</p>
+        </section>
+      ))
+    }
+    <p class="mt-8"><a class="underline" href={getPermalink("sitecore", "tag")}>Browse all Sitecore posts</a></p>
+  </section>
+</Layout>

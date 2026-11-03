@@ -6,3 +6,5 @@ minimumReleaseAgeStrict: true
 overrides:
   deepmerge-ts: "8.0.2"
   yauzl@<3.2.1: ">=3.2.1"
+  astro-compress>sharp: "0.35.5"
+  astro-compress>svgo: "4.1.0"
