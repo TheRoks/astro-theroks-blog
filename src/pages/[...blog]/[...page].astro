@@ -42,7 +42,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const meta: MetaSEO = {
   title: isArchive ? "All posts" : `Blog — Page ${currentPage}`,
-  description: SITE.description,
+  description: isArchive
+    ? "Browse all engineering articles by Stefan Roks, grouped by year, on Sitecore, .NET, frontend architecture, developer workflow, and DevOps."
+    : SITE.description,
   noindex: BLOG?.list?.noindex || currentPage > 1,
   ogType: "website",
   breadcrumbs: breadcrumbs,

@@ -5,7 +5,7 @@ const CONFIG = {
 
   origin: "https://theroks.com",
   basePathname: "/",
-  trailingSlash: false,
+  trailingSlash: true,
 
   title: "TheRoks — Practical notes on software development",
   description:
@@ -33,7 +33,7 @@ const CONFIG = {
 
     list: {
       pathname: "blog", // blog main path, you can change this to "articles" (/articles)
-      noindex: true,
+      noindex: false,
       disabled: false,
     },
 

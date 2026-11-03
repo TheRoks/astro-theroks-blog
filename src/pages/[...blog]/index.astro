@@ -25,7 +25,11 @@ const { post } = Astro.props;
 const url = getCanonical(getPermalink(post.permalink, "post"));
 
 // Handle image: if it's an AstroImage object, use it directly; otherwise try to find it
-const imageForMetaCandidate = typeof post.image === "string" ? await findImage(post.image) : post.image;
+const imageForMetaCandidate =
+  typeof post.image === "string"
+    ? (await findImage(post.image.replace(/^\/assets\//, "~/assets/"))) ??
+      (post.image.startsWith("/assets/") ? post.image : null)
+    : post.image;
 const imageForMeta =
   typeof imageForMetaCandidate === "string" ? imageForMetaCandidate : imageForMetaCandidate?.src || null;
 
@@ -53,7 +57,7 @@ const meta: MetaSEO = {
   image: imageForMeta || undefined,
   noindex: BLOG?.post?.noindex,
   ogType: "article",
-  post: post, // Pass the full post object for structured data
+  post: { ...post, image: imageForMeta || undefined },
   updateDate: post.updateDate, // Pass update date for structured data
   breadcrumbs: breadcrumbs, // Pass breadcrumbs for structured data
 };

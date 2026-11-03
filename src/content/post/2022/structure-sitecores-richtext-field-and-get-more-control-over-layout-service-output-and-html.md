@@ -16,16 +16,11 @@ tags:
 author: Stefan Roks
 ---
 
-Sitecore's RichText field is powerful but problematic—it's a Swiss army knife that allows any HTML structure, making content maintenance difficult and security risky. Content editors can paste Word HTML, inject inline styles, or create invalid markup that breaks your headless frontend.
+This guide shows how to customize Sitecore Layout Service to return RichText as structured JSON that a JSS frontend can render. It is for Sitecore installations where you can deploy a server-side Layout Service serializer and its configuration patch. Check that your deployment supports those extension points before applying the example.
 
-## The RichText Problem
+The serializer lets frontend components control the markup for supported content instead of rendering the editor's HTML directly. Decide which elements and attributes to accept, including what to do with pasted styles or unsupported markup.
 
-Traditional Sitecore RichText fields create three major challenges:
-
-Goals to achieve in this blog post:
-
-- Be in control of the HTML output. E.g. prevent MS Word HTML in the output.
-- Split content from code, and be always in control of the visual appearance with code.
+For related delivery and maintenance guides, see [Sitecore development guides](/topics/sitecore/).
 
 ## Extending the Sitecore Layout service
 

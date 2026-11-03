@@ -34,7 +34,7 @@ const topics = [
 
 const breadcrumbs: BreadcrumbItem[] = [
   { name: "Home", url: new URL("/", SITE.origin).toString() },
-  { name: "Topics", url: new URL("/topics", SITE.origin).toString() },
+  { name: "Topics", url: new URL(getPermalink("topics"), SITE.origin).toString() },
 ];
 
 const meta = {
@@ -58,7 +58,7 @@ const meta = {
           <li>
             <article class="h-full rounded-lg border border-gray-200 p-6 transition hover:border-primary hover:shadow-md dark:border-slate-700 dark:hover:border-blue-400">
               <h2 class="font-heading text-2xl font-bold">
-                <a class="hover:text-primary" href={getPermalink(topic.tag, "tag")}>
+                <a class="hover:text-primary" href={topic.tag === "sitecore" ? getPermalink("topics/sitecore") : getPermalink(topic.tag, "tag")}>
                   {topic.name}
                 </a>
               </h2>

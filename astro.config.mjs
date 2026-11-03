@@ -64,7 +64,8 @@ export default defineConfig({
     }),
     sitemap({
       serialize(item) {
-        if (/\/blog(?:\/|$)/.test(item.url) || /\/about(?:\/|$)/.test(item.url)) {
+        const pathname = new URL(item.url).pathname;
+        if (/^\/blog\/\d+\/?$/.test(pathname) || (BLOG.list.noindex && pathname === "/blog/")) {
           return undefined;
         }
 
@@ -73,8 +74,6 @@ export default defineConfig({
         if (BLOG?.tag?.noindex && /\/tag(?:\/|$)/.test(item.url)) {
           return undefined;
         }
-        item.changefreq = "weekly";
-        item.priority = 0.7;
 
         return item;
       },

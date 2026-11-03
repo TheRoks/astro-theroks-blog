@@ -1,4 +1,5 @@
 ---
+import { getCanonical, getPermalink } from "~/utils/permalinks";
 import { SITE } from "~/config.mjs";
 import { getRelativeUrlByFilePath } from "~/utils/directories";
 import type { Post } from "~/types";
@@ -16,21 +17,23 @@ export interface Props {
 
 const { type = "website", post, breadcrumbs } = Astro.props;
 
+const authorUrl = getCanonical(getPermalink("about")).toString();
+
 // Base organization/publisher data
 const publisher = {
   "@type": "Person",
-  "@id": `${SITE.origin}/about#person`,
+  "@id": `${authorUrl}#person`,
   name: "Stefan Roks",
-  url: `${SITE.origin}/about`,
+  url: authorUrl,
 };
 
 const personIdentity = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${SITE.origin}/about#person`,
+  "@id": `${authorUrl}#person`,
   name: "Stefan Roks",
   description: SITE.description,
-  url: `${SITE.origin}/about`,
+  url: authorUrl,
   jobTitle: "Lead Developer SitecoreAI at Achmea",
   sameAs: [
     "https://x.com/theroks",
@@ -41,7 +44,7 @@ const personIdentity = {
 };
 
 // Get absolute URL for current page
-const currentUrl = new URL(Astro.url.pathname, Astro.site || SITE.origin).toString();
+const currentUrl = getCanonical(Astro.url.pathname).toString();
 
 // Helper to get absolute image URL
 const getAbsoluteImageUrl = (image: string | { src: string } | undefined) => {
@@ -88,12 +91,7 @@ if (type === "website") {
     image: imageUrl,
     datePublished: post.publishDate?.toISOString(),
     dateModified: post.updateDate?.toISOString() || post.publishDate?.toISOString(),
-    author: {
-      "@type": "Person",
-      "@id": `${SITE.origin}/about#person`,
-      name: post.author || "Stefan Roks",
-      url: `${SITE.origin}/about`,
-    },
+    author: post.author && post.author !== publisher.name ? { "@type": "Person", name: post.author } : publisher,
     publisher: publisher,
     url: currentUrl,
     mainEntityOfPage: {
@@ -131,4 +129,16 @@ const isHomepage = Astro.url.pathname === SITE.basePathname;
 
 {structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
 {isHomepage && <script is:inline type="application/ld+json" set:html={JSON.stringify(personIdentity)} />}
+{currentUrl === authorUrl && (
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      url: authorUrl,
+      mainEntity: personIdentity,
+    })}
+  />
+)}
 {breadcrumbSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
