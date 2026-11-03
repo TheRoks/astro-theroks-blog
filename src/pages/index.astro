@@ -60,8 +60,8 @@ const topics = [
             DevOps.
           </p>
           <div class="mt-9 flex flex-wrap gap-3">
-            <a class="btn btn-primary" href="#latest-notes">
-              Read the latest notes
+            <a class="btn btn-primary" href={getBlogPermalink()}>
+              Browse all posts
               <Icon name="tabler:arrow-down" class="ml-2 h-5 w-5" />
             </a>
             <a class="btn" href="/topics">
@@ -116,7 +116,7 @@ const topics = [
           </h2>
         </div>
         <a class="group inline-flex items-center font-semibold text-primary hover:underline" href={getBlogPermalink()}>
-          View all articles
+          View all posts
           <Icon
             name="tabler:arrow-up-right"
             class="ml-1.5 h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
