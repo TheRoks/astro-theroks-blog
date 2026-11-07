@@ -1,18 +1,18 @@
 ---
 goal: Reduce homepage layout shift and critical request work from PageSpeed findings
 date_created: 2026-11-07
-status: "In progress"
+status: "Complete"
 ---
 
 # Introduction
 
-![Status: In progress](https://img.shields.io/badge/status-In%20progress-yellow)
+![Status: Complete](https://img.shields.io/badge/status-Complete-brightgreen)
 
 The original 7 November mobile report scored 95 for performance, with LCP 0.9 seconds, CLS 0.132, TBT 0 ms, and Speed Index 2.5 seconds. The measured layout shift occurred in the homepage hero and its "Field notes" panel as Inter loaded. Astro's ClientRouter accounted for a 34 ms forced reflow and appeared in the critical request tree. A throttled Chrome trace reproduced the shift as Inter loaded. After preloading Inter and removing ClientRouter, local mobile Lighthouse measured CLS 0, LCP 0.8 seconds, Performance 100, and no forced-reflow audit. Menu, theme, native navigation, and browser back behavior passed in preview.
 
-After PR #464 deployed, a fresh PageSpeed Insights mobile run on 2026-11-07 scored 99 for performance, with CLS 0, TBT 0 ms, LCP 1.7 seconds, FCP 1.7 seconds, and Speed Index 2.6 seconds. The forced-reflow insight and the ClientRouter/font request chain are gone. The remaining 439 ms maximum path includes the base stylesheet and Cloudflare Insights beacon-to-RUM request; PSI found no suitable preconnect candidates. Lighthouse still reports the Partytown Fenced Frame deprecation and 8 KiB cache-lifetime / 21 KiB legacy-JavaScript savings associated with the analytics beacon.
+After PR #464 deployed, PageSpeed Insights mobile runs scored 99 and 97 for performance. CLS remained 0, TBT 0 ms, and LCP/FCP 1.7 seconds; Speed Index varied from 2.6 to 4.0 seconds between runs. The forced-reflow insight and ClientRouter/font request chain are gone. The latest 2026-11-07 13:34 CET run measured a 367 ms maximum path, including the base stylesheet and Cloudflare Insights beacon-to-RUM request; PSI found no suitable preconnect candidates. Lighthouse still reports the Partytown Fenced Frame deprecation and 8 KiB cache-lifetime / 21 KiB legacy-JavaScript savings associated with the analytics beacon.
 
-The repository's 1.0.3 Partytown package already includes the upstream `HTMLFencedFrameElement` exclusion from v1.0.1. The 1.0.4 release notes describe a separate worker-only fallback fix, not a Fenced Frame change. The transitive package is being advanced to eligible latest 1.0.4, then the live audit will confirm whether the warning persists.
+The repository now uses eligible latest `@qwik.dev/partytown` 1.0.4. The upstream `HTMLFencedFrameElement` exclusion shipped in 1.0.1 and was already present in 1.0.3; 1.0.4's separate worker-only fallback change did not clear the live warning. The remaining warning points to Partytown's sandbox. Removing or delaying Cloudflare Insights could shorten its analytics request chain, but would change telemetry timing and coverage; PSI found no suitable preconnect candidate.
 
 ## 1. Requirements & Constraints
 
@@ -28,21 +28,21 @@ The repository's 1.0.3 Partytown package already includes the upstream `HTMLFenc
 
 - GOAL-001 Start the Latin Inter download earlier and remove unnecessary client navigation overhead.
 
-| Task     | Description                                                                                                                                                                                                  | Completed | Date       |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------- |
-| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                                                                      | ✅        | 2026-11-07 |
-| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.                                                        | ✅        | 2026-11-07 |
-| TASK-003 | Update transitive `@qwik.dev/partytown` to eligible latest 1.0.4, then re-run PageSpeed to determine whether the Fenced Frame warning persists. The warning's v1.0.1 workaround is already present in 1.0.3. |           |            |
+| Task     | Description                                                                                                                                                                              | Completed | Date       |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
+| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                                                  | ✅        | 2026-11-07 |
+| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.                                    | ✅        | 2026-11-07 |
+| TASK-003 | Update transitive `@qwik.dev/partytown` to eligible latest 1.0.4 and re-run PageSpeed. The Fenced Frame warning persists despite the upstream workaround already being present in 1.0.3. | ✅        | 2026-11-07 |
 
 ### Implementation Phase 2
 
 - GOAL-002 Validate browser layout and navigation behavior.
 
-| Task     | Description                                                                                                                                                                                                                                | Completed | Date       |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------- |
-| TASK-004 | Run lint, typecheck, and production build. Confirm both target routes load in preview.                                                                                                                                                     | ✅        | 2026-11-07 |
-| TASK-005 | Measure layout shifts under mobile throttling and test menu/theme controls in preview.                                                                                                                                                     | ✅        | 2026-11-07 |
-| TASK-006 | Run PageSpeed Insights on the deployed revision and compare CLS, critical path, reflow, and Best Practices against this report. Live run: Performance 99, CLS 0, no forced-reflow insight; Partytown deprecation remains pending TASK-003. | ✅        | 2026-11-07 |
+| Task     | Description                                                                                                                                                                                                                                                     | Completed | Date       |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
+| TASK-004 | Run lint, typecheck, and production build. Confirm both target routes load in preview.                                                                                                                                                                          | ✅        | 2026-11-07 |
+| TASK-005 | Measure layout shifts under mobile throttling and test menu/theme controls in preview.                                                                                                                                                                          | ✅        | 2026-11-07 |
+| TASK-006 | Run PageSpeed Insights on the deployed revision and compare CLS, critical path, reflow, and Best Practices against the baseline. Latest run: Performance 97, CLS 0, LCP 1.7 seconds, 367 ms maximum path, no forced-reflow insight; Partytown warning persists. | ✅        | 2026-11-07 |
 
 ## 3. Alternatives
 
@@ -70,8 +70,9 @@ The repository's 1.0.3 Partytown package already includes the upstream `HTMLFenc
 
 - **RISK-001** Removing ClientRouter changes internal navigation from client-side transitions to normal document navigation. Menu and theme setup must work on each full load.
 - **RISK-002** Lighthouse results vary by run and emulated device. Use repeated measurements and the actual layout-shift trace when comparing.
+- **RISK-003** PageSpeed still reports a Partytown Fenced Frame deprecation after the latest package update. Removing Partytown would change how Google Analytics runs; removing or delaying Cloudflare Insights would reduce early RUM coverage. These are analytics tradeoffs, not safe score-only changes.
 - **ASSUMPTION-001** The Latin WOFF2 preload matches the font file selected by the existing Inter stylesheet for the report's English homepage content.
 
 ## 8. Related Specifications / Further Reading
 
-[Current mobile PageSpeed report](https://pagespeed.web.dev/analysis/https-theroks-com/xkwwk3t38y?form_factor=mobile) · [Astro Partytown integration](https://docs.astro.build/en/guides/integrations-guide/partytown/) · [Partytown release notes](https://github.com/QwikDev/partytown/releases)
+[Latest mobile PageSpeed report](https://pagespeed.web.dev/analysis/https-theroks-com/r5zvwqd2dm?form_factor=mobile) · [Original mobile PageSpeed report](https://pagespeed.web.dev/analysis/https-theroks-com/xkwwk3t38y?form_factor=mobile) · [Astro Partytown integration](https://docs.astro.build/en/guides/integrations-guide/partytown/) · [Partytown release notes](https://github.com/QwikDev/partytown/releases)
