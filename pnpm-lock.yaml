@@ -163,6 +163,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@astrojs/partytown>@qwik.dev/partytown': 1.0.4
   deepmerge-ts: 8.0.2
   yauzl@<3.2.1: '>=3.2.1'
   astro-compress>sharp: 0.35.5
@@ -1003,8 +1004,8 @@ packages:
   '@prettier/parse-srcset@3.1.0':
     resolution: {integrity: sha512-FIRv2rZotO9NP/r66taYqD1zICpPiBbrECqjKV/xqNotqDxF7fLzzUeK+1RSRx9Tenk0DajR/GcRmTJ2qtHaKQ==}
 
-  '@qwik.dev/partytown@1.0.3':
-    resolution: {integrity: sha512-fJuU5lNA8Gr09q18f3y+chCp4etnStVI5ctv87rFnVJ/mDVdZKHeI+BBNmopa/WEXOKAzmvapwIYlwy0nBXM/w==}
+  '@qwik.dev/partytown@1.0.4':
+    resolution: {integrity: sha512-9PhhzA5e2nLjPpTShx6ssV2wbO+vXkwgYRUdieXTvwwne2o+sgU9HlqWxOW130e1pG2x++duDgJaiN09R4UqeA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3375,7 +3376,7 @@ snapshots:
 
   '@astrojs/partytown@2.1.9':
     dependencies:
-      '@qwik.dev/partytown': 1.0.3
+      '@qwik.dev/partytown': 1.0.4
       mrmime: 2.0.1
 
   '@astrojs/prism@4.1.2':
@@ -3904,7 +3905,7 @@ snapshots:
 
   '@prettier/parse-srcset@3.1.0': {}
 
-  '@qwik.dev/partytown@1.0.3': {}
+  '@qwik.dev/partytown@1.0.4': {}
 
   '@rolldown/binding-android-arm-eabi@1.2.16':
     optional: true
