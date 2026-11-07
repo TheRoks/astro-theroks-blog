@@ -119,7 +119,9 @@ import { SITE } from "~/config.mjs";
     });
   }
 
-  // Setup event listeners on initial page load and after View Transitions
+  // Set up listeners for normal page loads and after optional View Transitions.
+  setupEventListeners();
+
   document.addEventListener("astro:page-load", () => {
     applyPreferredTheme();
     setupEventListeners();
