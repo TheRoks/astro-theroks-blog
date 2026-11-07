@@ -12,6 +12,8 @@ The original 7 November mobile report scored 95 for performance, with LCP 0.9 se
 
 After PR #464 deployed, a fresh PageSpeed Insights mobile run on 2026-11-07 scored 99 for performance, with CLS 0, TBT 0 ms, LCP 1.7 seconds, FCP 1.7 seconds, and Speed Index 2.6 seconds. The forced-reflow insight and the ClientRouter/font request chain are gone. The remaining 439 ms maximum path includes the base stylesheet and Cloudflare Insights beacon-to-RUM request; PSI found no suitable preconnect candidates. Lighthouse still reports the Partytown Fenced Frame deprecation and 8 KiB cache-lifetime / 21 KiB legacy-JavaScript savings associated with the analytics beacon.
 
+The repository's 1.0.3 Partytown package already includes the upstream `HTMLFencedFrameElement` exclusion from v1.0.1. The 1.0.4 release notes describe a separate worker-only fallback fix, not a Fenced Frame change. The transitive package is being advanced to eligible latest 1.0.4, then the live audit will confirm whether the warning persists.
+
 ## 1. Requirements & Constraints
 
 - **REQ-001** Remove the font-triggered homepage layout shift while retaining Inter and the existing layout.
@@ -26,11 +28,11 @@ After PR #464 deployed, a fresh PageSpeed Insights mobile run on 2026-11-07 scor
 
 - GOAL-001 Start the Latin Inter download earlier and remove unnecessary client navigation overhead.
 
-| Task     | Description                                                                                                                                                                                                    | Completed | Date       |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
-| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                                                                        | ✅        | 2026-11-07 |
-| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.                                                          | ✅        | 2026-11-07 |
-| TASK-003 | Update Partytown after its verified Fenced Frame fix passes pnpm's strict 24-hour minimum release age. Version 1.0.4 was published at 2026-11-07 12:06:39 UTC and becomes eligible at 2026-11-08 12:06:39 UTC. |           |            |
+| Task     | Description                                                                                                                                                                                                  | Completed | Date       |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------- |
+| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                                                                      | ✅        | 2026-11-07 |
+| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.                                                        | ✅        | 2026-11-07 |
+| TASK-003 | Update transitive `@qwik.dev/partytown` to eligible latest 1.0.4, then re-run PageSpeed to determine whether the Fenced Frame warning persists. The warning's v1.0.1 workaround is already present in 1.0.3. |           |            |
 
 ### Implementation Phase 2
 
@@ -49,7 +51,7 @@ After PR #464 deployed, a fresh PageSpeed Insights mobile run on 2026-11-07 scor
 
 ## 4. Dependencies
 
-- **DEP-001** The Partytown fix is available in `@qwik.dev/partytown` 1.0.4, but the pnpm workspace enforces a 24-hour minimum release age. Wait until the package is eligible before updating the lockfile.
+- **DEP-001** `@qwik.dev/partytown` 1.0.4 was published at 2026-11-05 21:00:18 UTC and passed the workspace's 24-hour minimum release age on 2026-11-06 21:00:18 UTC. Its release note describes worker-only fallback behavior; it does not claim to change the Fenced Frame warning.
 
 ## 5. Files
 
