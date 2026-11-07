@@ -8,7 +8,9 @@ status: "In progress"
 
 ![Status: In progress](https://img.shields.io/badge/status-In%20progress-yellow)
 
-The 7 November mobile report scores 95 for performance, with LCP 0.9 seconds, CLS 0.132, TBT 0 ms, and Speed Index 2.5 seconds. The measured layout shift occurs in the homepage hero and its "Field notes" panel as Inter loads. Astro's ClientRouter accounts for a 34 ms forced reflow and appears in the critical request tree. A throttled Chrome trace reproduced the shift as Inter loaded. After preloading Inter and removing ClientRouter, local mobile Lighthouse measured CLS 0, LCP 0.8 seconds, Performance 100, and no forced-reflow audit. Menu, theme, native navigation, and browser back behavior passed in preview.
+The original 7 November mobile report scored 95 for performance, with LCP 0.9 seconds, CLS 0.132, TBT 0 ms, and Speed Index 2.5 seconds. The measured layout shift occurred in the homepage hero and its "Field notes" panel as Inter loaded. Astro's ClientRouter accounted for a 34 ms forced reflow and appeared in the critical request tree. A throttled Chrome trace reproduced the shift as Inter loaded. After preloading Inter and removing ClientRouter, local mobile Lighthouse measured CLS 0, LCP 0.8 seconds, Performance 100, and no forced-reflow audit. Menu, theme, native navigation, and browser back behavior passed in preview.
+
+After PR #464 deployed, a fresh PageSpeed Insights mobile run on 2026-11-07 scored 99 for performance, with CLS 0, TBT 0 ms, LCP 1.7 seconds, FCP 1.7 seconds, and Speed Index 2.6 seconds. The forced-reflow insight and the ClientRouter/font request chain are gone. The remaining 439 ms maximum path includes the base stylesheet and Cloudflare Insights beacon-to-RUM request; PSI found no suitable preconnect candidates. Lighthouse still reports the Partytown Fenced Frame deprecation and 8 KiB cache-lifetime / 21 KiB legacy-JavaScript savings associated with the analytics beacon.
 
 ## 1. Requirements & Constraints
 
@@ -24,21 +26,21 @@ The 7 November mobile report scores 95 for performance, with LCP 0.9 seconds, CL
 
 - GOAL-001 Start the Latin Inter download earlier and remove unnecessary client navigation overhead.
 
-| Task     | Description                                                                                                                                            | Completed | Date       |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------- |
-| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                | ✅        | 2026-11-07 |
-| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.  | ✅        | 2026-11-07 |
-| TASK-003 | Verify whether a pnpm-eligible Partytown release fixes Lighthouse's Fenced Frame API warning. Update only after the strict minimum release age is met. |           |            |
+| Task     | Description                                                                                                                                                                                                    | Completed | Date       |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
+| TASK-001 | Preload the same Latin Inter WOFF2 asset that the font stylesheet uses.                                                                                                                                        | ✅        | 2026-11-07 |
+| TASK-002 | Remove ClientRouter and initialize theme and menu controls during ordinary document load. Preserve router event initialization for future router use.                                                          | ✅        | 2026-11-07 |
+| TASK-003 | Update Partytown after its verified Fenced Frame fix passes pnpm's strict 24-hour minimum release age. Version 1.0.4 was published at 2026-11-07 12:06:39 UTC and becomes eligible at 2026-11-08 12:06:39 UTC. |           |            |
 
 ### Implementation Phase 2
 
 - GOAL-002 Validate browser layout and navigation behavior.
 
-| Task     | Description                                                                                                                     | Completed | Date       |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------- |
-| TASK-004 | Run lint, typecheck, and production build. Confirm both target routes load in preview.                                          | ✅        | 2026-11-07 |
-| TASK-005 | Measure layout shifts under mobile throttling and test menu/theme controls in preview.                                          | ✅        | 2026-11-07 |
-| TASK-006 | Run PageSpeed Insights on the deployed revision and compare CLS, critical path, reflow, and Best Practices against this report. |           |            |
+| Task     | Description                                                                                                                                                                                                                                | Completed | Date       |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ---------- |
+| TASK-004 | Run lint, typecheck, and production build. Confirm both target routes load in preview.                                                                                                                                                     | ✅        | 2026-11-07 |
+| TASK-005 | Measure layout shifts under mobile throttling and test menu/theme controls in preview.                                                                                                                                                     | ✅        | 2026-11-07 |
+| TASK-006 | Run PageSpeed Insights on the deployed revision and compare CLS, critical path, reflow, and Best Practices against this report. Live run: Performance 99, CLS 0, no forced-reflow insight; Partytown deprecation remains pending TASK-003. | ✅        | 2026-11-07 |
 
 ## 3. Alternatives
 
