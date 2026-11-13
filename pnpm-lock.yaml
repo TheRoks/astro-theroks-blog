@@ -203,8 +203,8 @@ importers:
         specifier: 1.2.19
         version: 1.2.19
       '@iconify-json/tabler':
-        specifier: 1.2.43
-        version: 1.2.43
+        specifier: 1.2.44
+        version: 1.2.44
       '@tailwindcss/typography':
         specifier: 0.5.20
         version: 0.5.20(tailwindcss@4.3.5)
@@ -764,8 +764,8 @@ packages:
   '@iconify-json/logos@1.2.19':
     resolution: {integrity: sha512-ICjDNu2RW4xMk+0YAHyrTj/pW2BHgywcYyvf9DS16upalmSUbg+WqkEYJRim8iVOuVylyo9FFjzWLzACFhj8oA==}
 
-  '@iconify-json/tabler@1.2.43':
-    resolution: {integrity: sha512-EKhyOj6nASi25ZjuRpEhPL1fwiKVtg/e/VX6v6X3FPKpjG9og26ypW8ItnWYSTn6fdNuQe3VPeyuThWlP6QuWw==}
+  '@iconify-json/tabler@1.2.44':
+    resolution: {integrity: sha512-IsuUHpY2CYP3Tmq3tkJlfJbPEp+ASe4nAfUfguCXZLTCCqgb2jMQ4A7QQVacQCdVYu9my37YF/n84OLyx2hJ6g==}
 
   '@iconify/tools@5.0.14':
     resolution: {integrity: sha512-wJ4ZE3/HZh2iBqLwG+8FOMHe7CMJAJqwSXZSpPwMdj1gZM3Z4t2hbQMVw4Vm45oQ985qn0g89PUIcDEdKTheBA==}
@@ -3781,7 +3781,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/tabler@1.2.43':
+  '@iconify-json/tabler@1.2.44':
     dependencies:
       '@iconify/types': 2.0.0
 
