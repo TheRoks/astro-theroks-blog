@@ -34,7 +34,7 @@
     "astro": "7.4.11",
     "astro-compress": "2.4.3",
     "astro-icon": "1.2.0",
-    "eslint": "10.14.0",
+    "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-astro": "3.2.1",
     "globals": "17.14.0",
